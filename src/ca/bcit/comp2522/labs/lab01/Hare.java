@@ -3,14 +3,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hare {
-    int position = 0;
+    // todo: accessor and mutator for position, toString and equals method
+    private int position = 0;
+
+    public int getPosition() {
+        return position;
+    }
+    public void setPosition(int newPosition) {
+        position = newPosition;
+    }
 
     public int move() {
         final Random generator = new Random();
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
         switch (result) {
             case 0: case 1: /*20% of the time the Hare sleeps and doesn’t move.*/
-                System.out.println("hare does nothing");
+                System.out.println("hare does nothing"); // todo: remove these prints
                 break;
             case 2: /*10% of the time the Hare take a big hop and moves forward 9 units.*/
                 System.out.println("hare big hop");
