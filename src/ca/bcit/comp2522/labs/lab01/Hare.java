@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hare {
-    // todo: accessor and mutator for position, toString and equals method
+    // todo: toString and equals method
     private int position = 0;
 
     public int getPosition() {
@@ -16,6 +16,7 @@ public class Hare {
     public int move() {
         final Random generator = new Random();
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
+
         switch (result) {
             case 0: case 1: /*20% of the time the Hare sleeps and doesn’t move.*/
                 System.out.println("hare does nothing"); // todo: remove these prints
