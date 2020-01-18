@@ -39,24 +39,19 @@ public class Race {
      * @return a string representation of the winner, either Tortoise or Hare.
      */
     private String race() {
-        Random generator;
-        int coinFlip;
         // keep racing them while tortoise pos and hare pos less than race length
 
         do {
-            generator = new Random();
-            coinFlip = generator.nextInt(1) + 1; /*generate num 0 or 1 to determine first racer*/
-            switch (coinFlip) {
-                case 0:
-                    System.out.println("T first");
-                    racerTortoise.move();
-                    racerHare.move();
-                    break;
-                case 1:
-                    System.out.println("H first");
-                    racerHare.move();
-                    racerTortoise.move();
-                    break;
+            Random generator = new Random();
+            int coinFlip = generator.nextInt(2); /*generate num 0 or 1 to determine first racer*/
+            if (coinFlip == 0) {
+                System.out.println("T first");
+                racerTortoise.move();
+                racerHare.move();
+            } else {
+                System.out.println("H first");
+                racerHare.move();
+                racerTortoise.move();
             }
         } while (racerHare.getPosition() < length && racerTortoise.getPosition() < length);
 
@@ -80,6 +75,8 @@ public class Race {
         return race();
     }
 
-
-
+    public static void main(String[] args) {
+        Race myRace = new Race(50);
+        myRace.race();
+    }
 }
