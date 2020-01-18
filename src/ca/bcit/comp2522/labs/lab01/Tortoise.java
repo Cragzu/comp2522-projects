@@ -2,6 +2,12 @@ package ca.bcit.comp2522.labs.lab01;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Creates a slower-moving but consistent Tortoise for use in racing.
+ *
+ * @author Chloe Glave
+ * @version 2020
+ */
 public class Tortoise {
     // todo: toString and equals method
     private int position = 0;

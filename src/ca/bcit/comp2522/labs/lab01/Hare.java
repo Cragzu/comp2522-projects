@@ -2,6 +2,12 @@ package ca.bcit.comp2522.labs.lab01;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Creates a quick-moving but sporadic Hare for use in racing.
+ *
+ * @author Chloe Glave
+ * @version 2020
+ */
 public class Hare {
     // todo: toString and equals method
     private int position = 0;
