@@ -39,8 +39,6 @@ public class Race {
      * @return a string representation of the winner, either Tortoise or Hare.
      */
     private String race() {
-        // keep racing them while tortoise pos and hare pos less than race length
-
         do {
             Random generator = new Random();
             int coinFlip = generator.nextInt(2); /*generate num 0 or 1 to determine first racer*/
@@ -73,10 +71,5 @@ public class Race {
     public String simulateRace() {
         reset(); // ensure racers are at the starting line
         return race();
-    }
-
-    public static void main(String[] args) {
-        Race myRace = new Race(50);
-        myRace.race();
     }
 }
