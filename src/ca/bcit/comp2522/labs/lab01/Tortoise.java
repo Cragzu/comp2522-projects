@@ -12,13 +12,29 @@ public class Tortoise {
     // todo: toString and equals method
     private int position = 0;
 
+    /**
+     * Gets the tortoise's current position as an int.
+     *
+     * @return the current position of the tortoise.
+     */
     public int getPosition() {
         return position;
     }
+
+    /**
+     * Updates the tortoise's current position.
+     *
+     * @param newPosition the new position.
+     */
     public void setPosition(int newPosition) {
         position = newPosition;
     }
 
+    /**
+     * Moves the tortoise once.
+     *
+     * @return the position of the tortoise after one movement.
+     */
     public int move() {
         final Random generator = new Random();
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
@@ -39,10 +55,5 @@ public class Tortoise {
         }
         System.out.println(position);
         return position;
-    }
-
-    public static void main(String[] args) {
-        Tortoise myTortoise = new Tortoise();
-        myTortoise.move();
     }
 }
