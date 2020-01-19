@@ -84,6 +84,16 @@ public class Guppy {
         return newString;
     }
 
+    /**
+     * Increases the guppy's age by 1 week, setting isAlive to false if this brings the age above the maximum.
+     */
+    public void incrementAge() {
+        ageInWeeks++;
+        if(ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
+            isAlive = false;
+        }
+    }
+
     public static void main(String[] args) {
         Guppy myGuppy = new Guppy();
         String test = "hello";
