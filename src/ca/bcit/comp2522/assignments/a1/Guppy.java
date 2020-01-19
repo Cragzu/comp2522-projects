@@ -58,16 +58,20 @@ public class Guppy {
         return identificationNumber;
     }
 
-    public void setAgeInWeeks(int ageInWeeks) {
-        this.ageInWeeks = ageInWeeks;
+    public void setAgeInWeeks(int newAgeInWeeks) {
+        if (newAgeInWeeks > 0 && newAgeInWeeks < MAXIMUM_AGE_IN_WEEKS) {
+            this.ageInWeeks = newAgeInWeeks;
+        }
     }
 
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
 
-    public void setHealthCoefficient(double healthCoefficient) {
-        this.healthCoefficient = healthCoefficient;
+    public void setHealthCoefficient(double newHealthCoefficient) {
+        if (newHealthCoefficient > MINIMUM_HEALTH_COEFFICIENT && newHealthCoefficient < MAXIMUM_HEALTH_COEFFICIENT) {
+            this.healthCoefficient = newHealthCoefficient;
+        }
     }
 
     /**
