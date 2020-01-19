@@ -26,48 +26,102 @@ public class Guppy {
     private int identificationNumber;
     private static int numberOfGuppiesBorn = 0;
 
+    /**
+     * Returns the genus of the guppy.
+     * @return the genus
+     */
     public String getGenus() {
         return genus;
     }
 
+    /**
+     * Returns the species of the guppy.
+     * @return the species
+     */
     public String getSpecies() {
         return species;
     }
 
+    /**
+     * Returns the age of the guppy in weeks.
+     * @return the age
+     */
     public int getAgeInWeeks() {
         return ageInWeeks;
     }
 
-    public boolean isFemale() {
+    /**
+     * Returns whether or not the guppy is female (true = female, false = male).
+     * @return whether the guppy is female
+     */
+    public boolean getIsFemale() {
         return isFemale;
     }
 
+    /**
+     * Returns the generation number of the guppy; how many generations have come before it.
+     * @return the generation number
+     */
     public int getGenerationNumber() {
         return generationNumber;
     }
 
-    public boolean isAlive() {
+    /**
+     * Returns whether or not the guppy is alive (true = alive, false = dead).
+     * @return the living/dead status of the guppy
+     */
+    public boolean getIsAlive() {
         return isAlive;
     }
 
+    /**
+     * Returns the health coefficient of the guppy, indicating how healthy it is.
+     * @return the health coefficient
+     */
     public double getHealthCoefficient() {
         return healthCoefficient;
     }
 
+    /**
+     * Returns the ID number of the guppy.
+     * @return the identification number
+     */
     public int getIdentificationNumber() {
         return identificationNumber;
     }
 
+    /**
+     * Returns the total number of guppies that have ever been born.
+     * @return the number of guppies born.
+     */
+    public static int getNumberOfGuppiesBorn() {
+        return numberOfGuppiesBorn;
+    }
+
+    /**
+     * Updates the age of the guppy in weeks, staying within allowable bounds.
+     * @param newAgeInWeeks the new age of the guppy.
+     */
     public void setAgeInWeeks(int newAgeInWeeks) {
         if (newAgeInWeeks > 0 && newAgeInWeeks < MAXIMUM_AGE_IN_WEEKS) {
             this.ageInWeeks = newAgeInWeeks;
         }
     }
 
-    public void setAlive(boolean alive) {
+    /**
+     * Updates whether or not the guppy is alive. todo: is it OK to change from false to true (zombie fish)??
+     *
+     * @param alive the new value for the life status of the guppy
+     */
+    public void setIsAlive(boolean alive) {
         isAlive = alive;
     }
 
+    /**
+     * Updates the health coefficient of the guppy, staying within allowable bounds.
+     *
+     * @param newHealthCoefficient the new health coefficient
+     */
     public void setHealthCoefficient(double newHealthCoefficient) {
         if (newHealthCoefficient > MINIMUM_HEALTH_COEFFICIENT && newHealthCoefficient < MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = newHealthCoefficient;
