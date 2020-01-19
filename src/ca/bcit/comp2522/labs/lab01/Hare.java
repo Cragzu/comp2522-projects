@@ -46,31 +46,20 @@ public class Hare {
 
         switch (result) {
             case 0: case 1: /*20% of the time the Hare sleeps and doesn’t move.*/
-                System.out.println("hare does nothing"); // todo: remove these prints
                 break;
             case 2: /*10% of the time the Hare take a big hop and moves forward 9 units.*/
-                System.out.println("hare big hop");
                 setPosition(getPosition() + BIG_HOP);
                 break;
             case 3: /*10% of the time the Hare suffers a big slip and moves backward 12 units.*/
-                System.out.println("hare big slip");
                 setPosition(getPosition() + BIG_SLIP);
                 break;
             case 4: case 5: case 6: /*30% of the time the Hare takes a small hop and moves forward 1 unit.*/
-                System.out.println("hare small hop");
                 setPosition(getPosition() + SMALL_HOP);
                 break;
             default: /*the rest of the time, the Hare suffers a small slip and moves backward 2 units.*/
-                System.out.println("hare small slip");
                 setPosition(getPosition() + SMALL_SLIP);
                 break;
         }
-        System.out.println(position);
         return position;
-    }
-
-    public static void main(String[] args) {
-        Hare myHare = new Hare();
-        myHare.move();
     }
 }

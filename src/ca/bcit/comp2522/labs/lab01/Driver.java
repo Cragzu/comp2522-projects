@@ -20,7 +20,7 @@ public class Driver {
         Race raceInstance = new Race(lengthOfRace);
         int hareWins = 0;
         int tortoiseWins = 0;
-        String output = ""; // todo: return output string instead of printing
+        String output = "Starting a tournament with " + numOfRaces + " races of length " + lengthOfRace + ".\n";
 
         for(int lap = 0; lap < numOfRaces; lap++) {
             String roundWinner = raceInstance.simulateRace();
@@ -32,9 +32,10 @@ public class Driver {
             }
         }
         output += "Tortoise won " + tortoiseWins + " times, with a final position of " +
-                raceInstance.racerTortoise.getPosition() + "\n";
+                raceInstance.racerTortoise.getPosition() + ".\n";
         output += "Hare won " + hareWins + " times, with a final position of " +
-                raceInstance.racerHare.getPosition() + "\n";
+                raceInstance.racerHare.getPosition() + ".\n";
+        output += "The last race took " + raceInstance.numOfTicks + " ticks to complete.\n";
 
         if (tortoiseWins > hareWins) {
             output += "Tortoise won overall!";
@@ -45,12 +46,13 @@ public class Driver {
         else {
             output += "The two won the same number of times, wow!";
         }
+        output += "\n";
         return output;
     }
 
     public static void main(String[] args) {
         System.out.println(simulateRaces(100, 100));
-        //simulateRaces(100, 1000);
+        System.out.println(simulateRaces(100, 1000));
     }
 
 }

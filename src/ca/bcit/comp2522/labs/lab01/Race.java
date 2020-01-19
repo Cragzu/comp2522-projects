@@ -12,6 +12,7 @@ public class Race {
 
     /*instance variables*/
     private int length;
+    public int numOfTicks;
     public Hare racerHare;
     public Tortoise racerTortoise;
 
@@ -32,6 +33,7 @@ public class Race {
     public void reset() {
         racerHare.setPosition(STARTING_POSITION);
         racerTortoise.setPosition(STARTING_POSITION);
+        numOfTicks = 0;
     }
 
     /**
@@ -44,22 +46,18 @@ public class Race {
             Random generator = new Random();
             int coinFlip = generator.nextInt(2); /*generate num 0 or 1 to determine first racer*/
             if (coinFlip == 0) {
-                System.out.println("T first");
                 racerTortoise.move();
                 racerHare.move();
             } else {
-                System.out.println("H first");
                 racerHare.move();
                 racerTortoise.move();
             }
+            numOfTicks++;
         } while (racerHare.getPosition() < length && racerTortoise.getPosition() < length);
 
         if (racerHare.getPosition() >= length) {
-            // todo: remove prints
-            System.out.println("Hare wins");
             return "Hare";
         } else {
-            System.out.println("Tortoise wins");
             return "Tortoise";
         }
     }
