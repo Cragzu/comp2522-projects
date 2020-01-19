@@ -8,6 +8,9 @@ package ca.bcit.comp2522.labs.lab01;
  * @version 2020
  */
 public class Driver {
+    private static int NUM_RACES = 100;
+    private static int RACE_LENGTH_1 = 100;
+    private static int RACE_LENGTH_2 = 1000;
 
     /**
      * Simulates a series of races to determine which racer wins most often.
@@ -51,8 +54,8 @@ public class Driver {
     }
 
     public static void main(String[] args) {
-        System.out.println(simulateRaces(100, 100));
-        System.out.println(simulateRaces(100, 1000));
+        System.out.println(simulateRaces(NUM_RACES, RACE_LENGTH_1));
+        System.out.println(simulateRaces(NUM_RACES, RACE_LENGTH_2));
     }
 
 }
