@@ -10,6 +10,11 @@ import java.util.Scanner;
  */
 public class Hare {
     // todo: toString and equals method
+    final static int BIG_HOP = 9;
+    final static int BIG_SLIP = -12;
+    final static int SMALL_HOP = 1;
+    final static int SMALL_SLIP = -2;
+
     private int position = 0;
 
     /**
@@ -45,19 +50,19 @@ public class Hare {
                 break;
             case 2: /*10% of the time the Hare take a big hop and moves forward 9 units.*/
                 System.out.println("hare big hop");
-                position += 9;
+                setPosition(getPosition() + BIG_HOP);
                 break;
             case 3: /*10% of the time the Hare suffers a big slip and moves backward 12 units.*/
                 System.out.println("hare big slip");
-                position -= 12;
+                setPosition(getPosition() + BIG_SLIP);
                 break;
             case 4: case 5: case 6: /*30% of the time the Hare takes a small hop and moves forward 1 unit.*/
                 System.out.println("hare small hop");
-                position += 1;
+                setPosition(getPosition() + SMALL_HOP);
                 break;
             default: /*the rest of the time, the Hare suffers a small slip and moves backward 2 units.*/
                 System.out.println("hare small slip");
-                position -= 2;
+                setPosition(getPosition() + SMALL_SLIP);
                 break;
         }
         System.out.println(position);

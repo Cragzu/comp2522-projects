@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class Tortoise {
     // todo: toString and equals method
+    final static int FAST_PLOD = 3;
+    final static int SLIP = -6;
+    final static int SLOW_PLOD = 1;
+
     private int position = 0;
 
     /**
@@ -42,18 +46,23 @@ public class Tortoise {
         switch (result) {
             case 0: case 1: case 2: case 3: case 4: /*50% of the time the Tortoise moves forward 3 units (fast plod).*/
                 System.out.println("Tortoise plods fast"); // todo: remove these prints
-                position += 3;
+                setPosition(getPosition() + FAST_PLOD);
                 break;
             case 5: case 6: /*20% of the time the Tortoise slips and moves backward 6 units.*/
                 System.out.println("Tortoise slips back");
-                position -= 6;
+                setPosition(getPosition() + SLIP);
                 break;
             default: /*the rest of the time, the Tortoise moves forward 1 unit with a slow plod.*/
                 System.out.println("Tortoise plods slowly");
-                position += 1;
+                setPosition(getPosition() + SLOW_PLOD);
                 break;
         }
         System.out.println(position);
         return position;
+    }
+
+    public static void main(String[] args) {
+        Tortoise myTortoise = new Tortoise();
+        myTortoise.move();
     }
 }
