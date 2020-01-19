@@ -26,6 +26,50 @@ public class Guppy {
     private int identificationNumber;
     private static int numberOfGuppiesBorn = 0;
 
+    public String getGenus() {
+        return genus;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public int getAgeInWeeks() {
+        return ageInWeeks;
+    }
+
+    public boolean isFemale() {
+        return isFemale;
+    }
+
+    public int getGenerationNumber() {
+        return generationNumber;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public double getHealthCoefficient() {
+        return healthCoefficient;
+    }
+
+    public int getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setAgeInWeeks(int ageInWeeks) {
+        this.ageInWeeks = ageInWeeks;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public void setHealthCoefficient(double healthCoefficient) {
+        this.healthCoefficient = healthCoefficient;
+    }
+
     /**
      * Constructor for a default guppy.
      */
