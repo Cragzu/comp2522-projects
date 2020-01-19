@@ -27,10 +27,11 @@ public class Guppy {
     private static int numberOfGuppiesBorn = 0;
 
     /**
-     * Constructor.
+     * Constructor for a default guppy.
      */
     public Guppy() {
-        numberOfGuppiesBorn += 1;
+        numberOfGuppiesBorn++;
+        identificationNumber = numberOfGuppiesBorn;
 
         ageInWeeks = 0;
         generationNumber = 0;
@@ -39,7 +40,35 @@ public class Guppy {
         isFemale = true;
         isAlive = true;
         healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
+    }
+
+    /**
+     * Constructor for a guppy with non-default values.
+     *
+     * @param newGenus the guppy's genus.
+     * @param newSpecies the guppy's species.
+     * @param newAgeInWeeks the guppy's age.
+     * @param newIsFemale whether or not the guppy is female.
+     * @param newGenerationNumber the generation number the guppy belongs to.
+     * @param newHealthCoefficient a coefficient representing how healthy the guppy is.
+     */
+    public Guppy(String newGenus, String newSpecies, int newAgeInWeeks, boolean newIsFemale, int newGenerationNumber,
+                 double newHealthCoefficient) {
+        numberOfGuppiesBorn++;
         identificationNumber = numberOfGuppiesBorn;
+
+        genus = toTitleCase(newGenus);
+        species = newSpecies.toLowerCase();
+        ageInWeeks = Math.max(newAgeInWeeks, 0); /*set age to 0 if given age is invalid (negative)*/
+        isFemale = newIsFemale;
+        generationNumber = (newGenerationNumber < 0) ? 1 : newGenerationNumber; /*set to 1 if given is invalid*/
+
+        if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT) { /*ensure given is between min and max*/
+            healthCoefficient = MINIMUM_HEALTH_COEFFICIENT; /*if not, set to closest*/
+        }
+        else healthCoefficient = Math.min(newHealthCoefficient, MAXIMUM_HEALTH_COEFFICIENT);
+
+        isAlive = true; /*guppies always start out as alive*/
     }
 
     /**
