@@ -8,10 +8,12 @@ import java.util.Random;
  * @version 2020
  */
 public class Race {
+    final static int STARTING_POSITION = 0;
+
     /*instance variables*/
     private int length;
-    private Hare racerHare;
-    private Tortoise racerTortoise;
+    public Hare racerHare;
+    public Tortoise racerTortoise;
 
     /**
      * Constructor.
@@ -25,12 +27,11 @@ public class Race {
     }
 
     /**
-     * Sets the positions of the two racers to 0, resetting the race.
+     * Sets the positions of the two racers to the starting position, resetting the race.
      */
     public void reset() {
-        // todo: use const instead of 0?
-        racerHare.setPosition(0);
-        racerTortoise.setPosition(0);
+        racerHare.setPosition(STARTING_POSITION);
+        racerTortoise.setPosition(STARTING_POSITION);
     }
 
     /**
