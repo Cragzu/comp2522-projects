@@ -218,10 +218,23 @@ public class Guppy {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Guppy{" +
+                "genus='" + genus + '\'' +
+                ", species='" + species + '\'' +
+                ", ageInWeeks=" + ageInWeeks +
+                ", isFemale=" + isFemale +
+                ", generationNumber=" + generationNumber +
+                ", isAlive=" + isAlive +
+                ", healthCoefficient=" + healthCoefficient +
+                ", identificationNumber=" + identificationNumber +
+                '}';
+    }
+
     public static void main(String[] args) {
         Guppy myGuppy = new Guppy();
-        String test = "hello";
-        System.out.println(myGuppy.toTitleCase(test));
+        System.out.println(myGuppy.toString());
     }
 
 }
