@@ -218,6 +218,24 @@ public class Guppy {
         }
     }
 
+    /**
+     * Modifies the health coefficient by a given amount, staying within acceptable bounds.
+     *
+     * @param delta the amount to modify the health coefficient by
+     */
+    public void changeHealthCoefficient(double delta) {
+        if (getHealthCoefficient() + delta <= MINIMUM_HEALTH_COEFFICIENT) {
+            setHealthCoefficient(0.0);
+            setIsAlive(false);
+        }
+        else if (getHealthCoefficient() + delta > MAXIMUM_HEALTH_COEFFICIENT) {
+            setHealthCoefficient(MAXIMUM_HEALTH_COEFFICIENT);
+        }
+        else {
+            setHealthCoefficient(getHealthCoefficient() + delta);
+        }
+    }
+
     @Override
     public String toString() {
         return "Guppy{" +
