@@ -10,6 +10,8 @@ public class Guppy {
     final static int MATURE_FISH_AGE_IN_WEEKS = 30;
     final static int MAXIMUM_AGE_IN_WEEKS = 50;
     final static double MINIMUM_WATER_VOLUME_ML = 250.0;
+    final static double ADULT_FISH_WATER_COEFFICIENT = 1.5;
+    final static double DEAD_FISH_WATER_VOLUME = 0.0;
     final static String DEFAULT_GENUS = "Poecilia";
     final static String DEFAULT_SPECIES = "reticulata";
     final static double DEFAULT_HEALTH_COEFFICIENT = 0.5;
@@ -193,6 +195,26 @@ public class Guppy {
         ageInWeeks++;
         if(ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
             isAlive = false;
+        }
+    }
+
+    /**
+     * Calculates the volume of water in mL that a guppy needs based on its age.
+     *
+     * @return the required volume of water in mL
+     */
+    public double getVolumeNeeded() {
+        if (ageInWeeks < 10) {
+            return MINIMUM_WATER_VOLUME_ML;
+        }
+        else if (ageInWeeks > 10 && ageInWeeks <= 30) {
+            return (MINIMUM_WATER_VOLUME_ML*ageInWeeks)/YOUNG_FISH_AGE_IN_WEEKS;
+        }
+        else if (ageInWeeks > 30 && ageInWeeks <= 50) {
+            return (MINIMUM_WATER_VOLUME_ML*ADULT_FISH_WATER_COEFFICIENT);
+        }
+        else {
+            return DEAD_FISH_WATER_VOLUME;
         }
     }
 
