@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.assignments.a1;
 
+import java.util.Objects;
+
 /**
+ * todo: implement the given unit tests
  * @author Chloe Glave
  * @version 2020
  */
@@ -236,6 +239,11 @@ public class Guppy {
         }
     }
 
+    /**
+     * Creates a string providing information about the guppy.
+     *
+     * @return a formatted string describing the guppy
+     */
     @Override
     public String toString() {
         return "Guppy{" +
@@ -248,6 +256,28 @@ public class Guppy {
                 ", healthCoefficient=" + healthCoefficient +
                 ", identificationNumber=" + identificationNumber +
                 '}';
+    }
+
+    /**
+     * Compares the guppy to another object and determines whether they are equal.
+     *
+     * @param o object to compare to this guppy
+     * @return whether or not the two objects are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof Guppy)) return false;
+        Guppy guppy = (Guppy) o;
+        return getAgeInWeeks() == guppy.getAgeInWeeks() &&
+                isFemale == guppy.isFemale &&
+                getGenerationNumber() == guppy.getGenerationNumber() &&
+                isAlive == guppy.isAlive &&
+                Double.compare(guppy.getHealthCoefficient(), getHealthCoefficient()) == 0 &&
+                getIdentificationNumber() == guppy.getIdentificationNumber() &&
+                getGenus().equals(guppy.getGenus()) &&
+                getSpecies().equals(guppy.getSpecies());
     }
 
     public static void main(String[] args) {
