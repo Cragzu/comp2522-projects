@@ -175,12 +175,14 @@ public class Guppy {
         else ageInWeeks = newAgeInWeeks;
 
         isFemale = newIsFemale;
-        generationNumber = (newGenerationNumber < 0) ? 1 : newGenerationNumber; /*set to 1 if given is invalid*/
 
-        if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT) { /*ensure given is between min and max*/
-            healthCoefficient = MINIMUM_HEALTH_COEFFICIENT; /*if not, set to closest*/
+        if (newGenerationNumber < 0) throw new IllegalArgumentException("Generation number cannot be negative.");
+        else generationNumber = newGenerationNumber;
+
+        if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT || newHealthCoefficient > MAXIMUM_HEALTH_COEFFICIENT) {
+            throw new IllegalArgumentException("Health coefficient is out of bounds!");
         }
-        else healthCoefficient = Math.min(newHealthCoefficient, MAXIMUM_HEALTH_COEFFICIENT);
+        else healthCoefficient = newHealthCoefficient;
 
         isAlive = true; /*guppies always start out as alive*/
     }
