@@ -164,14 +164,16 @@ public class Guppy {
         numberOfGuppiesBorn++;
         identificationNumber = numberOfGuppiesBorn;
 
-        if (newGenus == null || newGenus.isBlank()) {
-            throw new IllegalArgumentException("Genus cannot be empty.");
-        }
-        else {
-            genus = toTitleCase(newGenus);
-        }
-        species = (newSpecies.toLowerCase()).strip();
-        ageInWeeks = Math.max(newAgeInWeeks, 0); /*set age to 0 if given age is invalid (negative)*/
+        if (newGenus == null || newGenus.isBlank()) throw new IllegalArgumentException("Genus cannot be empty.");
+        else genus = toTitleCase(newGenus);
+
+        if (newSpecies == null || newSpecies.isBlank()) throw new IllegalArgumentException("Species cannot be empty.");
+        else species = (newSpecies.toLowerCase()).strip();
+
+        if (newAgeInWeeks >= MAXIMUM_AGE_IN_WEEKS) throw new IllegalArgumentException("Age cannot be 50+ weeks!");
+        else if (newAgeInWeeks < 0) throw new IllegalArgumentException("Age cannot be negative!");
+        else ageInWeeks = newAgeInWeeks;
+
         isFemale = newIsFemale;
         generationNumber = (newGenerationNumber < 0) ? 1 : newGenerationNumber; /*set to 1 if given is invalid*/
 
