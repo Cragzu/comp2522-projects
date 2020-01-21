@@ -3,7 +3,8 @@ package ca.bcit.comp2522.assignments.a1;
 import java.util.Objects;
 
 /**
- * todo: implement the given unit tests
+ * Creates a Guppy object with instance variables, constructors, and methods.
+ *
  * @author Chloe Glave
  * @version 2020
  */
