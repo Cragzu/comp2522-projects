@@ -214,7 +214,7 @@ public class Guppy {
         else if (ageInWeeks <= 30) {
             return (MINIMUM_WATER_VOLUME_ML*getAgeInWeeks())/YOUNG_FISH_AGE_IN_WEEKS;
         }
-        else if (ageInWeeks <= 50) {
+        else if (ageInWeeks < 50) {
             return (MINIMUM_WATER_VOLUME_ML*ADULT_FISH_WATER_COEFFICIENT);
         }
         else {
@@ -288,6 +288,8 @@ public class Guppy {
                 true,
                 3,
                 0.75);
+        fry.setAgeInWeeks(50);
+        fry.incrementAge();
         System.out.println(fry.toString());
         System.out.println(fry.getVolumeNeeded());
     }
