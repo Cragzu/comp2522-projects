@@ -165,7 +165,7 @@ public class Guppy {
         identificationNumber = numberOfGuppiesBorn;
 
         genus = toTitleCase(newGenus);
-        species = newSpecies.toLowerCase();
+        species = (newSpecies.toLowerCase()).strip();
         ageInWeeks = Math.max(newAgeInWeeks, 0); /*set age to 0 if given age is invalid (negative)*/
         isFemale = newIsFemale;
         generationNumber = (newGenerationNumber < 0) ? 1 : newGenerationNumber; /*set to 1 if given is invalid*/
@@ -186,6 +186,7 @@ public class Guppy {
      */
     public String toTitleCase(String originalString) {
         String newString = originalString.toLowerCase();
+        newString = newString.strip();
         char firstLetter = newString.charAt(0);
         newString = newString.replace(firstLetter, Character.toUpperCase(firstLetter));
         return newString;
@@ -281,8 +282,13 @@ public class Guppy {
     }
 
     public static void main(String[] args) {
-        Guppy myGuppy = new Guppy();
-        System.out.println(myGuppy.toString());
+        Guppy fry = new Guppy("  poECILIA    ",
+                "  ELEgans   ",
+                1,
+                true,
+                3,
+                0.75);
+        System.out.println(fry.toString());
     }
 
 }
