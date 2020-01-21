@@ -1,4 +1,5 @@
 package ca.bcit.comp2522.labs.lab01;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,7 +10,13 @@ import java.util.Scanner;
  * @version 2020
  */
 public class Hare {
-    // todo: toString and equals method
+    final static int BIG_HOP_CHANCE = 2;
+    final static int BIG_SLIP_CHANCE = 3;
+    final static int SMALL_HOP_LOWER_BOUND = 4;
+    final static int SMALL_HOP_UPPER_BOUND = 6;
+    final static int SMALL_SLIP_LOWER_BOUND = 7;
+    final static int SMALL_SLIP_UPPER_BOUND = 9;
+    
     final static int BIG_HOP = 9;
     final static int BIG_SLIP = -12;
     final static int SMALL_HOP = 1;
@@ -43,23 +50,48 @@ public class Hare {
     public int move() {
         final Random generator = new Random();
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
-
-        switch (result) {
-            case 0: case 1: /*20% of the time the Hare sleeps and doesn’t move.*/
-                break;
-            case 2: /*10% of the time the Hare take a big hop and moves forward 9 units.*/
-                setPosition(getPosition() + BIG_HOP);
-                break;
-            case 3: /*10% of the time the Hare suffers a big slip and moves backward 12 units.*/
-                setPosition(getPosition() + BIG_SLIP);
-                break;
-            case 4: case 5: case 6: /*30% of the time the Hare takes a small hop and moves forward 1 unit.*/
-                setPosition(getPosition() + SMALL_HOP);
-                break;
-            default: /*the rest of the time, the Hare suffers a small slip and moves backward 2 units.*/
-                setPosition(getPosition() + SMALL_SLIP);
-                break;
+        
+        /*20% of the time, do nothing.*/
+        if (result == BIG_HOP_CHANCE) {
+            setPosition(getPosition() + BIG_HOP);
+        }
+        else if (result == BIG_SLIP_CHANCE) {
+            setPosition(getPosition() + BIG_SLIP);
+        }
+        else if (result >= SMALL_HOP_LOWER_BOUND && result <= SMALL_HOP_UPPER_BOUND) {
+            setPosition(getPosition() + SMALL_HOP);
+        }
+        else if (result >= SMALL_SLIP_LOWER_BOUND && result <= SMALL_SLIP_UPPER_BOUND) {
+            setPosition(getPosition() + SMALL_SLIP);
         }
         return position;
     }
+
+    /**
+     * Creates a string providing information about the hare.
+     *
+     * @return a formatted string describing the hare.
+     */
+    @Override
+    public String toString() {
+        return "Hare{" +
+                "position=" + position +
+                '}';
+    }
+
+    /**
+     * Compares the hare to another object and determines whether they are equal.
+     *
+     * @param o object to compare to this hare
+     * @return whether or not the two objects are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof Hare)) return false;
+        Hare hare = (Hare) o;
+        return getPosition() == hare.getPosition();
+    }
+    
 }
