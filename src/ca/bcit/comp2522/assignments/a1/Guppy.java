@@ -1,5 +1,4 @@
 package ca.bcit.comp2522.assignments.a1;
-
 import java.util.Objects;
 
 /**
@@ -135,7 +134,7 @@ public class Guppy {
     }
 
     /**
-     * Updates whether or not the guppy is alive. todo: is it OK to change from false to true (zombie fish)??
+     * Updates whether or not the guppy is alive.
      *
      * @param alive the new value for the life status of the guppy
      */
@@ -309,13 +308,5 @@ public class Guppy {
                 getIdentificationNumber() == guppy.getIdentificationNumber() &&
                 getGenus().equals(guppy.getGenus()) &&
                 getSpecies().equals(guppy.getSpecies());
-    }
-
-    public static void main(String[] args) {
-        Guppy fry = new Guppy();
-        fry.setAgeInWeeks(MAXIMUM_AGE_IN_WEEKS);
-        fry.incrementAge();
-        System.out.println(fry.getVolumeNeeded());
-        System.out.println(fry.toString());
     }
 }
