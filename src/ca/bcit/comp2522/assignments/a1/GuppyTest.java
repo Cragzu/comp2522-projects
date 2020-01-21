@@ -360,7 +360,6 @@ public class GuppyTest {
         assertEquals(1.0, testGuppy.getHealthCoefficient(), 0.0);
     }
 
-
     @Test
     public void changeHealthCoefficientWillNotPermitNegativeHealthCoefficients() {
         testGuppy.changeHealthCoefficient(-1.5);

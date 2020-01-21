@@ -128,7 +128,7 @@ public class Guppy {
      * @param newHealthCoefficient the new health coefficient
      */
     public void setHealthCoefficient(double newHealthCoefficient) {
-        if (newHealthCoefficient > MINIMUM_HEALTH_COEFFICIENT && newHealthCoefficient < MAXIMUM_HEALTH_COEFFICIENT) {
+        if (newHealthCoefficient >= MINIMUM_HEALTH_COEFFICIENT && newHealthCoefficient <= MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = newHealthCoefficient;
         }
     }
@@ -164,7 +164,12 @@ public class Guppy {
         numberOfGuppiesBorn++;
         identificationNumber = numberOfGuppiesBorn;
 
-        genus = toTitleCase(newGenus);
+        if (newGenus == null || newGenus.isBlank()) {
+            throw new IllegalArgumentException("Genus cannot be empty.");
+        }
+        else {
+            genus = toTitleCase(newGenus);
+        }
         species = (newSpecies.toLowerCase()).strip();
         ageInWeeks = Math.max(newAgeInWeeks, 0); /*set age to 0 if given age is invalid (negative)*/
         isFemale = newIsFemale;
@@ -228,11 +233,13 @@ public class Guppy {
      * @param delta the amount to modify the health coefficient by
      */
     public void changeHealthCoefficient(double delta) {
+        System.out.println(getHealthCoefficient() + delta);
         if (getHealthCoefficient() + delta <= MINIMUM_HEALTH_COEFFICIENT) {
             setHealthCoefficient(0.0);
             setIsAlive(false);
         }
         else if (getHealthCoefficient() + delta > MAXIMUM_HEALTH_COEFFICIENT) {
+            System.out.println("this one");
             setHealthCoefficient(MAXIMUM_HEALTH_COEFFICIENT);
         }
         else {
@@ -282,16 +289,13 @@ public class Guppy {
     }
 
     public static void main(String[] args) {
-        Guppy fry = new Guppy("  poECILIA    ",
-                "  ELEgans   ",
-                10,
+        Guppy fry = new Guppy("    ",
+                "a",
+                0,
                 true,
-                3,
-                0.75);
-        fry.setAgeInWeeks(50);
-        fry.incrementAge();
+                0 ,
+                0.5);
         System.out.println(fry.toString());
-        System.out.println(fry.getVolumeNeeded());
     }
 
 }
