@@ -108,8 +108,8 @@ public class Guppy {
      * @param newAgeInWeeks the new age of the guppy.
      */
     public void setAgeInWeeks(int newAgeInWeeks) {
-        if (newAgeInWeeks > 0 && newAgeInWeeks < MAXIMUM_AGE_IN_WEEKS) {
-            this.ageInWeeks = newAgeInWeeks;
+        if (newAgeInWeeks >= 0 && newAgeInWeeks <= MAXIMUM_AGE_IN_WEEKS) {
+            ageInWeeks = newAgeInWeeks;
         }
     }
 
@@ -196,9 +196,9 @@ public class Guppy {
      * Increases the guppy's age by 1 week, setting isAlive to false if this brings the age above the maximum.
      */
     public void incrementAge() {
-        ageInWeeks++;
-        if(ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
-            isAlive = false;
+        setAgeInWeeks(getAgeInWeeks() + 1);
+        if(ageInWeeks >= MAXIMUM_AGE_IN_WEEKS) {
+            setIsAlive(false);
         }
     }
 
@@ -211,10 +211,10 @@ public class Guppy {
         if (ageInWeeks < 10) {
             return MINIMUM_WATER_VOLUME_ML;
         }
-        else if (ageInWeeks > 10 && ageInWeeks <= 30) {
-            return (MINIMUM_WATER_VOLUME_ML*ageInWeeks)/YOUNG_FISH_AGE_IN_WEEKS;
+        else if (ageInWeeks <= 30) {
+            return (MINIMUM_WATER_VOLUME_ML*getAgeInWeeks())/YOUNG_FISH_AGE_IN_WEEKS;
         }
-        else if (ageInWeeks > 30 && ageInWeeks <= 50) {
+        else if (ageInWeeks <= 50) {
             return (MINIMUM_WATER_VOLUME_ML*ADULT_FISH_WATER_COEFFICIENT);
         }
         else {
@@ -284,11 +284,12 @@ public class Guppy {
     public static void main(String[] args) {
         Guppy fry = new Guppy("  poECILIA    ",
                 "  ELEgans   ",
-                1,
+                10,
                 true,
                 3,
                 0.75);
         System.out.println(fry.toString());
+        System.out.println(fry.getVolumeNeeded());
     }
 
 }
