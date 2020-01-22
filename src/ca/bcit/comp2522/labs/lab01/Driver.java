@@ -41,10 +41,10 @@ public class Driver {
             }
         }
         output += "Tortoise won " + tortoiseWins + " times, with a final position of "
-                + raceInstance.racerTortoise.getPosition() + ".\n";
+                + raceInstance.getRacerTortoise().getPosition() + ".\n";
         output += "Hare won " + hareWins + " times, with a final position of "
-                + raceInstance.racerHare.getPosition() + ".\n";
-        output += "The last race took " + raceInstance.numOfTicks + " ticks to complete.\n";
+                + raceInstance.getRacerHare().getPosition() + ".\n";
+        output += "The last race took " + raceInstance.getNumOfTicks() + " ticks to complete.\n";
 
         if (tortoiseWins > hareWins) {
             output += "Tortoise won overall!";
