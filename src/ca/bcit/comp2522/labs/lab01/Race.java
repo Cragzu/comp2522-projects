@@ -8,20 +8,26 @@ import java.util.Random;
  * @version 2020
  */
 public class Race {
-    final static int STARTING_POSITION = 0;
+    /**The starting position of the race.*/
+    static final int STARTING_POSITION = 0;
 
-    /*instance variables*/
+    /**Number of ticks (rounds of movements elapsed in the race.*/
+    private int numOfTicks;
+
+    /**A hare object for use in the race.*/
+    private Hare racerHare;
+
+    /**A tortoise object for use in the race.*/
+    private Tortoise racerTortoise;
+
     private int length;
-    public int numOfTicks;
-    public Hare racerHare;
-    public Tortoise racerTortoise;
 
     /**
      * Constructor.
      *
      * @param givenLength the length of the race
      */
-    public Race(int givenLength) { /*constructor method for Race, sets length and creates racer objects*/
+    public Race(int givenLength) {
         length = givenLength;
         racerHare = new Hare();
         racerTortoise = new Tortoise();
