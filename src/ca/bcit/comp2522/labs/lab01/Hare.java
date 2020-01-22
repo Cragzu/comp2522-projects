@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.labs.lab01;
-import java.util.Objects;
+
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Creates a quick-moving but sporadic Hare for use in racing.
@@ -10,17 +9,35 @@ import java.util.Scanner;
  * @version 2020
  */
 public class Hare {
-    final static int BIG_HOP_CHANCE = 2;
-    final static int BIG_SLIP_CHANCE = 3;
-    final static int SMALL_HOP_LOWER_BOUND = 4;
-    final static int SMALL_HOP_UPPER_BOUND = 6;
-    final static int SMALL_SLIP_LOWER_BOUND = 7;
-    final static int SMALL_SLIP_UPPER_BOUND = 9;
-    
-    final static int BIG_HOP = 9;
-    final static int BIG_SLIP = -12;
-    final static int SMALL_HOP = 1;
-    final static int SMALL_SLIP = -2;
+    /**Value for the percent chance of hare moving with a big hop.*/
+    static final int BIG_HOP_CHANCE = 2;
+
+    /**Value for the percent chance of hare moving with a big slip.*/
+    static final int BIG_SLIP_CHANCE = 3;
+
+    /**Lower bound for the percent chance of hare moving with a small hop.*/
+    static final int SMALL_HOP_LOWER_BOUND = 4;
+
+    /**Upper bound for the percent chance of hare moving with a small hop.*/
+    static final int SMALL_HOP_UPPER_BOUND = 6;
+
+    /**Lower bound for the percent chance of hare moving with a small slip.*/
+    static final int SMALL_SLIP_LOWER_BOUND = 7;
+
+    /**Upper bound for the percent chance of hare moving with a small slip.*/
+    static final int SMALL_SLIP_UPPER_BOUND = 9;
+
+    /**Distance travelled for the hare's big hop.*/
+    static final int BIG_HOP = 9;
+
+    /**Distance travelled for the hare's big slip.*/
+    static final int BIG_SLIP = -12;
+
+    /**Distance travelled for the hare's small hop.*/
+    static final int SMALL_HOP = 1;
+
+    /**Distance travelled for the hare's small slip.*/
+    static final int SMALL_SLIP = -2;
 
     private int position = 0;
 
@@ -50,18 +67,15 @@ public class Hare {
     public int move() {
         final Random generator = new Random();
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
-        
+
         /*20% of the time, do nothing.*/
         if (result == BIG_HOP_CHANCE) {
             setPosition(getPosition() + BIG_HOP);
-        }
-        else if (result == BIG_SLIP_CHANCE) {
+        } else if (result == BIG_SLIP_CHANCE) {
             setPosition(getPosition() + BIG_SLIP);
-        }
-        else if (result >= SMALL_HOP_LOWER_BOUND && result <= SMALL_HOP_UPPER_BOUND) {
+        } else if (result >= SMALL_HOP_LOWER_BOUND && result <= SMALL_HOP_UPPER_BOUND) {
             setPosition(getPosition() + SMALL_HOP);
-        }
-        else if (result >= SMALL_SLIP_LOWER_BOUND && result <= SMALL_SLIP_UPPER_BOUND) {
+        } else if (result >= SMALL_SLIP_LOWER_BOUND && result <= SMALL_SLIP_UPPER_BOUND) {
             setPosition(getPosition() + SMALL_SLIP);
         }
         return position;
@@ -74,9 +88,10 @@ public class Hare {
      */
     @Override
     public String toString() {
-        return "Hare{" +
-                "position=" + position +
-                '}';
+        return "Hare{"
+                + "position="
+                + position
+                + '}';
     }
 
     /**
@@ -87,11 +102,17 @@ public class Hare {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Hare)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Hare)) {
+            return false;
+        }
         Hare hare = (Hare) o;
         return getPosition() == hare.getPosition();
     }
-    
+
 }

@@ -9,37 +9,37 @@ import java.util.Objects;
  */
 public class Guppy {
     /**Age of a young fish in weeks.*/
-    final static int YOUNG_FISH_AGE_IN_WEEKS = 10;
+    static final int YOUNG_FISH_AGE_IN_WEEKS = 10;
 
     /**Age of a mature fish in weeks.*/
-    final static int MATURE_FISH_AGE_IN_WEEKS = 30;
+    static final int MATURE_FISH_AGE_IN_WEEKS = 30;
 
     /**Maximum age a fish can be before dying.*/
-    final static int MAXIMUM_AGE_IN_WEEKS = 50;
+    static final int MAXIMUM_AGE_IN_WEEKS = 50;
 
     /**Minimum water volume needed to house a fish in mL.*/
-    final static double MINIMUM_WATER_VOLUME_ML = 250.0;
+    static final double MINIMUM_WATER_VOLUME_ML = 250.0;
 
     /**Coefficient of water needed to house an adult fish in mL.*/
-    final static double ADULT_FISH_WATER_COEFFICIENT = 1.5;
+    static final double ADULT_FISH_WATER_COEFFICIENT = 1.5;
 
     /**Dead fish need no water.*/
-    final static double DEAD_FISH_WATER_VOLUME = 0.0;
+    static final double DEAD_FISH_WATER_VOLUME = 0.0;
 
     /**Default genus of a standard guppy.*/
-    final static String DEFAULT_GENUS = "Poecilia";
+    static final String DEFAULT_GENUS = "Poecilia";
 
     /**Default species of a standard guppy.*/
-    final static String DEFAULT_SPECIES = "reticulata";
+    static final String DEFAULT_SPECIES = "reticulata";
 
     /**Default health coefficient of a moderately healthy guppy.*/
-    final static double DEFAULT_HEALTH_COEFFICIENT = 0.5;
+    static final double DEFAULT_HEALTH_COEFFICIENT = 0.5;
 
     /**Minimum health coefficient that a living guppy can have.*/
-    final static double MINIMUM_HEALTH_COEFFICIENT = 0.0;
+    static final double MINIMUM_HEALTH_COEFFICIENT = 0.0;
 
     /*Maximum health coefficient that a guppy can have.*/
-    final static double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
+    static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
 
     private String genus;
     private String species;

@@ -10,14 +10,16 @@ import java.util.Scanner;
  * @version 2020
  */
 public class Tortoise {
-    final static int FAST_PLOD_LOWER_BOUND = 0;
-    final static int FAST_PLOD_UPPER_BOUND = 4;
-    final static int SLIP_LOWER_BOUND = 5;
-    final static int SLIP_UPPER_BOUND = 6;
+    /**Lower bound for the percent chance of tortoise moving with a slow plod.*/
+    static final int FAST_PLOD_LOWER_BOUND = 0;
 
-    final static int FAST_PLOD = 3;
-    final static int SLIP = -6;
-    final static int SLOW_PLOD = 1;
+    static final int FAST_PLOD_UPPER_BOUND = 4;
+    static final int SLIP_LOWER_BOUND = 5;
+    static final int SLIP_UPPER_BOUND = 6;
+
+    static final int FAST_PLOD = 3;
+    static final int SLIP = -6;
+    static final int SLOW_PLOD = 1;
 
     private int position = 0;
 
