@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.labs.lab01;
-import java.util.Objects;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Creates a slower-moving but consistent Tortoise for use in racing.
@@ -10,15 +8,25 @@ import java.util.Scanner;
  * @version 2020
  */
 public class Tortoise {
-    /**Lower bound for the percent chance of tortoise moving with a slow plod.*/
+    /**Lower bound for the percent chance of tortoise moving with a fast plod.*/
     static final int FAST_PLOD_LOWER_BOUND = 0;
 
+    /**Upper bound for the percent chance of tortoise moving with a fast plod.*/
     static final int FAST_PLOD_UPPER_BOUND = 4;
+
+    /**Lower bound for the percent chance of tortoise moving with a slip.*/
     static final int SLIP_LOWER_BOUND = 5;
+
+    /**Upper bound for the percent chance of tortoise moving with a slip.*/
     static final int SLIP_UPPER_BOUND = 6;
 
+    /**Distance travelled for the tortoise's fast plod.*/
     static final int FAST_PLOD = 3;
+
+    /**Distance travelled for the tortoise's slip.*/
     static final int SLIP = -6;
+
+    /**Distance travelled for the tortoise's slow plod.*/
     static final int SLOW_PLOD = 1;
 
     private int position = 0;
@@ -51,11 +59,9 @@ public class Tortoise {
         final int result = generator.nextInt(10) + 1; /*generate random num between 0-9*/
         if (result >= FAST_PLOD_LOWER_BOUND && result <= FAST_PLOD_UPPER_BOUND) {
             setPosition(getPosition() + FAST_PLOD);
-        }
-        else if (result >= SLIP_LOWER_BOUND && result <= SLIP_UPPER_BOUND) {
+        } else if (result >= SLIP_LOWER_BOUND && result <= SLIP_UPPER_BOUND) {
             setPosition(getPosition() + SLIP);
-        }
-        else {
+        } else {
             setPosition(getPosition() + SLOW_PLOD);
         }
         return getPosition();
@@ -68,9 +74,10 @@ public class Tortoise {
      */
     @Override
     public String toString() {
-        return "Tortoise{" +
-                "position=" + position +
-                '}';
+        return "Tortoise{"
+                + "position="
+                + position
+                + '}';
     }
 
     /**
@@ -81,9 +88,15 @@ public class Tortoise {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Tortoise)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Tortoise)) {
+            return false;
+        }
         Tortoise tortoise = (Tortoise) o;
         return getPosition() == tortoise.getPosition();
     }
