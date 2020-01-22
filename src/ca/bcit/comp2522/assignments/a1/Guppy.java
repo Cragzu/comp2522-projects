@@ -1,5 +1,4 @@
 package ca.bcit.comp2522.assignments.a1;
-import java.util.Objects;
 
 /**
  * Creates a Guppy object with instance variables, constructors, and methods.
@@ -38,9 +37,10 @@ public class Guppy {
     /**Minimum health coefficient that a living guppy can have.*/
     static final double MINIMUM_HEALTH_COEFFICIENT = 0.0;
 
-    /*Maximum health coefficient that a guppy can have.*/
+    /**Maximum health coefficient that a guppy can have.*/
     static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
 
+    private static int numberOfGuppiesBorn = 0;
     private String genus;
     private String species;
     private int ageInWeeks;
@@ -49,7 +49,77 @@ public class Guppy {
     private boolean isAlive;
     private double healthCoefficient;
     private int identificationNumber;
-    private static int numberOfGuppiesBorn = 0;
+
+    /**
+     * Constructor for a guppy with non-default values.
+     *
+     * @param newGenus the guppy's genus.
+     * @param newSpecies the guppy's species.
+     * @param newAgeInWeeks the guppy's age.
+     * @param newIsFemale whether or not the guppy is female.
+     * @param newGenerationNumber the generation number the guppy belongs to.
+     * @param newHealthCoefficient a coefficient representing how healthy the guppy is.
+     */
+    public Guppy(String newGenus, String newSpecies,
+                 int newAgeInWeeks, boolean newIsFemale, int newGenerationNumber,
+                 double newHealthCoefficient) {
+        numberOfGuppiesBorn++;
+        identificationNumber = numberOfGuppiesBorn;
+
+        if (newGenus == null || newGenus.isBlank()) {
+            throw new IllegalArgumentException("Genus cannot be empty.");
+        } else {
+            genus = toTitleCase(newGenus);
+        }
+
+        if (newSpecies == null || newSpecies.isBlank()) {
+            throw new IllegalArgumentException("Species cannot be empty.");
+        } else {
+            species = (newSpecies.toLowerCase()).strip();
+        }
+
+        if (newAgeInWeeks >= MAXIMUM_AGE_IN_WEEKS) {
+            throw new IllegalArgumentException("Age cannot be 50+ weeks!");
+        } else if (newAgeInWeeks < 0) {
+            throw new IllegalArgumentException("Age cannot be negative!");
+        } else {
+            ageInWeeks = newAgeInWeeks;
+        }
+
+        isFemale = newIsFemale;
+
+        if (newGenerationNumber < 0) {
+            throw new IllegalArgumentException("Generation number cannot be negative.");
+        } else {
+            generationNumber = newGenerationNumber;
+        }
+
+        if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT
+                || newHealthCoefficient > MAXIMUM_HEALTH_COEFFICIENT) {
+            throw new IllegalArgumentException("Health coefficient is out of bounds!");
+        } else {
+            healthCoefficient = newHealthCoefficient;
+        }
+
+        isAlive = true; /*guppies always start out as alive*/
+    }
+
+
+    /**
+     * Constructor for a default guppy.
+     */
+    public Guppy() {
+        numberOfGuppiesBorn++;
+        identificationNumber = numberOfGuppiesBorn;
+
+        ageInWeeks = 0;
+        generationNumber = 0;
+        genus = DEFAULT_GENUS;
+        species = DEFAULT_SPECIES;
+        isFemale = true;
+        isAlive = true;
+        healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
+    }
 
     /**
      * Returns the genus of the guppy.
@@ -148,63 +218,10 @@ public class Guppy {
      * @param newHealthCoefficient the new health coefficient
      */
     public void setHealthCoefficient(double newHealthCoefficient) {
-        if (newHealthCoefficient >= MINIMUM_HEALTH_COEFFICIENT && newHealthCoefficient <= MAXIMUM_HEALTH_COEFFICIENT) {
+        if (newHealthCoefficient >= MINIMUM_HEALTH_COEFFICIENT
+                && newHealthCoefficient <= MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = newHealthCoefficient;
         }
-    }
-
-    /**
-     * Constructor for a default guppy.
-     */
-    public Guppy() {
-        numberOfGuppiesBorn++;
-        identificationNumber = numberOfGuppiesBorn;
-
-        ageInWeeks = 0;
-        generationNumber = 0;
-        genus = DEFAULT_GENUS;
-        species = DEFAULT_SPECIES;
-        isFemale = true;
-        isAlive = true;
-        healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
-    }
-
-    /**
-     * Constructor for a guppy with non-default values.
-     *
-     * @param newGenus the guppy's genus.
-     * @param newSpecies the guppy's species.
-     * @param newAgeInWeeks the guppy's age.
-     * @param newIsFemale whether or not the guppy is female.
-     * @param newGenerationNumber the generation number the guppy belongs to.
-     * @param newHealthCoefficient a coefficient representing how healthy the guppy is.
-     */
-    public Guppy(String newGenus, String newSpecies, int newAgeInWeeks, boolean newIsFemale, int newGenerationNumber,
-                 double newHealthCoefficient) {
-        numberOfGuppiesBorn++;
-        identificationNumber = numberOfGuppiesBorn;
-
-        if (newGenus == null || newGenus.isBlank()) throw new IllegalArgumentException("Genus cannot be empty.");
-        else genus = toTitleCase(newGenus);
-
-        if (newSpecies == null || newSpecies.isBlank()) throw new IllegalArgumentException("Species cannot be empty.");
-        else species = (newSpecies.toLowerCase()).strip();
-
-        if (newAgeInWeeks >= MAXIMUM_AGE_IN_WEEKS) throw new IllegalArgumentException("Age cannot be 50+ weeks!");
-        else if (newAgeInWeeks < 0) throw new IllegalArgumentException("Age cannot be negative!");
-        else ageInWeeks = newAgeInWeeks;
-
-        isFemale = newIsFemale;
-
-        if (newGenerationNumber < 0) throw new IllegalArgumentException("Generation number cannot be negative.");
-        else generationNumber = newGenerationNumber;
-
-        if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT || newHealthCoefficient > MAXIMUM_HEALTH_COEFFICIENT) {
-            throw new IllegalArgumentException("Health coefficient is out of bounds!");
-        }
-        else healthCoefficient = newHealthCoefficient;
-
-        isAlive = true; /*guppies always start out as alive*/
     }
 
     /**
@@ -222,11 +239,12 @@ public class Guppy {
     }
 
     /**
-     * Increases the guppy's age by 1 week, setting isAlive to false if this brings the age above the maximum.
+     * Increases the guppy's age by 1 week,
+     * setting isAlive to false if this brings the age above the maximum.
      */
     public void incrementAge() {
         setAgeInWeeks(getAgeInWeeks() + 1);
-        if(ageInWeeks >= MAXIMUM_AGE_IN_WEEKS) {
+        if (ageInWeeks >= MAXIMUM_AGE_IN_WEEKS) {
             setIsAlive(false);
         }
     }
@@ -237,17 +255,14 @@ public class Guppy {
      * @return the required volume of water in mL
      */
     public double getVolumeNeeded() {
-        if (getAgeInWeeks() < 10) {
+        if (getAgeInWeeks() < YOUNG_FISH_AGE_IN_WEEKS) {
             return MINIMUM_WATER_VOLUME_ML;
-        }
-        else if (getAgeInWeeks() <= 30) {
-            return (MINIMUM_WATER_VOLUME_ML*getAgeInWeeks())/YOUNG_FISH_AGE_IN_WEEKS;
-        }
-        else if (!getIsAlive()) {
+        } else if (getAgeInWeeks() <= MATURE_FISH_AGE_IN_WEEKS) {
+            return (MINIMUM_WATER_VOLUME_ML * getAgeInWeeks()) / YOUNG_FISH_AGE_IN_WEEKS;
+        } else if (!getIsAlive()) {
             return DEAD_FISH_WATER_VOLUME;
-        }
-        else {
-            return (MINIMUM_WATER_VOLUME_ML*ADULT_FISH_WATER_COEFFICIENT);
+        } else {
+            return (MINIMUM_WATER_VOLUME_ML * ADULT_FISH_WATER_COEFFICIENT);
         }
     }
 
@@ -260,11 +275,9 @@ public class Guppy {
         if (getHealthCoefficient() + delta <= MINIMUM_HEALTH_COEFFICIENT) {
             setHealthCoefficient(0.0);
             setIsAlive(false);
-        }
-        else if (getHealthCoefficient() + delta > MAXIMUM_HEALTH_COEFFICIENT) {
+        } else if (getHealthCoefficient() + delta > MAXIMUM_HEALTH_COEFFICIENT) {
             setHealthCoefficient(MAXIMUM_HEALTH_COEFFICIENT);
-        }
-        else {
+        } else {
             setHealthCoefficient(getHealthCoefficient() + delta);
         }
     }
@@ -276,16 +289,16 @@ public class Guppy {
      */
     @Override
     public String toString() {
-        return "Guppy{" +
-                "genus='" + genus + '\'' +
-                ", species='" + species + '\'' +
-                ", ageInWeeks=" + ageInWeeks +
-                ", isFemale=" + isFemale +
-                ", generationNumber=" + generationNumber +
-                ", isAlive=" + isAlive +
-                ", healthCoefficient=" + healthCoefficient +
-                ", identificationNumber=" + identificationNumber +
-                '}';
+        return "Guppy{"
+                + "genus='" + genus + '\''
+                + ", species='" + species + '\''
+                + ", ageInWeeks=" + ageInWeeks
+                + ", isFemale=" + isFemale
+                + ", generationNumber=" + generationNumber
+                + ", isAlive=" + isAlive
+                + ", healthCoefficient=" + healthCoefficient
+                + ", identificationNumber=" + identificationNumber
+                + '}';
     }
 
     /**
@@ -296,17 +309,23 @@ public class Guppy {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Guppy)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Guppy)) {
+            return false;
+        }
         Guppy guppy = (Guppy) o;
-        return getAgeInWeeks() == guppy.getAgeInWeeks() &&
-                isFemale == guppy.isFemale &&
-                getGenerationNumber() == guppy.getGenerationNumber() &&
-                isAlive == guppy.isAlive &&
-                Double.compare(guppy.getHealthCoefficient(), getHealthCoefficient()) == 0 &&
-                getIdentificationNumber() == guppy.getIdentificationNumber() &&
-                getGenus().equals(guppy.getGenus()) &&
-                getSpecies().equals(guppy.getSpecies());
+        return getAgeInWeeks() == guppy.getAgeInWeeks()
+                && isFemale == guppy.isFemale
+                && getGenerationNumber() == guppy.getGenerationNumber()
+                && isAlive == guppy.isAlive
+                && Double.compare(guppy.getHealthCoefficient(), getHealthCoefficient()) == 0
+                && getIdentificationNumber() == guppy.getIdentificationNumber()
+                && getGenus().equals(guppy.getGenus())
+                && getSpecies().equals(guppy.getSpecies());
     }
 }
