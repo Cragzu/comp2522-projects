@@ -13,6 +13,65 @@ public class Mathematics {
     /**Ratio of foot to kilometre (1 foot = [this ratio] kilometres).*/
     static final double ONE_FOOT_TO_KILOMETRE_RATIO = 0.0003048;
 
+    /**
+     * Calculates the area of a circle given the radius.
+     * @param radius the circle's radius.
+     * @return the area of the circle.
+     */
+    public double getCircleArea(double radius) {
+        return (Math.pow(radius, 2.0)) * PI;
+    }
 
+    public double getSquareArea() {
+        return;
+    }
+
+    public double add() {
+        return;
+    }
+
+    public double multiply() {
+        return;
+    }
+
+    public double subtract() {
+        return;
+    }
+
+    public double divide() {
+        return;
+    }
+
+    public double absoluteValue() {
+        return;
+    }
+
+    public double getRandomNumberBetweenTenAndTwentyButNotFifteen() {
+        return;
+    }
+
+    public double convertFeetToKilometres() {
+        return;
+    }
+
+    public double sumOfInts() {
+        return;
+    }
+
+    public double isPositive() {
+        return;
+    }
+
+    public double isEven() {
+        return;
+    }
+
+    public double sumOfEvens() {
+        return;
+    }
+
+    public double sumOfProducts() {
+        return;
+    }
 
 }
