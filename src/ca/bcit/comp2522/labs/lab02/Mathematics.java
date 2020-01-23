@@ -72,8 +72,13 @@ public class Mathematics {
         return dividend / divisor;
     }
 
-    public double absoluteValue() {
-        return;
+    /**
+     * Calculates the absolute value of a number.
+     * @param num the number to get the absolute value of.
+     * @return the absolute value of the given num.
+     */
+    public double absoluteValue(double num) {
+        return (num > 0.0) ? num : num * -1;
     }
 
     public double getRandomNumberBetweenTenAndTwentyButNotFifteen() {
