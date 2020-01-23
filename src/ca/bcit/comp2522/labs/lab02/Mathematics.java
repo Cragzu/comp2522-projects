@@ -45,8 +45,14 @@ public class Mathematics {
         return;
     }
 
-    public double subtract() {
-        return;
+    /**
+     * Subtracts one number from another.
+     * @param minuend the number to be subtracted from.
+     * @param subtrahend the number to subtract.
+     * @return the difference between the two numbers.
+     */
+    public double subtract(double minuend, double subtrahend) {
+        return minuend - subtrahend;
     }
 
     public double divide() {
