@@ -121,14 +121,22 @@ public class Mathematics {
 
     /**
      * Checks whether a given int is positive.
+     *
+     * @param num the int to check for positivity.
      * @return a boolean that is true if the int is positive, else false.
      */
     public boolean isPositive(int num) {
         return num > 0;
     }
 
-    public double isEven() {
-        return;
+    /**
+     * Checks whether a given int is even.
+     *
+     * @param num the int to check.
+     * @return a boolean that is true if the int is even, else false.
+     */
+    public boolean isEven(int num) {
+        return (num % 2 == 0);
     }
 
     public double sumOfEvens() {
