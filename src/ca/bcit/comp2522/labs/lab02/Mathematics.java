@@ -71,6 +71,9 @@ public class Mathematics {
      * @return the quotient of the two numbers.
      */
     public double divide(double dividend, double divisor) {
+        if (divisor == 0) { /*account for divide-by-zero error*/
+            return 0;
+        }
         return dividend / divisor;
     }
 
@@ -145,7 +148,7 @@ public class Mathematics {
      * @param upperBound the point at which to stop adding.
      * @return the sum of all positive even ints up to the given upperBound.
      */
-    public double sumOfEvens(int upperBound) {
+    public int sumOfEvens(int upperBound) {
         int sum = 0;
         for (int i = 0; i <= upperBound; i += 2) {
             sum += i;
@@ -153,8 +156,21 @@ public class Mathematics {
         return sum;
     }
 
-    public double sumOfProducts() {
-        return;
+    /**
+     * Calculates the sum of the numbers between 0 and the first parameter
+     * that are divisible by the second parameter.
+     *
+     * @param upperBound the point at which to stop adding.
+     * @param divisor the number to divide each int by; checking whether to add it to the sum.
+     * @return the sum of the numbers meeting the requirements.
+     */
+    public int sumOfProducts(int upperBound, int divisor) {
+        int sum = 0;
+        for (int i = 0; i <= upperBound; i++) {
+            if (i % divisor == 0) {
+                sum += i;
+            }
+        }
+        return sum;
     }
-
 }
