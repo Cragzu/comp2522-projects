@@ -61,8 +61,15 @@ public class Mathematics {
         return minuend - subtrahend;
     }
 
-    public double divide() {
-        return;
+    /**
+     * Divides one number by another.
+     *
+     * @param dividend the number to divide.
+     * @param divisor the amount of groups to divide into.
+     * @return the quotient of the two numbers.
+     */
+    public double divide(double dividend, double divisor) {
+        return dividend / divisor;
     }
 
     public double absoluteValue() {
