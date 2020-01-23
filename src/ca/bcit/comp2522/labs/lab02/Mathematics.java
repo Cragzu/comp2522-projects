@@ -111,7 +111,7 @@ public class Mathematics {
      * @param upperBound the point at which to stop adding.
      * @return the sum of all positive ints up to the given upperBound.
      */
-    public double sumOfInts(int upperBound) {
+    public int sumOfInts(int upperBound) {
         int sum = 0;
         for (int i = 0; i <= upperBound; i++) {
             sum += i;
@@ -119,8 +119,12 @@ public class Mathematics {
         return sum;
     }
 
-    public double isPositive() {
-        return;
+    /**
+     * Checks whether a given int is positive.
+     * @return a boolean that is true if the int is positive, else false.
+     */
+    public boolean isPositive(int num) {
+        return num > 0;
     }
 
     public double isEven() {
