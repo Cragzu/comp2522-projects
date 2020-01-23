@@ -105,8 +105,18 @@ public class Mathematics {
         return distanceInFeet * ONE_FOOT_TO_KILOMETRE_RATIO;
     }
 
-    public double sumOfInts() {
-        return;
+    /**
+     * Sums all the positive integers between 0 and the specified value.
+     *
+     * @param upperBound the point at which to stop adding.
+     * @return the sum of all positive ints up to the given upperBound.
+     */
+    public double sumOfInts(int upperBound) {
+        int sum = 0;
+        for (int i = 0; i <= upperBound; i++) {
+            sum += i;
+        }
+        return sum;
     }
 
     public double isPositive() {
