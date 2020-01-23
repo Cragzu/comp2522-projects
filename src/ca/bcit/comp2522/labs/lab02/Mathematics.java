@@ -96,8 +96,13 @@ public class Mathematics {
         return result;
     }
 
-    public double convertFeetToKilometres() {
-        return;
+    /**
+     * Converts a distance in feet to the equivalent distance in kilometres.
+     * @param distanceInFeet the initial distance in feet.
+     * @return the distance in kilometres.
+     */
+    public double convertFeetToKilometres(double distanceInFeet) {
+        return distanceInFeet * ONE_FOOT_TO_KILOMETRE_RATIO;
     }
 
     public double sumOfInts() {
