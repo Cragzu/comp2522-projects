@@ -19,11 +19,16 @@ public class Mathematics {
      * @return the area of the circle.
      */
     public double getCircleArea(double radius) {
-        return (Math.pow(radius, 2.0)) * PI;
+        return (Math.pow(radius, 2)) * PI;
     }
 
-    public double getSquareArea() {
-        return;
+    /**
+     * Calculates the area of a square given the length of one side.
+     * @param sideLength the length of one side of the square.
+     * @return the area of the square.
+     */
+    public double getSquareArea(double sideLength) {
+        return Math.pow(sideLength, 2);
     }
 
     public double add() {
