@@ -29,7 +29,7 @@ public class Mathematics {
      * @param radius the circle's radius.
      * @return the area of the circle.
      */
-    public double getCircleArea(double radius) {
+    public double getCircleArea(final double radius) {
         return (Math.pow(radius, 2)) * PI;
     }
 
@@ -39,7 +39,7 @@ public class Mathematics {
      * @param sideLength the length of one side of the square.
      * @return the area of the square.
      */
-    public double getSquareArea(double sideLength) {
+    public double getSquareArea(final double sideLength) {
         return Math.pow(sideLength, 2);
     }
 
@@ -50,7 +50,7 @@ public class Mathematics {
      * @param secondNumber the second number to be added.
      * @return the sum of the two numbers.
      */
-    public double add(double firstNumber, double secondNumber) {
+    public double add(final double firstNumber, final double secondNumber) {
         return firstNumber + secondNumber;
     }
 
@@ -61,7 +61,7 @@ public class Mathematics {
      * @param secondNumber the second number to be multiplied.
      * @return the product of the two numbers.
      */
-    public double multiply(double firstNumber, double secondNumber) {
+    public double multiply(final double firstNumber, final double secondNumber) {
         return firstNumber * secondNumber;
     }
 
@@ -72,7 +72,7 @@ public class Mathematics {
      * @param subtrahend the number to subtract.
      * @return the difference between the two numbers.
      */
-    public double subtract(double minuend, double subtrahend) {
+    public double subtract(final double minuend, final double subtrahend) {
         return minuend - subtrahend;
     }
 
@@ -83,7 +83,7 @@ public class Mathematics {
      * @param divisor  the amount of groups to divide into.
      * @return the quotient of the two numbers.
      */
-    public double divide(double dividend, double divisor) {
+    public double divide(final double dividend, final double divisor) {
         if (divisor == 0) { /*account for divide-by-zero error*/
             return 0;
         }
@@ -96,7 +96,7 @@ public class Mathematics {
      * @param num the number to get the absolute value of.
      * @return the absolute value of the given num.
      */
-    public int absoluteValue(int num) {
+    public int absoluteValue(final int num) {
         return (num > 0) ? num : num * -1;
     }
 
@@ -121,7 +121,7 @@ public class Mathematics {
      * @param distanceInFeet the initial distance in feet.
      * @return the distance in kilometres.
      */
-    public double convertFeetToKilometres(double distanceInFeet) {
+    public double convertFeetToKilometres(final double distanceInFeet) {
         return distanceInFeet * ONE_FOOT_TO_KILOMETRE_RATIO;
     }
 
@@ -131,7 +131,7 @@ public class Mathematics {
      * @param upperBound the point at which to stop adding.
      * @return the sum of all positive ints up to the given upperBound.
      */
-    public int sumOfInts(int upperBound) {
+    public int sumOfInts(final int upperBound) {
         int sum = 0;
         for (int i = 0; i <= upperBound; i++) {
             sum += i;
@@ -145,7 +145,7 @@ public class Mathematics {
      * @param num the int to check for positivity.
      * @return a boolean that is true if the int is positive, else false.
      */
-    public boolean isPositive(int num) {
+    public boolean isPositive(final int num) {
         return num > 0;
     }
 
@@ -155,7 +155,7 @@ public class Mathematics {
      * @param num the int to check.
      * @return a boolean that is true if the int is even, else false.
      */
-    public boolean isEven(int num) {
+    public boolean isEven(final int num) {
         return (num % 2 == 0);
     }
 
@@ -165,7 +165,7 @@ public class Mathematics {
      * @param upperBound the point at which to stop adding.
      * @return the sum of all positive even ints up to the given upperBound.
      */
-    public int sumOfEvens(int upperBound) {
+    public int sumOfEvens(final int upperBound) {
         int sum = 0;
 
         if (isPositive(upperBound)) {
@@ -188,7 +188,7 @@ public class Mathematics {
      * @param divisor    the number to divide each int by; checking whether to add it to the sum.
      * @return the sum of the numbers meeting the requirements.
      */
-    public int sumOfProducts(int upperBound, int divisor) {
+    public int sumOfProducts(final int upperBound, final int divisor) {
         int sum = 0;
 
         if (isPositive(upperBound)) {
