@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.labs.lab02;
 
+import java.util.Random;
+
 /**
  * Creates a Mathematics object with methods for various mathematical operations.
  *
@@ -77,12 +79,21 @@ public class Mathematics {
      * @param num the number to get the absolute value of.
      * @return the absolute value of the given num.
      */
-    public double absoluteValue(double num) {
-        return (num > 0.0) ? num : num * -1;
+    public int absoluteValue(int num) {
+        return (num > 0) ? num : num * -1;
     }
 
-    public double getRandomNumberBetweenTenAndTwentyButNotFifteen() {
-        return;
+    /**
+     * Generates a random integer between 10 and 20, that cannot be 15.
+     * @return the generated random number.
+     */
+    public int getRandomNumberBetweenTenAndTwentyButNotFifteen() {
+        int result;
+        do {
+            Random generator = new Random();
+            result = generator.nextInt(20-10) + 10; /*generate random num between 0-9*/
+        } while (result == 15);
+        return result;
     }
 
     public double convertFeetToKilometres() {
