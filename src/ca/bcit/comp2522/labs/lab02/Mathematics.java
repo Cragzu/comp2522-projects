@@ -139,8 +139,18 @@ public class Mathematics {
         return (num % 2 == 0);
     }
 
-    public double sumOfEvens() {
-        return;
+    /**
+     * Sums all the positive even integers between 0 and the specified value.
+     *
+     * @param upperBound the point at which to stop adding.
+     * @return the sum of all positive even ints up to the given upperBound.
+     */
+    public double sumOfEvens(int upperBound) {
+        int sum = 0;
+        for (int i = 0; i <= upperBound; i += 2) {
+            sum += i;
+        }
+        return sum;
     }
 
     public double sumOfProducts() {
