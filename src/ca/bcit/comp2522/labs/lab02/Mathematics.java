@@ -160,15 +160,22 @@ public class Mathematics {
     }
 
     /**
-     * Sums all the positive even integers between 0 and the specified value.
+     * Sums all the even integers between 0 and the specified value.
      *
      * @param upperBound the point at which to stop adding.
      * @return the sum of all positive even ints up to the given upperBound.
      */
     public int sumOfEvens(int upperBound) {
         int sum = 0;
-        for (int i = 0; i <= upperBound; i += 2) {
-            sum += i;
+
+        if (isPositive(upperBound)) {
+            for (int positiveIterator = 0; positiveIterator <= upperBound; positiveIterator += 2) {
+                sum += positiveIterator;
+            }
+        } else {
+            for (int negativeIterator = 0; negativeIterator >= upperBound; negativeIterator -= 2) {
+                sum += negativeIterator;
+            }
         }
         return sum;
     }
