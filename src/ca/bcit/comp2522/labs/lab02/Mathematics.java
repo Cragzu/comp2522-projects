@@ -31,8 +31,14 @@ public class Mathematics {
         return Math.pow(sideLength, 2);
     }
 
-    public double add() {
-        return;
+    /**
+     * Adds two numbers together.
+     * @param firstNumber the first number to be added.
+     * @param secondNumber the second number to be added.
+     * @return the sum of the two numbers.
+     */
+    public double add(double firstNumber, double secondNumber) {
+        return firstNumber + secondNumber;
     }
 
     public double multiply() {
