@@ -41,8 +41,14 @@ public class Mathematics {
         return firstNumber + secondNumber;
     }
 
-    public double multiply() {
-        return;
+    /**
+     * Multiplies two numbers together.
+     * @param firstNumber the first number to be multiplied.
+     * @param secondNumber the second number to be multiplied.
+     * @return the product of the two numbers.
+     */
+    public double multiply(double firstNumber, double secondNumber) {
+        return firstNumber * secondNumber;
     }
 
     /**
