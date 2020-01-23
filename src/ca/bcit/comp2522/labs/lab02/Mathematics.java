@@ -19,8 +19,13 @@ public class Mathematics {
      */
     static final double ONE_FOOT_TO_KILOMETRE_RATIO = 0.0003048;
 
+    /**Lower bound for the random number generator.*/
     static final int RANDOM_NUM_LOWER_BOUND = 10;
+
+    /**Upper bound for the random number generator.*/
     static final int RANDOM_NUM_UPPER_BOUND = 21;
+
+    /**Forbidden value for the random number generator.*/
     static final int RANDOM_NUM_FORBIDDEN_VALUE = 15;
 
     /**
