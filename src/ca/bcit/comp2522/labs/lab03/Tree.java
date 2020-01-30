@@ -35,11 +35,14 @@ public class Tree {
      * @param circumferenceInCentimetres the circumference of a cross-section of the tree in centimetres.
      */
     public Tree(int ageInYears, double circumferenceInCentimetres) {
+        this.type = Species.MAPLE;
+
         if (ageInYears < 0) {
             throw new IllegalArgumentException("Age cannot be less than 0!");
         } else {
             this.ageInYears = ageInYears;
         }
+
         if (circumferenceInCentimetres < 0) {
             throw new IllegalArgumentException("Circumference cannot be less than 0!");
         } else {
@@ -59,7 +62,48 @@ public class Tree {
         new Tree(ageInYears, circumferenceInCentimetres);
     }
 
+    /**
+     * Returns the species of the tree.
+     *
+     * @return the species.
+     */
+    public Species getType() {
+        return type;
+    }
 
+    /**
+     * Returns the age of the tree in years.
+     *
+     * @return the age.
+     */
+    public int getAgeInYears() {
+        return ageInYears;
+    }
 
+    /**
+     * Increments the age of the tree by 1 year.
+     */
+    public void incrementAgeInYears() {
+        ageInYears++;
+    }
 
+    /**
+     * Returns the circumference of a cross section of the tree in centimetres.
+     *
+     * @return the circumference.
+     */
+    public double getCircumferenceInCentimetres() {
+        return circumferenceInCentimetres;
+    }
+
+    /**
+     * Updates the circumference of a cross section of the tree in centimetres to a greater value than the current.
+     *
+     * @param circumferenceInCentimetres the new circumference.
+     */
+    public void setCircumferenceInCentimetres(double circumferenceInCentimetres) {
+        if (circumferenceInCentimetres >= this.circumferenceInCentimetres) {
+            this.circumferenceInCentimetres = circumferenceInCentimetres;
+        }
+    }
 }
