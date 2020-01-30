@@ -92,4 +92,23 @@ public class Plantation {
         return treesToPlant;
     }
 
+    /**
+     * Determines the number of trees in the farm which are ready for harvest;
+     * whose circumference is above the given cutoff.
+     *
+     * @param cutoff the size the circumference must be for the tree to be ready for harvest.
+     * @return the number of trees ready for harvest.
+     */
+    public int harvestCount(double cutoff) {
+        int treesToHarvest = 0;
+        for (int checkedTree = 0; checkedTree <= farm.size(); checkedTree++) {
+            Tree currentTree = farm.get(checkedTree);
+            double currentTreeCircumference = currentTree.getCircumferenceInCentimetres();
+
+            if (currentTreeCircumference >= cutoff) {
+                treesToHarvest++;
+            }
+        }
+        return treesToHarvest;
+    }
 }
