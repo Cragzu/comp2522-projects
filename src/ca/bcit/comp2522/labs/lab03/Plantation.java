@@ -58,7 +58,38 @@ public class Plantation {
      * @return the number of trees added to the farm.
      */
     public int seed() {
+        int randomSpeciesChoice;
+        int randomAgeChoice;
+        double randomCircumferenceChoice;
 
+        Random treesToPlantGenerator = new Random();
+        int treesToPlant = treesToPlantGenerator.nextInt(MAXIMUM_NUM_OF_TREES_TO_SEED
+                - MINIMUM_NUM_OF_TREES_TO_SEED)
+                + MINIMUM_NUM_OF_TREES_TO_SEED; /*generate random num of trees to plant*/
+
+        for (int plantingProgress = 0; plantingProgress <= treesToPlant; plantingProgress++) {
+            /*Select a species for the tree*/
+            Random speciesGenerator = new Random();
+            randomSpeciesChoice = speciesGenerator.nextInt(Tree.Species.values().length);
+            Tree.Species randomSpecies = Tree.Species.values()[randomSpeciesChoice];
+
+            /*Select an age for the tree*/
+            Random ageGenerator = new Random();
+            randomAgeChoice = ageGenerator.nextInt(MAXIMUM_TREE_AGE
+                    - MINIMUM_TREE_AGE)
+                    + MINIMUM_TREE_AGE;
+
+            /*Select a circumference for the tree*/
+            double circumferenceGenerator = new Random().nextDouble();
+            randomCircumferenceChoice = MINIMUM_TREE_CIRCUMFERENCE + (circumferenceGenerator
+            * (MAXIMUM_TREE_CIRCUMFERENCE - MINIMUM_TREE_CIRCUMFERENCE));
+
+            /*Create a tree based on the selected values, add it to the farm*/
+            Tree sapling = new Tree(randomSpecies, randomAgeChoice, randomCircumferenceChoice);
+            add(sapling);
+
+        }
+        return treesToPlant;
     }
 
 }
