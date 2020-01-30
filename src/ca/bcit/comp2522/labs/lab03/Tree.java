@@ -32,7 +32,8 @@ public class Tree {
      * Constructor allowing only the age and circumference of the tree to be given.
      *
      * @param ageInYears the age of the tree in years.
-     * @param circumferenceInCentimetres the circumference of a cross-section of the tree in centimetres.
+     * @param circumferenceInCentimetres the circumference of a cross-section of the tree
+     * in centimetres.
      */
     public Tree(int ageInYears, double circumferenceInCentimetres) {
         this.type = Species.MAPLE;
@@ -55,7 +56,8 @@ public class Tree {
      *
      * @param type the type of the tree; one of the declared options in Species enum.
      * @param ageInYears the age of the tree in years.
-     * @param circumferenceInCentimetres the circumference of a cross-section of the tree in centimetres.
+     * @param circumferenceInCentimetres the circumference of a cross-section of the tree
+     * in centimetres.
      */
     public Tree(Species type, int ageInYears, double circumferenceInCentimetres) {
         this.type = type;
@@ -97,7 +99,8 @@ public class Tree {
     }
 
     /**
-     * Updates the circumference of a cross section of the tree in centimetres to a greater value than the current.
+     * Updates the circumference of a cross section of the tree in centimetres
+     * to a greater value than the current.
      *
      * @param circumferenceInCentimetres the new circumference.
      */
