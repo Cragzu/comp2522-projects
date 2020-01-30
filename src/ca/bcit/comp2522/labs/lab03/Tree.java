@@ -29,6 +29,25 @@ public class Tree {
     }
 
     /**
+     * Constructor allowing only the age and circumference of the tree to be given.
+     *
+     * @param ageInYears the age of the tree in years.
+     * @param circumferenceInCentimetres the circumference of a cross-section of the tree in centimetres.
+     */
+    public Tree(int ageInYears, double circumferenceInCentimetres) {
+        if (ageInYears < 0) {
+            throw new IllegalArgumentException("Age cannot be less than 0!");
+        } else {
+            this.ageInYears = ageInYears;
+        }
+        if (circumferenceInCentimetres < 0) {
+            throw new IllegalArgumentException("Circumference cannot be less than 0!");
+        } else {
+            this.circumferenceInCentimetres = circumferenceInCentimetres;
+        }
+    }
+
+    /**
      * Constructor allowing all instance variables to be given.
      *
      * @param type the type of the tree; one of the declared options in Species enum.
