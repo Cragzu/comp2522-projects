@@ -56,7 +56,10 @@ public class Tree {
      */
     public Tree(Species type, int ageInYears, double circumferenceInCentimetres) {
         this.type = type;
-        this.ageInYears = ageInYears;
-        this.circumferenceInCentimetres = circumferenceInCentimetres;
+        new Tree(ageInYears, circumferenceInCentimetres);
     }
+
+
+
+
 }
