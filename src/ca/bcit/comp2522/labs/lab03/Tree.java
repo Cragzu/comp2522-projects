@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.labs.lab03;
 
+import java.util.Objects;
+
 /**
  * Creates and manages various types of trees.
  *
@@ -106,5 +108,56 @@ public class Tree {
         if (circumferenceInCentimetres >= this.circumferenceInCentimetres) {
             this.circumferenceInCentimetres = circumferenceInCentimetres;
         }
+    }
+
+    /**
+     * Compares the tree to another object and determines whether they are equal.
+     *
+     * @param o object to compare to this tree
+     * @return whether or not the two objects are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Tree)) {
+            return false;
+        }
+        Tree tree = (Tree) o;
+        return getAgeInYears()
+                == tree.getAgeInYears()
+                && Double.compare(
+                        tree.getCircumferenceInCentimetres(),
+                        getCircumferenceInCentimetres()
+                ) == 0
+                && getType() == tree.getType();
+    }
+
+    /**
+     * Generates a hash code for this tree.
+     *
+     * @return the hash code of this object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType(), getAgeInYears(), getCircumferenceInCentimetres());
+    }
+
+    /**
+     * Creates a string providing information about the tree.
+     *
+     * @return a formatted string describing the tree.
+     */
+    @Override
+    public String toString() {
+        return "Tree{"
+                + "type=" + type
+                + ", ageInYears=" + ageInYears
+                + ", circumferenceInCentimetres=" + circumferenceInCentimetres
+                + '}';
     }
 }
