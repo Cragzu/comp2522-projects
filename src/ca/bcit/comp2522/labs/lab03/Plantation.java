@@ -101,11 +101,11 @@ public class Plantation {
      */
     public int harvestCount(double cutoff) {
         int treesToHarvest = 0;
-        for (int checkedTree = 0; checkedTree <= farm.size(); checkedTree++) {
+        for (int checkedTree = 0; checkedTree < farm.size(); checkedTree++) {
             Tree currentTree = farm.get(checkedTree);
             double currentTreeCircumference = currentTree.getCircumferenceInCentimetres();
 
-            if (currentTreeCircumference >= cutoff) {
+            if (Double.compare(currentTreeCircumference, cutoff) > 0) {
                 treesToHarvest++;
             }
         }

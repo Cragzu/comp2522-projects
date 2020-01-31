@@ -44,7 +44,7 @@ public class Tree {
             this.ageInYears = ageInYears;
         }
 
-        if (circumferenceInCentimetres < 0) {
+        if (Double.compare(circumferenceInCentimetres, 0.0) < 0) {
             throw new IllegalArgumentException("Circumference cannot be less than 0!");
         } else {
             this.circumferenceInCentimetres = circumferenceInCentimetres;
@@ -95,6 +95,7 @@ public class Tree {
      * @return the circumference.
      */
     public double getCircumferenceInCentimetres() {
+        System.out.println("circumference in get method: " + circumferenceInCentimetres);
         return circumferenceInCentimetres;
     }
 
