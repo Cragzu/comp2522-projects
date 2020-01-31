@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.labs.lab03;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -110,5 +111,48 @@ public class Plantation {
             }
         }
         return treesToHarvest;
+    }
+
+    /**
+     * Compares the plantation to another object and determines whether they are equal.
+     *
+     * @param o object to compare to this plantation
+     * @return whether or not the two objects are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Plantation)) {
+            return false;
+        }
+        Plantation that = (Plantation) o;
+        return farm.equals(that.farm);
+    }
+
+    /**
+     * Generates a hash code for this plantation.
+     *
+     * @return the hash code of this object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(farm);
+    }
+
+    /**
+     * Creates a string providing information about the plantation.
+     *
+     * @return a formatted string describing the plantation.
+     */
+    @Override
+    public String toString() {
+        return "Plantation{"
+                + "farm=" + farm
+                + '}';
     }
 }
