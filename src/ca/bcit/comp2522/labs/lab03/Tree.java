@@ -36,19 +36,7 @@ public class Tree {
      * in centimetres.
      */
     public Tree(int ageInYears, double circumferenceInCentimetres) {
-        this.type = Species.MAPLE;
-
-        if (ageInYears < 0) {
-            throw new IllegalArgumentException("Age cannot be less than 0!");
-        } else {
-            this.ageInYears = ageInYears;
-        }
-
-        if (Double.compare(circumferenceInCentimetres, 0.0) < 0) {
-            throw new IllegalArgumentException("Circumference cannot be less than 0!");
-        } else {
-            this.circumferenceInCentimetres = circumferenceInCentimetres;
-        }
+        this(Species.MAPLE, ageInYears, circumferenceInCentimetres);
     }
 
     /**
@@ -61,7 +49,17 @@ public class Tree {
      */
     public Tree(Species type, int ageInYears, double circumferenceInCentimetres) {
         this.type = type;
-        new Tree(ageInYears, circumferenceInCentimetres);
+        if (ageInYears < 0) {
+            throw new IllegalArgumentException("Age cannot be less than 0!");
+        } else {
+            this.ageInYears = ageInYears;
+        }
+
+        if (Double.compare(circumferenceInCentimetres, 0.0) < 0) {
+            throw new IllegalArgumentException("Circumference cannot be less than 0!");
+        } else {
+            this.circumferenceInCentimetres = circumferenceInCentimetres;
+        }
     }
 
     /**
@@ -95,7 +93,6 @@ public class Tree {
      * @return the circumference.
      */
     public double getCircumferenceInCentimetres() {
-        System.out.println("circumference in get method: " + circumferenceInCentimetres);
         return circumferenceInCentimetres;
     }
 

@@ -12,8 +12,6 @@ public class Driver {
     /**The number of times to seed the farm in this demonstration.*/
     static final int NUM_OF_PLANTING_ROUNDS = 5;
 
-
-
     public static void main(String[] args) {
 
         Plantation lotusLandLumber = new Plantation();
@@ -23,13 +21,12 @@ public class Driver {
         }
         System.out.println("Lotus Land Lumber has " + lotusLandLumber.size() + " trees");
 
-//        final Scanner titleScanner = new Scanner(System.in);
-//        System.out.print("What circumference should a tree have to be ready for harvest?: ");
+        final Scanner titleScanner = new Scanner(System.in);
+        System.out.print("What circumference should a tree have to be ready for harvest?: ");
 
-//        final double inputCircumference = titleScanner.nextDouble();
+        final double inputCircumference = titleScanner.nextDouble();
 
-//        int harvest = lotusLandLumber.harvestCount(inputCircumference);
-        int harvest = lotusLandLumber.harvestCount(50.0);
+        int harvest = lotusLandLumber.harvestCount(inputCircumference);
         System.out.println(harvest + " trees were harvested!");
 
     }
