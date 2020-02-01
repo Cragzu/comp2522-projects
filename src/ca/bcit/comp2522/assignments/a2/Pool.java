@@ -1,5 +1,8 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Creates a Pool object to house Guppies.
  *
@@ -32,5 +35,18 @@ public class Pool {
     /**The maximum nutrient coefficient a pool can have.*/
     static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
     //</editor-fold>
+
+    //<editor-fold desc="Instance variables">
+    private static int numberOfPools = 0;
+    private String name;
+    private double volumeLitres;
+    private double temperatureCelsius;
+    private double pH;
+    private double nutrientCoefficient;
+    private int identificationNumber;
+    private ArrayList<Guppy> guppiesInPool;
+    private Random randomNumberGenerator;
+    //</editor-fold>
+
 
 }
