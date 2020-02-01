@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -310,11 +311,11 @@ public class Guppy {
      * @param mother the Guppy to spawn.
      * @return the ArrayList of newborn fry.
      */
-    public ArrayList<ca.bcit.comp2522.assignments.a1.Guppy> spawn(ca.bcit.comp2522.assignments.a1.Guppy mother) {
-        if (!mother.isFemale || mother.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
+    public ArrayList<Guppy> spawn(Guppy mother) {
+        if (!mother.getIsFemale() || mother.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
             return null; /*this guppy is unable to reproduce*/
         }
-        ArrayList<ca.bcit.comp2522.assignments.a1.Guppy> babyGuppies = new ArrayList<>();
+        ArrayList<Guppy> babyGuppies = new ArrayList<>();
 
         boolean willSpawn = new Random().nextBoolean();
         if (willSpawn) { /*female guppy has 50% chance to spawn*/
@@ -331,7 +332,7 @@ public class Guppy {
             for (int i = 0; i < numOfFryBorn; i++) {
                 fryIsFemale = new Random().nextBoolean();
                 fryHealthCoefficient = (1.0 + mother.getHealthCoefficient()) / 2.0; /*todo: remove magic numbers*/
-                ca.bcit.comp2522.assignments.a1.Guppy fry = new ca.bcit.comp2522.assignments.a1.Guppy(mother.getGenus(), mother.getSpecies(), fryAgeInWeeks,
+                Guppy fry = new Guppy(mother.getGenus(), mother.getSpecies(), fryAgeInWeeks,
                         fryIsFemale, fryGenerationNumber, fryHealthCoefficient);
 
                 babyGuppies.add(fry);
@@ -340,7 +341,7 @@ public class Guppy {
         return babyGuppies;
     }
 
-    //<editor-fold desc="toString and equals">
+    //<editor-fold desc="toString, hashCode and equals">
     /**
      * Creates a string providing information about the guppy.
      *
@@ -361,6 +362,18 @@ public class Guppy {
     }
 
     /**
+     * Generates a hash code for this guppy.
+     *
+     * @return the hash code of this object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGenus(), getSpecies(), getAgeInWeeks(), getIsFemale(),
+                getGenerationNumber(), getIsAlive(), getHealthCoefficient(),
+                getIdentificationNumber());
+    }
+
+    /**
      * Compares the guppy to another object and determines whether they are equal.
      *
      * @param o object to compare to this guppy
@@ -374,10 +387,10 @@ public class Guppy {
         if (o == null) {
             return false;
         }
-        if (!(o instanceof ca.bcit.comp2522.assignments.a1.Guppy)) {
+        if (!(o instanceof Guppy)) {
             return false;
         }
-        ca.bcit.comp2522.assignments.a1.Guppy guppy = (ca.bcit.comp2522.assignments.a1.Guppy) o;
+        Guppy guppy = (Guppy) o;
         return getAgeInWeeks() == guppy.getAgeInWeeks()
                 && isFemale == guppy.isFemale
                 && getGenerationNumber() == guppy.getGenerationNumber()
