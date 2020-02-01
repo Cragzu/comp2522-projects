@@ -1,5 +1,8 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Creates a Guppy object with instance variables, constructors, and methods.
  *
@@ -7,6 +10,7 @@ package ca.bcit.comp2522.assignments.a2;
  * @version 2020
  */
 public class Guppy {
+    //<editor-fold desc="Constants">
     /**Age of a young fish in weeks.*/
     static final int YOUNG_FISH_AGE_IN_WEEKS = 10;
 
@@ -15,6 +19,9 @@ public class Guppy {
 
     /**Maximum age a fish can be before dying.*/
     static final int MAXIMUM_AGE_IN_WEEKS = 50;
+
+    /**The minimum age of a female fish able to reproduce.*/
+    static final int FEMALE_REPRODUCTIVE_AGE = 8;
 
     /**Minimum water volume needed to house a fish in mL.*/
     static final double MINIMUM_WATER_VOLUME_ML = 250.0;
@@ -40,6 +47,14 @@ public class Guppy {
     /**Maximum health coefficient that a guppy can have.*/
     static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
 
+    /**Minimum number of babies a female guppy can produce at one time.*/
+    static final int MINIMUM_POSSIBLE_NUM_OF_FRY = 1;
+
+    /**Maximum number of babies a female guppy can produce at one time.*/
+    static final int MAXIMUM_POSSIBLE_NUM_OF_FRY = 100;
+    //</editor-fold>
+
+    //<editor-fold desc="Instance variables">
     private static int numberOfGuppiesBorn = 0;
     private String genus;
     private String species;
@@ -49,7 +64,9 @@ public class Guppy {
     private boolean isAlive;
     private double healthCoefficient;
     private int identificationNumber;
+    //</editor-fold>
 
+    //<editor-fold desc="Constructors">
     /**
      * Constructor for a guppy with non-default values.
      *
@@ -120,7 +137,9 @@ public class Guppy {
         isAlive = true;
         healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Accessors">
     /**
      * Returns the genus of the guppy.
      * @return the genus
@@ -192,7 +211,9 @@ public class Guppy {
     public static int getNumberOfGuppiesBorn() {
         return numberOfGuppiesBorn;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Mutators">
     /**
      * Updates the age of the guppy in weeks, staying within allowable bounds.
      * @param newAgeInWeeks the new age of the guppy.
@@ -248,6 +269,7 @@ public class Guppy {
             setIsAlive(false);
         }
     }
+    //</editor-fold>
 
     /**
      * Calculates the volume of water in mL that a guppy needs based on its age.
@@ -283,6 +305,43 @@ public class Guppy {
     }
 
     /**
+     * Spawns a guppy, potentially creating an assortment of baby fry.
+     *
+     * @param mother the Guppy to spawn.
+     * @return the ArrayList of newborn fry.
+     */
+    public ArrayList<ca.bcit.comp2522.assignments.a1.Guppy> spawn(ca.bcit.comp2522.assignments.a1.Guppy mother) {
+        if (!mother.isFemale || mother.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
+            return null; /*this guppy is unable to reproduce*/
+        }
+        ArrayList<ca.bcit.comp2522.assignments.a1.Guppy> babyGuppies = new ArrayList<>();
+
+        boolean willSpawn = new Random().nextBoolean();
+        if (willSpawn) { /*female guppy has 50% chance to spawn*/
+
+            Random numOfFryGenerator = new Random();
+            int numOfFryBorn = numOfFryGenerator.nextInt(MAXIMUM_POSSIBLE_NUM_OF_FRY
+                    - MINIMUM_POSSIBLE_NUM_OF_FRY) + MINIMUM_POSSIBLE_NUM_OF_FRY;
+
+            int fryAgeInWeeks = 0;
+            boolean fryIsFemale;
+            double fryHealthCoefficient;
+            int fryGenerationNumber = mother.getGenerationNumber() + 1;
+
+            for (int i = 0; i < numOfFryBorn; i++) {
+                fryIsFemale = new Random().nextBoolean();
+                fryHealthCoefficient = (1.0 + mother.getHealthCoefficient()) / 2.0; /*todo: remove magic numbers*/
+                ca.bcit.comp2522.assignments.a1.Guppy fry = new ca.bcit.comp2522.assignments.a1.Guppy(mother.getGenus(), mother.getSpecies(), fryAgeInWeeks,
+                        fryIsFemale, fryGenerationNumber, fryHealthCoefficient);
+
+                babyGuppies.add(fry);
+            }
+        }
+        return babyGuppies;
+    }
+
+    //<editor-fold desc="toString and equals">
+    /**
      * Creates a string providing information about the guppy.
      *
      * @return a formatted string describing the guppy
@@ -315,10 +374,10 @@ public class Guppy {
         if (o == null) {
             return false;
         }
-        if (!(o instanceof Guppy)) {
+        if (!(o instanceof ca.bcit.comp2522.assignments.a1.Guppy)) {
             return false;
         }
-        Guppy guppy = (Guppy) o;
+        ca.bcit.comp2522.assignments.a1.Guppy guppy = (ca.bcit.comp2522.assignments.a1.Guppy) o;
         return getAgeInWeeks() == guppy.getAgeInWeeks()
                 && isFemale == guppy.isFemale
                 && getGenerationNumber() == guppy.getGenerationNumber()
@@ -328,4 +387,5 @@ public class Guppy {
                 && getGenus().equals(guppy.getGenus())
                 && getSpecies().equals(guppy.getSpecies());
     }
+    //</editor-fold>
 }
