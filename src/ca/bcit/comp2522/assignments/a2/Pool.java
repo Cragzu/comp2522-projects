@@ -41,14 +41,14 @@ public class Pool {
 
     //<editor-fold desc="Instance variables">
     private static int numberOfPools = 0;
-    private String name;
+    private final String name;
     private double volumeLitres;
     private double temperatureCelsius;
     private double pH;
     private double nutrientCoefficient;
-    private int identificationNumber;
-    private ArrayList<Guppy> guppiesInPool;
-    private Random randomNumberGenerator;
+    private final int identificationNumber;
+    private final ArrayList<Guppy> guppiesInPool;
+    private final Random randomNumberGenerator;
     //</editor-fold>
 
     //<editor-fold desc="Constructors">
@@ -159,6 +159,52 @@ public class Pool {
      */
     public int getIdentificationNumber() {
         return identificationNumber;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Mutators">
+    /**
+     * Updates the volume of the pool.
+     *
+     * @param volumeLitres the new volume.
+     */
+    public void setVolumeLitres(double volumeLitres) {
+        this.volumeLitres = volumeLitres;
+    }
+
+    /**
+     * Updates the temperature of the pool.
+     *
+     * @param temperatureCelsius the new temperature.
+     */
+    public void setTemperatureCelsius(double temperatureCelsius) {
+        if (temperatureCelsius >= MINIMUM_POOL_TEMP_CELSIUS
+        && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
+            this.temperatureCelsius = temperatureCelsius;
+        }
+    }
+
+    /**
+     * Updates the pH level of the pool.
+     *
+     * @param pH the new pH.
+     */
+    public void setpH(double pH) {
+        if (pH >= 0.0 && pH <= MAXIMUM_PH) {
+            this.pH = pH;
+        }
+    }
+
+    /**
+     * Updates the nutrient coefficient of the pool.
+     *
+     * @param nutrientCoefficient the new nutrient coefficient.
+     */
+    public void setNutrientCoefficient(double nutrientCoefficient) {
+        if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
+        && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
+            this.nutrientCoefficient = nutrientCoefficient;
+        }
     }
     //</editor-fold>
 }
