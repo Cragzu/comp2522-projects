@@ -252,7 +252,7 @@ public class Guppy {
      * @param originalString the string to be converted.
      * @return the capitalized string.
      */
-    public String toTitleCase(String originalString) {
+    public static String toTitleCase(String originalString) {
         String newString = originalString.toLowerCase();
         newString = newString.strip();
         char firstLetter = newString.charAt(0);
