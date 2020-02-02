@@ -207,4 +207,33 @@ public class Pool {
         }
     }
     //</editor-fold>
+
+    /**
+     * Modifies the nutrient coefficient by the given value delta.
+     *
+     * @param delta the value to add to the current nutrient coefficient.
+     */
+    public void changeNutrientCoefficient(double delta) {
+        if (getNutrientCoefficient() + delta > MAXIMUM_NUTRIENT_COEFFICIENT) {
+            setNutrientCoefficient(MAXIMUM_NUTRIENT_COEFFICIENT);
+        } else {
+            setNutrientCoefficient(Math.max(getNutrientCoefficient() + delta,
+                    MINIMUM_NUTRIENT_COEFFICIENT));
+        }
+    }
+
+    /**
+     * Modifies the temperature by the given value delta.
+     *
+     * @param delta the value to add to the current temperature.
+     */
+    public void changeTemperature(double delta) {
+        if (getTemperatureCelsius() + delta > MAXIMUM_POOL_TEMP_CELSIUS) {
+            setTemperatureCelsius(MAXIMUM_POOL_TEMP_CELSIUS);
+        } else {
+            setTemperatureCelsius(Math.max(getTemperatureCelsius() + delta,
+                    MINIMUM_POOL_TEMP_CELSIUS));
+        }
+    }
+
 }
