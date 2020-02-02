@@ -160,6 +160,15 @@ public class Pool {
     public int getIdentificationNumber() {
         return identificationNumber;
     }
+
+    /**
+     * Returns the total number of pools created.
+     *
+     * @return the number of pools.
+     */
+    public static int getNumberCreated() {
+        return numberOfPools;
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
@@ -234,6 +243,20 @@ public class Pool {
             setTemperatureCelsius(Math.max(getTemperatureCelsius() + delta,
                     MINIMUM_POOL_TEMP_CELSIUS));
         }
+    }
+
+    /**
+     * Adds a guppy to the pool.
+     *
+     * @param guppy the new guppy to be added to the pool.
+     * @return a bool representing whether the addition was successful.
+     */
+    public boolean addGuppy(Guppy guppy) {
+        if (guppy == null) {
+            return false;
+        }
+        guppiesInPool.add(guppy);
+        return true;
     }
 
 }
