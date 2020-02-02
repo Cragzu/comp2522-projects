@@ -106,4 +106,59 @@ public class Pool {
         randomNumberGenerator = new Random();
     }
     //</editor-fold>
+
+    //<editor-fold desc="Accessors">
+    /**
+     * Returns the name of the pool.
+     * @return the name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns the volume of water in the pool in litres.
+     *
+     * @return the pool volume.
+     */
+    public double getVolumeLitres() {
+        return volumeLitres;
+    }
+
+    /**
+     * Returns the temperature of the pool in degrees Celsius.
+     *
+     * @return the temperature.
+     */
+    public double getTemperatureCelsius() {
+        return temperatureCelsius;
+    }
+
+    /**
+     * Returns the pH level of the pool.
+     *
+     * @return the pH.
+     */
+    public double getpH() {
+        return pH;
+    }
+
+    /**
+     * Returns the nutrient coefficient of the pool.
+     *
+     * @return the nutrient coefficient.
+     */
+    public double getNutrientCoefficient() {
+        return nutrientCoefficient;
+    }
+
+    /**
+     * Returns the identification number of the pool.
+     *
+     * @return the ID number.
+     */
+    public int getIdentificationNumber() {
+        return identificationNumber;
+    }
+    //</editor-fold>
 }
