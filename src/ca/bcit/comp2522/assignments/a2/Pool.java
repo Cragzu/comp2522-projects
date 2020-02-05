@@ -38,6 +38,9 @@ public class Pool {
 
     /**The maximum nutrient coefficient a pool can have.*/
     static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
+
+    /**The number of millilitres in one litre.*/
+    static final double ML_TO_L_CONVERSION = 1000.0;
     //</editor-fold>
 
     //<editor-fold desc="Instance variables">
@@ -312,6 +315,22 @@ public class Pool {
             }
         }
         return removedGuppiesCount;
+    }
+
+    /**
+     * Calculates the total volume of water in litres required by all guppies in the pool.
+     *
+     * @return the required volume of water.
+     */
+    public double getGuppyVolumeRequirementInLitres() {
+        double volumeNeededInML = 0.0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) { /*get volume in mL for each guppy*/
+            Guppy currentGuppy = it.next();
+            volumeNeededInML += currentGuppy.getVolumeNeeded();
+        }
+        return volumeNeededInML / ML_TO_L_CONVERSION; /*convert to litres*/
     }
 
     public static void main(String[] args) {
