@@ -294,12 +294,34 @@ public class Pool {
         return deadGuppyCount;
     }
 
+    /**
+     * Removes all dead guppies from the pool.
+     *
+     * @return the number of removed corpses.
+     */
+    public int removeDeadGuppies() {
+        int removedGuppiesCount = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+
+            if (!currentGuppy.getIsAlive()) {
+                it.remove();
+                removedGuppiesCount++;
+            }
+        }
+        return removedGuppiesCount;
+    }
+
     public static void main(String[] args) {
         Pool myPool = new Pool();
         Guppy myGuppy = new Guppy();
         myPool.addGuppy(myGuppy);
         System.out.println(myPool.getPopulation());
         myPool.applyNutrientCoefficient();
+        myPool.removeDeadGuppies();
+        System.out.println(myPool.getPopulation());
     }
 
 
