@@ -49,7 +49,7 @@ public class Pool {
     private double nutrientCoefficient;
     private final int identificationNumber;
     private final ArrayList<Guppy> guppiesInPool;
-    private final Random randomNumberGenerator;
+    private Random randomNumberGenerator;
     //</editor-fold>
 
     //<editor-fold desc="Constructors">
@@ -277,11 +277,29 @@ public class Pool {
      * @return the number of guppies that have perished.
      */
     public int applyNutrientCoefficient() {
+        int deadGuppyCount = 0;
+
         Iterator<Guppy> it = guppiesInPool.iterator();
         while (it.hasNext()) {
-            it.next();
+            Guppy currentGuppy = it.next();
 
+            randomNumberGenerator = new Random();
+            double generatedDouble = randomNumberGenerator.nextDouble();
+
+            if (generatedDouble > this.getNutrientCoefficient()) {
+                currentGuppy.setIsAlive(false);
+                deadGuppyCount++;
+            }
         }
+        return deadGuppyCount;
+    }
+
+    public static void main(String[] args) {
+        Pool myPool = new Pool();
+        Guppy myGuppy = new Guppy();
+        myPool.addGuppy(myGuppy);
+        System.out.println(myPool.getPopulation());
+        myPool.applyNutrientCoefficient();
     }
 
 
