@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -169,6 +170,15 @@ public class Pool {
     public static int getNumberCreated() {
         return numberOfPools;
     }
+
+    /**
+     * Returns the number of guppies currently in the pool.
+     *
+     * @return the number of guppies in the pool.
+     */
+    public int getPopulation() {
+        return guppiesInPool.size();
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
@@ -258,5 +268,21 @@ public class Pool {
         guppiesInPool.add(guppy);
         return true;
     }
+
+    /**
+     * Calculates which guppies in the pool have died from malnutrition.
+     * Generates a random double for each guppy and compares it to the pool's nutrient coefficient
+     * to determine whether that guppy lives.
+     *
+     * @return the number of guppies that have perished.
+     */
+    public int applyNutrientCoefficient() {
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            it.next();
+
+        }
+    }
+
 
 }
