@@ -232,6 +232,14 @@ public class Pool {
         }
         return numberOfFemales / this.getPopulation();
     }
+
+    /**
+     *
+     * @return
+     */
+    public double getMedianAge() {
+
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
