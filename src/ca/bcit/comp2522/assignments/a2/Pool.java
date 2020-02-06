@@ -198,6 +198,22 @@ public class Pool {
         }
         return cumulativeAges / this.getPopulation(); /*divide all ages by number of guppies*/
     }
+
+    /**
+     * Calculates the average health coefficient of guppies in the pool.
+     *
+     * @return the average health coefficient of the pool inhabitants.
+     */
+    public double getAverageHealthCoefficient() {
+        double cumulativeHealth = 0.0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            cumulativeHealth += currentGuppy.getHealthCoefficient();
+        }
+        return cumulativeHealth / this.getPopulation();
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
