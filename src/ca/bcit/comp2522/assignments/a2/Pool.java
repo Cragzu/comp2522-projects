@@ -234,10 +234,23 @@ public class Pool {
     }
 
     /**
+     * Determines the median age of guppies in the pool.
      *
-     * @return
+     * @return the median age of the pool inhabitants.
      */
     public double getMedianAge() {
+        ArrayList<Integer> guppyAges = new ArrayList<>();
+
+        Iterator<Guppy> it = guppiesInPool.iterator();
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            guppyAges.add(currentGuppy.getAgeInWeeks());
+        }
+        System.out.println(guppyAges);
+
+        int middleOfList = Math.floorDiv(guppyAges.size(), 2);
+
+        return guppyAges.get(middleOfList);
 
     }
     //</editor-fold>
@@ -395,6 +408,7 @@ public class Pool {
         Pool myPool = new Pool();
         Guppy myGuppy = new Guppy();
         myPool.addGuppy(myGuppy);
+        System.out.println(myPool.getMedianAge());
     }
 
 
