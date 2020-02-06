@@ -182,6 +182,22 @@ public class Pool {
     public int getPopulation() {
         return guppiesInPool.size();
     }
+
+    /**
+     * Calculates the average age in weeks of guppies in the pool.
+     *
+     * @return the average age of the pool inhabitants.
+     */
+    public double getAverageAgeInWeeks() {
+        double cumulativeAges = 0.0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            cumulativeAges += currentGuppy.getAgeInWeeks();
+        }
+        return cumulativeAges / this.getPopulation(); /*divide all ages by number of guppies*/
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
@@ -337,10 +353,6 @@ public class Pool {
         Pool myPool = new Pool();
         Guppy myGuppy = new Guppy();
         myPool.addGuppy(myGuppy);
-        System.out.println(myPool.getPopulation());
-        myPool.applyNutrientCoefficient();
-        myPool.removeDeadGuppies();
-        System.out.println(myPool.getPopulation());
     }
 
 
