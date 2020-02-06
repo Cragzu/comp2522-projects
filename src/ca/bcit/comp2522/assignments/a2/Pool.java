@@ -74,8 +74,8 @@ public class Pool {
      * @param pH the pH level of the pool.
      * @param nutrientCoefficient the nutrient coefficient of the pool.
      */
-    public Pool(String name, double volumeLitres, double temperatureCelsius,
-                double pH, double nutrientCoefficient) {
+    public Pool(final String name, final double volumeLitres, final double temperatureCelsius,
+                final double pH, final double nutrientCoefficient) {
         numberOfPools++;
         identificationNumber = numberOfPools;
 
@@ -222,7 +222,7 @@ public class Pool {
      *
      * @param volumeLitres the new volume.
      */
-    public void setVolumeLitres(double volumeLitres) {
+    public void setVolumeLitres(final double volumeLitres) {
         this.volumeLitres = volumeLitres;
     }
 
@@ -231,7 +231,7 @@ public class Pool {
      *
      * @param temperatureCelsius the new temperature.
      */
-    public void setTemperatureCelsius(double temperatureCelsius) {
+    public void setTemperatureCelsius(final double temperatureCelsius) {
         if (temperatureCelsius >= MINIMUM_POOL_TEMP_CELSIUS
         && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = temperatureCelsius;
@@ -243,7 +243,7 @@ public class Pool {
      *
      * @param pH the new pH.
      */
-    public void setpH(double pH) {
+    public void setpH(final double pH) {
         if (pH >= 0.0 && pH <= MAXIMUM_PH) {
             this.pH = pH;
         }
@@ -254,7 +254,7 @@ public class Pool {
      *
      * @param nutrientCoefficient the new nutrient coefficient.
      */
-    public void setNutrientCoefficient(double nutrientCoefficient) {
+    public void setNutrientCoefficient(final double nutrientCoefficient) {
         if (nutrientCoefficient >= MINIMUM_NUTRIENT_COEFFICIENT
         && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
             this.nutrientCoefficient = nutrientCoefficient;
@@ -267,7 +267,7 @@ public class Pool {
      *
      * @param delta the value to add to the current nutrient coefficient.
      */
-    public void changeNutrientCoefficient(double delta) {
+    public void changeNutrientCoefficient(final double delta) {
         if (getNutrientCoefficient() + delta > MAXIMUM_NUTRIENT_COEFFICIENT) {
             setNutrientCoefficient(MAXIMUM_NUTRIENT_COEFFICIENT);
         } else {
@@ -281,7 +281,7 @@ public class Pool {
      *
      * @param delta the value to add to the current temperature.
      */
-    public void changeTemperature(double delta) {
+    public void changeTemperature(final double delta) {
         if (getTemperatureCelsius() + delta > MAXIMUM_POOL_TEMP_CELSIUS) {
             setTemperatureCelsius(MAXIMUM_POOL_TEMP_CELSIUS);
         } else {
@@ -296,7 +296,7 @@ public class Pool {
      * @param guppy the new guppy to be added to the pool.
      * @return a bool representing whether the addition was successful.
      */
-    public boolean addGuppy(Guppy guppy) {
+    public boolean addGuppy(final Guppy guppy) {
         if (guppy == null) {
             return false;
         }
@@ -365,7 +365,7 @@ public class Pool {
         return volumeNeededInML / ML_TO_L_CONVERSION; /*convert to litres*/
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Pool myPool = new Pool();
         Guppy myGuppy = new Guppy();
         myPool.addGuppy(myGuppy);

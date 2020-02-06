@@ -78,9 +78,9 @@ public class Guppy {
      * @param newGenerationNumber the generation number the guppy belongs to.
      * @param newHealthCoefficient a coefficient representing how healthy the guppy is.
      */
-    public Guppy(String newGenus, String newSpecies,
-                 int newAgeInWeeks, boolean newIsFemale, int newGenerationNumber,
-                 double newHealthCoefficient) {
+    public Guppy(final String newGenus, final String newSpecies,
+                 final int newAgeInWeeks, final boolean newIsFemale, final int newGenerationNumber,
+                 final double newHealthCoefficient) {
         numberOfGuppiesBorn++;
         identificationNumber = numberOfGuppiesBorn;
 
@@ -219,7 +219,7 @@ public class Guppy {
      * Updates the age of the guppy in weeks, staying within allowable bounds.
      * @param newAgeInWeeks the new age of the guppy.
      */
-    public void setAgeInWeeks(int newAgeInWeeks) {
+    public void setAgeInWeeks(final int newAgeInWeeks) {
         if (newAgeInWeeks >= 0 && newAgeInWeeks <= MAXIMUM_AGE_IN_WEEKS) {
             ageInWeeks = newAgeInWeeks;
         }
@@ -230,7 +230,7 @@ public class Guppy {
      *
      * @param alive the new value for the life status of the guppy
      */
-    public void setIsAlive(boolean alive) {
+    public void setIsAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -239,7 +239,7 @@ public class Guppy {
      *
      * @param newHealthCoefficient the new health coefficient
      */
-    public void setHealthCoefficient(double newHealthCoefficient) {
+    public void setHealthCoefficient(final double newHealthCoefficient) {
         if (newHealthCoefficient >= MINIMUM_HEALTH_COEFFICIENT
                 && newHealthCoefficient <= MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = newHealthCoefficient;
@@ -252,7 +252,7 @@ public class Guppy {
      * @param originalString the string to be converted.
      * @return the capitalized string.
      */
-    public static String toTitleCase(String originalString) {
+    public static String toTitleCase(final String originalString) {
         String newString = originalString.toLowerCase();
         newString = newString.strip();
         char firstLetter = newString.charAt(0);
@@ -294,7 +294,7 @@ public class Guppy {
      *
      * @param delta the amount to modify the health coefficient by
      */
-    public void changeHealthCoefficient(double delta) {
+    public void changeHealthCoefficient(final double delta) {
         if (getHealthCoefficient() + delta <= MINIMUM_HEALTH_COEFFICIENT) {
             setHealthCoefficient(0.0);
             setIsAlive(false);
@@ -311,7 +311,7 @@ public class Guppy {
      * @param mother the Guppy to spawn.
      * @return the ArrayList of newborn fry.
      */
-    public ArrayList<Guppy> spawn(Guppy mother) {
+    public ArrayList<Guppy> spawn(final Guppy mother) {
         if (!mother.getIsFemale() || mother.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
             return null; /*this guppy is unable to reproduce*/
         }
@@ -331,7 +331,7 @@ public class Guppy {
 
             for (int i = 0; i < numOfFryBorn; i++) {
                 fryIsFemale = new Random().nextBoolean();
-                fryHealthCoefficient = (1.0 + mother.getHealthCoefficient()) / 2.0; /*todo: remove magic numbers*/
+                fryHealthCoefficient = (1.0 + mother.getHealthCoefficient()) / 2.0;
                 Guppy fry = new Guppy(mother.getGenus(), mother.getSpecies(), fryAgeInWeeks,
                         fryIsFemale, fryGenerationNumber, fryHealthCoefficient);
 
@@ -380,7 +380,7 @@ public class Guppy {
      * @return whether or not the two objects are equal
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
