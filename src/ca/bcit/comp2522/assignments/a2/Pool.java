@@ -214,6 +214,24 @@ public class Pool {
         }
         return cumulativeHealth / this.getPopulation();
     }
+
+    /**
+     * Calculates the percentage of female guppies out of the total population.
+     *
+     * @return the percentage of guppies that are female.
+     */
+    public double getFemalePercentage() {
+        double numberOfFemales = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            if (currentGuppy.getIsFemale()) {
+                numberOfFemales++;
+            }
+        }
+        return numberOfFemales / this.getPopulation();
+    }
     //</editor-fold>
 
     //<editor-fold desc="Mutators">
