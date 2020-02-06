@@ -404,6 +404,22 @@ public class Pool {
         return volumeNeededInML / ML_TO_L_CONVERSION; /*convert to litres*/
     }
 
+    //<editor-fold desc="toString">
+    @Override
+    public String toString() {
+        return "Pool{"
+                + "name='" + name + '\''
+                + ", volumeLitres=" + volumeLitres
+                + ", temperatureCelsius=" + temperatureCelsius
+                + ", pH=" + pH
+                + ", nutrientCoefficient=" + nutrientCoefficient
+                + ", identificationNumber=" + identificationNumber
+                + ", guppiesInPool=" + guppiesInPool
+                + ", randomNumberGenerator=" + randomNumberGenerator
+                + '}';
+    }
+    //</editor-fold>
+
     public static void main(final String[] args) {
         Pool myPool = new Pool();
         Guppy myGuppy = new Guppy();
