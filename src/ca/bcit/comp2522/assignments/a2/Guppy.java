@@ -308,11 +308,10 @@ public class Guppy {
     /**
      * Spawns a guppy, potentially creating an assortment of baby fry.
      *
-     * @param mother the Guppy to spawn.
      * @return the ArrayList of newborn fry.
      */
-    public ArrayList<Guppy> spawn(final Guppy mother) {
-        if (!mother.getIsFemale() || mother.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
+    public ArrayList<Guppy> spawn() {
+        if (!this.getIsFemale() || this.getAgeInWeeks() < FEMALE_REPRODUCTIVE_AGE) {
             return null; /*this guppy is unable to reproduce*/
         }
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
@@ -327,12 +326,12 @@ public class Guppy {
             int fryAgeInWeeks = 0;
             boolean fryIsFemale;
             double fryHealthCoefficient;
-            int fryGenerationNumber = mother.getGenerationNumber() + 1;
+            int fryGenerationNumber = this.getGenerationNumber() + 1;
 
             for (int i = 0; i < numOfFryBorn; i++) {
                 fryIsFemale = new Random().nextBoolean();
-                fryHealthCoefficient = (1.0 + mother.getHealthCoefficient()) / 2.0;
-                Guppy fry = new Guppy(mother.getGenus(), mother.getSpecies(), fryAgeInWeeks,
+                fryHealthCoefficient = (1.0 + this.getHealthCoefficient()) / 2.0;
+                Guppy fry = new Guppy(this.getGenus(), this.getSpecies(), fryAgeInWeeks,
                         fryIsFemale, fryGenerationNumber, fryHealthCoefficient);
 
                 babyGuppies.add(fry);

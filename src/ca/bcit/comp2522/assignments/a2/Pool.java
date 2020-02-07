@@ -404,6 +404,27 @@ public class Pool {
         return volumeNeededInML / ML_TO_L_CONVERSION; /*convert to litres*/
     }
 
+    /**
+     * Attempts to spawn all guppies in the pool.
+     * Spawns each eligible guppy in the pool, and adds all newborn fry into the pool.
+     *
+     * @return the number of fry born.
+     */
+    public int spawn() {
+        int totalNumOfFryBorn = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy mother = it.next();
+            ArrayList<Guppy> newBabies = mother.spawn();
+            if (newBabies != null) {
+                totalNumOfFryBorn += newBabies.size();
+                guppiesInPool.addAll(newBabies);
+            }
+        }
+        return totalNumOfFryBorn;
+    }
+
     //<editor-fold desc="toString">
     @Override
     public String toString() {
