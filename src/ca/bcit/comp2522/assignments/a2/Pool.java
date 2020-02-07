@@ -425,6 +425,25 @@ public class Pool {
         return totalNumOfFryBorn;
     }
 
+    /**
+     * Increments the age of every guppy in the pool.
+     *
+     * @return the number of guppies that have died of old age.
+     */
+    public int incrementAges() {
+        int deadGuppyCount = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            currentGuppy.incrementAge();
+            if (!currentGuppy.getIsAlive()) {
+                deadGuppyCount++;
+            }
+        }
+        return deadGuppyCount;
+    }
+
     //<editor-fold desc="toString">
     @Override
     public String toString() {
