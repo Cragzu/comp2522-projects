@@ -444,6 +444,45 @@ public class Pool {
         return deadGuppyCount;
     }
 
+    /**
+     * Finds the weakest guppy in the pool; the one with the lowest health coefficient.
+     *
+     * @return the weakest Guppy.
+     */
+    public Guppy getWeakestGuppy() { // todo: unit tests for this
+        Guppy weakestGuppy = guppiesInPool.get(0);
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            if (currentGuppy.getHealthCoefficient() < weakestGuppy.getHealthCoefficient()
+            && currentGuppy.getIsAlive()) {
+                weakestGuppy = currentGuppy;
+            }
+        }
+        return weakestGuppy;
+    }
+
+    /**
+     * Extinguishes the weakest guppies that have died from overcrowding.
+     *
+     * @return the number of guppies that have perished.
+     */
+    public int adjustForCrowding() {
+        int deadGuppyCount = 0;
+        Guppy weakestGuppy;
+
+        double volumeNeeded = this.getGuppyVolumeRequirementInLitres();
+        while (volumeNeeded > this.getVolumeLitres()) {
+            weakestGuppy = getWeakestGuppy();
+            weakestGuppy.setIsAlive(false);
+
+            deadGuppyCount++;
+            volumeNeeded = this.getGuppyVolumeRequirementInLitres();
+        }
+        return deadGuppyCount;
+    }
+
     //<editor-fold desc="toString">
     @Override
     public String toString() {
