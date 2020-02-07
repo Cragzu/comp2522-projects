@@ -143,7 +143,7 @@ public class Pool {
      *
      * @return the pH.
      */
-    public double getpH() {
+    public double getPH() {
         return pH;
     }
 
@@ -282,7 +282,7 @@ public class Pool {
      *
      * @param pH the new pH.
      */
-    public void setpH(final double pH) {
+    public void setPH(final double pH) {
         if (pH >= 0.0 && pH <= MAXIMUM_PH) {
             this.pH = pH;
         }
