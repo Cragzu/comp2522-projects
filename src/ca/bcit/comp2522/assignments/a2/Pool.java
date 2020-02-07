@@ -87,10 +87,11 @@ public class Pool {
 
         this.volumeLitres = Math.max(volumeLitres, 0.0);
 
-        if (temperatureCelsius > MAXIMUM_POOL_TEMP_CELSIUS) {
-            this.temperatureCelsius = MAXIMUM_POOL_TEMP_CELSIUS;
+        if (temperatureCelsius > MAXIMUM_POOL_TEMP_CELSIUS
+        || temperatureCelsius < MINIMUM_POOL_TEMP_CELSIUS) {
+            this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
         } else {
-            this.temperatureCelsius = Math.max(temperatureCelsius, MINIMUM_POOL_TEMP_CELSIUS);
+            this.temperatureCelsius = temperatureCelsius;
         }
 
         if (pH < 0.0 || pH > MAXIMUM_PH) {
@@ -180,7 +181,16 @@ public class Pool {
      * @return the number of guppies in the pool.
      */
     public int getPopulation() {
-        return guppiesInPool.size();
+        int population = 0;
+        Iterator<Guppy> it = guppiesInPool.iterator();
+
+        while (it.hasNext()) {
+            Guppy currentGuppy = it.next();
+            if (currentGuppy.getIsAlive()) {
+                population++;
+            }
+        }
+        return population;
     }
 
     /**
