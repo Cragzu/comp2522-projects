@@ -190,6 +190,9 @@ public class Pool {
      */
     public double getAverageAgeInWeeks() {
         double cumulativeAges = 0.0;
+        if (guppiesInPool.size() == 0) { /*check for divide by 0 issue*/
+            return cumulativeAges;
+        }
         Iterator<Guppy> it = guppiesInPool.iterator();
 
         while (it.hasNext()) {
@@ -210,7 +213,9 @@ public class Pool {
 
         while (it.hasNext()) {
             Guppy currentGuppy = it.next();
-            cumulativeHealth += currentGuppy.getHealthCoefficient();
+            if (currentGuppy.getIsAlive()) {
+                cumulativeHealth += currentGuppy.getHealthCoefficient();
+            }
         }
         return cumulativeHealth / this.getPopulation();
     }

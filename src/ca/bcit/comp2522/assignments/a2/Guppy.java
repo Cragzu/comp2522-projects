@@ -278,12 +278,12 @@ public class Guppy {
      * @return the required volume of water in mL
      */
     public double getVolumeNeeded() {
-        if (getAgeInWeeks() < YOUNG_FISH_AGE_IN_WEEKS) {
-            return MINIMUM_WATER_VOLUME_ML;
-        } else if (getAgeInWeeks() <= MATURE_FISH_AGE_IN_WEEKS) {
-            return (MINIMUM_WATER_VOLUME_ML * getAgeInWeeks()) / YOUNG_FISH_AGE_IN_WEEKS;
-        } else if (!getIsAlive()) {
+        if (!this.getIsAlive()) {
             return DEAD_FISH_WATER_VOLUME;
+        } else if (this.getAgeInWeeks() < YOUNG_FISH_AGE_IN_WEEKS) {
+            return MINIMUM_WATER_VOLUME_ML;
+        } else if (this.getAgeInWeeks() <= MATURE_FISH_AGE_IN_WEEKS) {
+            return (MINIMUM_WATER_VOLUME_ML * this.getAgeInWeeks()) / YOUNG_FISH_AGE_IN_WEEKS;
         } else {
             return (MINIMUM_WATER_VOLUME_ML * ADULT_FISH_WATER_COEFFICIENT);
         }
