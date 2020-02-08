@@ -72,6 +72,11 @@ public class Ecosystem {
     }
 
     //<editor-fold desc="Three pools creation methods">
+
+    public void addGeneratedGuppies() {
+
+    }
+
     /**
      * Creates the Skookumchuk pool for use in the Ecosystem simulation.
      *
