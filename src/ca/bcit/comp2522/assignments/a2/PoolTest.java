@@ -443,4 +443,21 @@ public class PoolTest {
         }
         assertEquals((double) females / count, testPool.getFemalePercentage(), 0.05);
     }
+
+    @Test
+    public void poolOfMaleGuppiesShouldNotSpawn() {
+        for (int i = 0; i < 50; i++) {
+            Guppy newGuppy = new Guppy(
+                    "Poecilia",
+                    "elegans",
+                    0,
+                    false,
+                    3,
+                    0.75);
+            testPool.addGuppy(newGuppy);
+        }
+
+
+    }
+
 }

@@ -2,6 +2,7 @@ package ca.bcit.comp2522.assignments.a2;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -517,6 +518,30 @@ public class Pool {
                 + ", randomNumberGenerator=" + randomNumberGenerator
                 + '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        Pool pool = (Pool) o;
+        return Double.compare(pool.getVolumeLitres(), getVolumeLitres()) == 0
+                && Double.compare(pool.getTemperatureCelsius(), getTemperatureCelsius()) == 0
+                && Double.compare(pool.pH, pH) == 0
+                && Double.compare(pool.getNutrientCoefficient(), getNutrientCoefficient()) == 0
+                && getIdentificationNumber() == pool.getIdentificationNumber()
+                && getName().equals(pool.getName())
+                && guppiesInPool.equals(pool.guppiesInPool);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getVolumeLitres(), getTemperatureCelsius(), pH, getNutrientCoefficient(), getIdentificationNumber(), guppiesInPool);
+    }
+
     //</editor-fold>
 
     public static void main(final String[] args) {
