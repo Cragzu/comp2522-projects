@@ -71,6 +71,64 @@ public class Ecosystem {
         return totalGuppiesExtinguished;
     }
 
+    //<editor-fold desc="Three pools creation methods">
+    /**
+     * Creates the Skookumchuk pool for use in the Ecosystem simulation.
+     *
+     * @return the new pool.
+     */
+    public Pool createSkookumchukPool() {
+        final String name = "Skookumchuk";
+        final int volumeLitres = 3000;
+        final int tempCelsius = 42;
+        final double pH = 7.9;
+        final double nutrientCoefficient = 0.9;
+
+        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+    }
+
+    /**
+     * Creates the Squamish pool for use in the Ecosystem simulation.
+     *
+     * @return the new pool.
+     */
+    public Pool createSquamishPool() {
+        final String name = "Squamish";
+        final int volumeLitres = 15000;
+        final int tempCelsius = 39;
+        final double pH = 7.7;
+        final double nutrientCoefficient = 0.85;
+
+        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+    }
+
+    /**
+     * Creates the Semiahmoo pool for use in the Ecosystem simulation.
+     *
+     * @return the new pool.
+     */
+    public Pool createSemiahmooPool() {
+        final String name = "Semiahmoo";
+        final int volumeLitres = 4500;
+        final int tempCelsius = 37;
+        final double pH = 7.5;
+        final double nutrientCoefficient = 1.0;
+
+        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+    }
+    //</editor-fold>
+
+    /**
+     * Runs a simulation of an Ecosystem.
+     */
+    public void setupSimulation() {
+        Pool skookumchuk = createSkookumchukPool();
+        Pool squamish = createSquamishPool();
+
+
+
+    }
+
     public static void main(String[] args) {
         Ecosystem myEco = new Ecosystem();
         Pool myPool = new Pool();
