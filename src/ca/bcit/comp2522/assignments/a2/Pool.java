@@ -434,15 +434,17 @@ public class Pool {
     public int spawn() {
         int totalNumOfFryBorn = 0;
         Iterator<Guppy> it = guppiesInPool.iterator();
+        ArrayList<Guppy> currentBabies = new ArrayList<>();
 
         while (it.hasNext()) {
             Guppy mother = it.next();
             ArrayList<Guppy> newBabies = mother.spawn();
             if (newBabies != null) {
                 totalNumOfFryBorn += newBabies.size();
-                guppiesInPool.addAll(newBabies);
+                currentBabies.addAll(newBabies);
             }
         }
+        guppiesInPool.addAll(currentBabies);
         return totalNumOfFryBorn;
     }
 

@@ -474,7 +474,7 @@ public class PoolTest {
         assertEquals(0, testPool.spawn());
     }
 
-    /*@Test todo: not working. why?
+    @Test
     public void poolOfEligibleGuppiesShouldSpawn() {
         for (int i = 0; i < 50; i++) {
             Guppy newGuppy = new Guppy(
@@ -487,7 +487,7 @@ public class PoolTest {
             testPool.addGuppy(newGuppy);
         }
         assertTrue(testPool.spawn() > 0);
-    }*/
+    }
 
 
 }
