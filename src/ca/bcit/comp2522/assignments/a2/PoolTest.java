@@ -476,7 +476,7 @@ public class PoolTest {
 
     @Test
     public void poolOfEligibleGuppiesShouldSpawn() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 500; i++) {
             Guppy newGuppy = new Guppy(
                     "Poecilia",
                     "elegans",
