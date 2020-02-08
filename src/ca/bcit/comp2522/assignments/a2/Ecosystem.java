@@ -39,6 +39,22 @@ public class Ecosystem {
         pools.clear();
     }
 
+    /**
+     * Determines the total number of living guppies in the entire ecosystem.
+     *
+     * @return the population of the ecosystem.
+     */
+    public int getPopulation() {
+        int totalPopulation = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while(it.hasNext()) {
+            Pool currentPool = it.next();
+            totalPopulation += currentPool.getPopulation();
+        }
+        return totalPopulation;
+    }
+
     public static void main(String[] args) {
         Ecosystem myEco = new Ecosystem();
         Pool myPool = new Pool();
