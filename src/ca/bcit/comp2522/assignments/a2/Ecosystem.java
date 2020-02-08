@@ -55,6 +55,22 @@ public class Ecosystem {
         return totalPopulation;
     }
 
+    /**
+     * Extinguishes the weakest guppies in all pools in the ecosystem that have been crowded out.
+     *
+     * @return the number of perished guppies.
+     */
+    public int adjustForCrowding() {
+        int totalGuppiesExtinguished = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while(it.hasNext()) {
+            Pool currentPool = it.next();
+            totalGuppiesExtinguished += currentPool.adjustForCrowding();
+        }
+        return totalGuppiesExtinguished;
+    }
+
     public static void main(String[] args) {
         Ecosystem myEco = new Ecosystem();
         Pool myPool = new Pool();
