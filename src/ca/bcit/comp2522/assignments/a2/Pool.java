@@ -504,7 +504,7 @@ public class Pool {
         return deadGuppyCount;
     }
 
-    //<editor-fold desc="toString">
+    //<editor-fold desc="toString, equals, hashCode">
     @Override
     public String toString() {
         return "Pool{"
@@ -543,13 +543,5 @@ public class Pool {
     }
 
     //</editor-fold>
-
-    public static void main(final String[] args) {
-        Pool myPool = new Pool();
-        Guppy myGuppy = new Guppy();
-        myPool.addGuppy(myGuppy);
-        System.out.println(myPool.getMedianAge());
-    }
-
 
 }

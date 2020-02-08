@@ -450,14 +450,44 @@ public class PoolTest {
             Guppy newGuppy = new Guppy(
                     "Poecilia",
                     "elegans",
-                    0,
+                    10,
                     false,
                     3,
                     0.75);
             testPool.addGuppy(newGuppy);
         }
-
-
+        assertEquals(0, testPool.spawn());
     }
+
+    @Test
+    public void poolOfYoungGuppiesShouldNotSpawn() {
+        for (int i = 0; i < 50; i++) {
+            Guppy newGuppy = new Guppy(
+                    "Poecilia",
+                    "elegans",
+                    0,
+                    true,
+                    3,
+                    0.75);
+            testPool.addGuppy(newGuppy);
+        }
+        assertEquals(0, testPool.spawn());
+    }
+
+    /*@Test todo: not working. why?
+    public void poolOfEligibleGuppiesShouldSpawn() {
+        for (int i = 0; i < 50; i++) {
+            Guppy newGuppy = new Guppy(
+                    "Poecilia",
+                    "elegans",
+                    10,
+                    true,
+                    3,
+                    0.75);
+            testPool.addGuppy(newGuppy);
+        }
+        assertTrue(testPool.spawn() > 0);
+    }*/
+
 
 }
