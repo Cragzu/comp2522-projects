@@ -83,8 +83,28 @@ public class Ecosystem {
         final int tempCelsius = 42;
         final double pH = 7.9;
         final double nutrientCoefficient = 0.9;
+        final int numOfGuppies = 300;
+        final int minGuppyAge = 10;
+        final int maxGuppyAge = 25;
+        final double minGuppyHealth = 0.5;
+        final double maxGuppyHealth = 0.8;
+        final double femalePercentChance = 0.75;
 
-        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+        Pool skookumchuk = new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+
+        for (int i = 0; i < numOfGuppies; i++) {
+            int guppyAge = new Random().nextInt(maxGuppyAge - minGuppyAge) + maxGuppyAge;
+            double guppyHealth = minGuppyHealth
+                    + (new Random().nextDouble() * (maxGuppyHealth - minGuppyHealth));
+            double femaleGenerator = new Random().nextDouble();
+            boolean isFemale = femaleGenerator <= femalePercentChance;
+
+            Guppy currentGuppy = new Guppy("Poecilia", "reticulata", guppyAge,
+                    isFemale, 1, guppyHealth);
+            skookumchuk.addGuppy(currentGuppy);
+        }
+
+        return skookumchuk;
     }
 
     /**
@@ -124,7 +144,11 @@ public class Ecosystem {
     public void setupSimulation() {
         Pool skookumchuk = createSkookumchukPool();
         Pool squamish = createSquamishPool();
+        Pool semiahmoo = createSemiahmooPool();
 
+        this.addPool(skookumchuk);
+        this.addPool(squamish);
+        this.addPool(semiahmoo);
 
 
     }
