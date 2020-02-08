@@ -200,6 +200,7 @@ public class Pool {
      */
     public double getAverageAgeInWeeks() {
         double cumulativeAges = 0.0;
+        int population = this.getPopulation();
         if (guppiesInPool.size() == 0) { /*check for divide by 0 issue*/
             return cumulativeAges;
         }
@@ -209,7 +210,7 @@ public class Pool {
             Guppy currentGuppy = it.next();
             cumulativeAges += currentGuppy.getAgeInWeeks();
         }
-        return cumulativeAges / this.getPopulation(); /*divide all ages by number of guppies*/
+        return (population == 0) ? population : cumulativeAges / this.getPopulation();
     }
 
     /**
@@ -219,6 +220,7 @@ public class Pool {
      */
     public double getAverageHealthCoefficient() {
         double cumulativeHealth = 0.0;
+        int population = this.getPopulation();
         Iterator<Guppy> it = guppiesInPool.iterator();
 
         while (it.hasNext()) {
@@ -227,7 +229,7 @@ public class Pool {
                 cumulativeHealth += currentGuppy.getHealthCoefficient();
             }
         }
-        return cumulativeHealth / this.getPopulation();
+        return (population == 0) ? population : cumulativeHealth / population;
     }
 
     /**
@@ -237,6 +239,7 @@ public class Pool {
      */
     public double getFemalePercentage() {
         double numberOfFemales = 0;
+        int population = this.getPopulation();
         Iterator<Guppy> it = guppiesInPool.iterator();
 
         while (it.hasNext()) {
@@ -245,7 +248,7 @@ public class Pool {
                 numberOfFemales++;
             }
         }
-        return numberOfFemales / this.getPopulation();
+        return (population == 0) ? population : numberOfFemales / population;
     }
 
     /**
@@ -277,7 +280,9 @@ public class Pool {
      * @param volumeLitres the new volume.
      */
     public void setVolumeLitres(final double volumeLitres) {
-        this.volumeLitres = volumeLitres;
+        if (volumeLitres >= 0.0) {
+            this.volumeLitres = volumeLitres;
+        }
     }
 
     /**
