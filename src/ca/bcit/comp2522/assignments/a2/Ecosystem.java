@@ -137,8 +137,19 @@ public class Ecosystem {
         final int tempCelsius = 39;
         final double pH = 7.7;
         final double nutrientCoefficient = 0.85;
+        final int numOfGuppies = 100;
+        final int minGuppyAge = 10;
+        final int maxGuppyAge = 15;
+        final double minGuppyHealth = 0.8;
+        final double maxGuppyHealth = 1.0;
+        final double femalePercentChance = 0.75;
 
-        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+        Pool squamish =  new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+
+        addGeneratedGuppies(squamish, numOfGuppies, minGuppyAge, maxGuppyAge, minGuppyHealth,
+                maxGuppyHealth, femalePercentChance);
+
+        return squamish;
     }
 
     /**
@@ -152,8 +163,19 @@ public class Ecosystem {
         final int tempCelsius = 37;
         final double pH = 7.5;
         final double nutrientCoefficient = 1.0;
+        final int numOfGuppies = 200;
+        final int minGuppyAge = 15;
+        final int maxGuppyAge = 49;
+        final double minGuppyHealth = 0.0;
+        final double maxGuppyHealth = 1.0;
+        final double femalePercentChance = 0.35;
 
-        return new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+        Pool semiahmoo =  new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
+
+        addGeneratedGuppies(semiahmoo, numOfGuppies, minGuppyAge, maxGuppyAge, minGuppyHealth,
+                maxGuppyHealth, femalePercentChance);
+
+        return semiahmoo;
     }
     //</editor-fold>
 
@@ -170,11 +192,14 @@ public class Ecosystem {
         this.addPool(semiahmoo);
 
 
+
+
     }
 
     public static void main(String[] args) {
         Ecosystem myEco = new Ecosystem();
         Pool myPool = new Pool();
+        myEco.setupSimulation();
     }
 
 
