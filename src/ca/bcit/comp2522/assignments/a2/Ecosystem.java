@@ -73,8 +73,31 @@ public class Ecosystem {
 
     //<editor-fold desc="Three pools creation methods">
 
-    public void addGeneratedGuppies() {
+    /**
+     * Populates a pool with guppies that have certain properties.
+     *
+     * @param pool the Pool to add the Guppies to.
+     * @param numOfGuppies the number of Guppies to add.
+     * @param minGuppyAge the lower bound for each Guppy's randomly generated age.
+     * @param maxGuppyAge the upper bound for each Guppy's randomly generated age.
+     * @param minGuppyHealth the lower bound for each Guppy's randomly generated health coefficient.
+     * @param maxGuppyHealth the upper bound for each Guppy's randomly generated health coefficient.
+     * @param femalePercentChance the percent chance that a Guppy will be female.
+     */
+    public void addGeneratedGuppies(final Pool pool, final int numOfGuppies, final int minGuppyAge,
+                                    final int maxGuppyAge, final double minGuppyHealth,
+                                    final double maxGuppyHealth, final double femalePercentChance) {
+        for (int i = 0; i < numOfGuppies; i++) {
+            int guppyAge = new Random().nextInt(maxGuppyAge - minGuppyAge) + maxGuppyAge;
+            double guppyHealth = minGuppyHealth
+                    + (new Random().nextDouble() * (maxGuppyHealth - minGuppyHealth));
+            double femaleGenerator = new Random().nextDouble();
+            boolean isFemale = femaleGenerator <= femalePercentChance;
 
+            Guppy currentGuppy = new Guppy("Poecilia", "reticulata", guppyAge,
+                    isFemale, 1, guppyHealth);
+            pool.addGuppy(currentGuppy);
+        }
     }
 
     /**
@@ -97,17 +120,8 @@ public class Ecosystem {
 
         Pool skookumchuk = new Pool(name, volumeLitres, tempCelsius, pH, nutrientCoefficient);
 
-        for (int i = 0; i < numOfGuppies; i++) {
-            int guppyAge = new Random().nextInt(maxGuppyAge - minGuppyAge) + maxGuppyAge;
-            double guppyHealth = minGuppyHealth
-                    + (new Random().nextDouble() * (maxGuppyHealth - minGuppyHealth));
-            double femaleGenerator = new Random().nextDouble();
-            boolean isFemale = femaleGenerator <= femalePercentChance;
-
-            Guppy currentGuppy = new Guppy("Poecilia", "reticulata", guppyAge,
-                    isFemale, 1, guppyHealth);
-            skookumchuk.addGuppy(currentGuppy);
-        }
+        addGeneratedGuppies(skookumchuk, numOfGuppies, minGuppyAge, maxGuppyAge, minGuppyHealth,
+                maxGuppyHealth, femalePercentChance);
 
         return skookumchuk;
     }
