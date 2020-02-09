@@ -223,10 +223,45 @@ public class Ecosystem {
         return guppiesRemoved;
     }
 
+    /**
+     * Applies nutrient coefficient to every Guppy in every Pool in the Ecosystem.
+     *
+     * @return the number of Guppies that have starved to death.
+     */
+    public int applyNutrientCoefficient() {
+        int starvedGuppies = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while (it.hasNext()) {
+            Pool currentPool = it.next();
+            starvedGuppies += currentPool.applyNutrientCoefficient();
+        }
+        return starvedGuppies;
+    }
+
+    /**
+     * Spawns every Guppy in every Pool in the Ecosystem.
+     *
+     * @return the number of new Guppies created.
+     */
+    public int spawn() {
+        int newGuppies = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while (it.hasNext()) {
+            Pool currentPool = it.next();
+            newGuppies += currentPool.spawn();
+        }
+        return newGuppies;
+    }
+
     public void simulateOneWeek() {
         int diedOfOldAge = this.incrementAges();
-        int numberRemoved = 0;
-        int newFry = 0;
+        int numberRemoved = this.removeDeadGuppies();
+        int starvedToDeath = this.applyNutrientCoefficient();
+        numberRemoved += this.removeDeadGuppies();
+        int newFry = this.spawn();
+
 
 
     }
