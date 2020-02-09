@@ -299,13 +299,13 @@ public class Pool {
     }
 
     /**
-     * Updates the pH level of the pool.
+     * Updates the newPH level of the pool.
      *
-     * @param pH the new pH.
+     * @param newPH the new pH.
      */
-    public void setPH(final double pH) {
-        if (pH >= 0.0 && pH <= MAXIMUM_PH) {
-            this.pH = pH;
+    public void setPH(final double newPH) {
+        if (newPH >= 0.0 && newPH <= MAXIMUM_PH) {
+            this.pH = newPH;
         }
     }
 
@@ -541,7 +541,8 @@ public class Pool {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getVolumeLitres(), getTemperatureCelsius(), pH, getNutrientCoefficient(), getIdentificationNumber(), guppiesInPool);
+        return Objects.hash(getName(), getVolumeLitres(), getTemperatureCelsius(), pH,
+                getNutrientCoefficient(), getIdentificationNumber(), guppiesInPool);
     }
 
     //</editor-fold>

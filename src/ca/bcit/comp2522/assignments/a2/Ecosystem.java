@@ -2,7 +2,6 @@ package ca.bcit.comp2522.assignments.a2;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -48,7 +47,7 @@ public class Ecosystem {
         int totalPopulation = 0;
         Iterator<Pool> it = pools.iterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Pool currentPool = it.next();
             totalPopulation += currentPool.getPopulation();
         }
@@ -64,7 +63,7 @@ public class Ecosystem {
         int totalGuppiesExtinguished = 0;
         Iterator<Pool> it = pools.iterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Pool currentPool = it.next();
             totalGuppiesExtinguished += currentPool.adjustForCrowding();
         }
