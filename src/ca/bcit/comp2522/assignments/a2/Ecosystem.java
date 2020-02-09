@@ -87,7 +87,7 @@ public class Ecosystem {
                                     final int maxGuppyAge, final double minGuppyHealth,
                                     final double maxGuppyHealth, final double femalePercentChance) {
         for (int i = 0; i < numOfGuppies; i++) {
-            int guppyAge = new Random().nextInt(maxGuppyAge - minGuppyAge) + maxGuppyAge;
+            int guppyAge = new Random().nextInt(maxGuppyAge - minGuppyAge) + minGuppyAge;
             double guppyHealth = minGuppyHealth
                     + (new Random().nextDouble() * (maxGuppyHealth - minGuppyHealth));
             double femaleGenerator = new Random().nextDouble();
@@ -261,19 +261,43 @@ public class Ecosystem {
         int starvedToDeath = this.applyNutrientCoefficient();
         numberRemoved += this.removeDeadGuppies();
         int newFry = this.spawn();
+        int crowdedOut = this.adjustForCrowding();
+        numberRemoved += this.removeDeadGuppies();
 
+        if (numberRemoved != diedOfOldAge + starvedToDeath + crowdedOut) {
+            System.out.println("Logic error! Those guppy deaths don't add up."
+                    + "\nOld age: " + diedOfOldAge + "\nStarved: " +  starvedToDeath
+                    + "Crowded: " + crowdedOut + "\nTotal removed: " + numberRemoved);
+        }
 
+        System.out.println("Deaths due to old age: " + diedOfOldAge);
+        System.out.println("Deaths due to starvation: " + starvedToDeath);
+        System.out.println("Deaths due to overcrowding: " + crowdedOut);
+        System.out.println("New fry born this week: " + newFry);
+
+        Iterator<Pool> it = pools.iterator();
+        while (it.hasNext()) {
+            Pool currentPool = it.next();
+            System.out.println(currentPool.getName() + " population: "
+                    + currentPool.getPopulation());
+        }
+
+        System.out.println("Total ecosystem population: " + this.getPopulation() + "\n\n");
 
     }
 
     public void simulate(final int numOfWeeks) {
-
+        for (int i = 1; i <= numOfWeeks; i++) {
+            System.out.println("~~Week " + i + " Data~~\n");
+            simulateOneWeek();
+        }
     }
 
     public static void main(String[] args) {
         Ecosystem myEco = new Ecosystem();
         Pool myPool = new Pool();
         myEco.setupSimulation();
+        myEco.simulate(3);
     }
 
 
