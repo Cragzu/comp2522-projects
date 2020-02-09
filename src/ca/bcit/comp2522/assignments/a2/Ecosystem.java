@@ -72,7 +72,6 @@ public class Ecosystem {
     }
 
     //<editor-fold desc="Three pools creation methods">
-
     /**
      * Populates a pool with guppies that have certain properties.
      *
@@ -180,7 +179,7 @@ public class Ecosystem {
     //</editor-fold>
 
     /**
-     * Runs a simulation of an Ecosystem.
+     * Sets up a simulation of an Ecosystem; creating Pools and adding them to the Ecosystem.
      */
     public void setupSimulation() {
         Pool skookumchuk = createSkookumchukPool();
@@ -190,9 +189,49 @@ public class Ecosystem {
         this.addPool(skookumchuk);
         this.addPool(squamish);
         this.addPool(semiahmoo);
+    }
+
+    /**
+     * Increments the ages of every Guppy in every Pool in the Ecosystem.
+     *
+     * @return the number of guppies that have died of old age.
+     */
+    public int incrementAges() {
+        int diedOfOldAge = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while (it.hasNext()) {
+            Pool currentPool = it.next();
+            diedOfOldAge += currentPool.incrementAges();
+        }
+        return diedOfOldAge;
+    }
+
+    /**
+     * Removes all the dead guppies from every Pool in the Ecosystem.
+     *
+     * @return the number of guppies removed.
+     */
+    public int removeDeadGuppies() {
+        int guppiesRemoved = 0;
+        Iterator<Pool> it = pools.iterator();
+
+        while (it.hasNext()) {
+            Pool currentPool = it.next();
+            guppiesRemoved += currentPool.removeDeadGuppies();
+        }
+        return guppiesRemoved;
+    }
+
+    public void simulateOneWeek() {
+        int diedOfOldAge = this.incrementAges();
+        int numberRemoved = 0;
+        int newFry = 0;
 
 
+    }
 
+    public void simulate(final int numOfWeeks) {
 
     }
 
