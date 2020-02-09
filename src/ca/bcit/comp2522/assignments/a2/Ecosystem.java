@@ -292,13 +292,4 @@ public class Ecosystem {
             simulateOneWeek();
         }
     }
-
-    public static void main(String[] args) {
-        Ecosystem myEco = new Ecosystem();
-        Pool myPool = new Pool();
-        myEco.setupSimulation();
-        myEco.simulate(3);
-    }
-
-
 }
