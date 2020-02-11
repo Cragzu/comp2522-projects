@@ -1,9 +1,6 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Creates a Pool object to house Guppies.
@@ -468,43 +465,36 @@ public class Pool {
     }
 
     /**
-     * Finds the weakest guppy in the pool; the one with the lowest health coefficient.
-     *
-     * @return the weakest Guppy.
-     */
-    public Guppy getWeakestGuppy() { // todo: unit tests for this
-        Guppy weakestGuppy = guppiesInPool.get(0);
-        Iterator<Guppy> it = guppiesInPool.iterator();
-
-        while (it.hasNext()) {
-            Guppy currentGuppy = it.next();
-            if (currentGuppy.getHealthCoefficient() < weakestGuppy.getHealthCoefficient()
-            && currentGuppy.getIsAlive()) {
-                weakestGuppy = currentGuppy;
-            }
-        }
-        return weakestGuppy;
-    }
-
-    /**
      * Extinguishes the weakest guppies that have died from overcrowding.
      *
      * @return the number of guppies that have perished.
      */
     public int adjustForCrowding() {
         int deadGuppyCount = 0;
-        Guppy weakestGuppy;
 
+        Collections.sort(this.guppiesInPool, new Comparator<Guppy>() {
+            @Override
+            public int compare(Guppy g1, Guppy g2) {
+                return Double.compare(g1.getHealthCoefficient(), g2.getHealthCoefficient());
+            }
+        });
+
+        Guppy weakestGuppy;
+        Iterator<Guppy> it = guppiesInPool.iterator();
         double volumeNeeded = this.getGuppyVolumeRequirementInLitres();
-        while (volumeNeeded > this.getVolumeLitres()) {
-            weakestGuppy = getWeakestGuppy();
+
+        while (it.hasNext() && volumeNeeded > this.getVolumeLitres()) {
+            weakestGuppy = it.next();
+            volumeNeeded -= (weakestGuppy.getVolumeNeeded() / ML_TO_L_CONVERSION);
+
             weakestGuppy.setIsAlive(false);
 
+
             deadGuppyCount++;
-            volumeNeeded = this.getGuppyVolumeRequirementInLitres();
+
+            }
+            return deadGuppyCount;
         }
-        return deadGuppyCount;
-    }
 
     //<editor-fold desc="toString, equals, hashCode">
     @Override

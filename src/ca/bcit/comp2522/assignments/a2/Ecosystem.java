@@ -254,6 +254,9 @@ public class Ecosystem {
         return newGuppies;
     }
 
+    /**
+     * Simulates one week in the Ecosystem.
+     */
     public void simulateOneWeek() {
         int diedOfOldAge = this.incrementAges();
         int numberRemoved = this.removeDeadGuppies();
@@ -285,6 +288,11 @@ public class Ecosystem {
 
     }
 
+    /**
+     * Simulates a given number of weeks in the Ecosystem.
+     *
+     * @param numOfWeeks the number of weeks to simulate.
+     */
     public void simulate(final int numOfWeeks) {
         for (int i = 1; i <= numOfWeeks; i++) {
             System.out.println("~~Week " + i + " Data~~\n");
