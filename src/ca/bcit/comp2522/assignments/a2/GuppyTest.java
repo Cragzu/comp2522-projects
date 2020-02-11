@@ -370,4 +370,47 @@ public class GuppyTest {
         testGuppy.changeHealthCoefficient(-1.5);
         assertFalse(testGuppy.getIsAlive());
     }
+
+    @Test
+    public void toTitleCaseFormatsWordProperly() {
+        String expected = "Abalone";
+        assertEquals(expected, testGuppy.toTitleCase("   abaLOne  "));
+    }
+
+    @Test
+    public void youngGuppyShouldNotSpawn() {
+        Guppy newGuppy = new Guppy(
+                "Poecilia",
+                "elegans",
+                0,
+                true,
+                3,
+                0.75);
+        assertEquals(null, newGuppy.spawn());
+    }
+
+    @Test
+    public void maleGuppyShouldNotSpawn() {
+        Guppy newGuppy = new Guppy(
+                "Poecilia",
+                "elegans",
+                10,
+                false,
+                3,
+                0.75);
+        assertEquals(null, newGuppy.spawn());
+    }
+
+    @Test
+    public void femaleGuppyShouldSpawn() {
+        Guppy newGuppy = new Guppy(
+                "Poecilia",
+                "elegans",
+                10,
+                true,
+                3,
+                0.75);
+        assertTrue(newGuppy.spawn() != null);
+    }
+
 }

@@ -1,6 +1,11 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Creates a Pool object to house Guppies.
