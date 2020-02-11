@@ -256,7 +256,7 @@ public class Guppy {
         String newString = originalString.toLowerCase();
         newString = newString.strip();
         char firstLetter = newString.charAt(0);
-        newString = newString.replace(firstLetter, Character.toUpperCase(firstLetter));
+        newString = Character.toUpperCase(firstLetter) + newString.substring(1);
         return newString;
     }
 
