@@ -10,8 +10,8 @@ import java.util.Iterator;
  * @version 2020
  */
 public class Road {
-    private final Direction direction;
-    private String name;
+    protected final Direction direction;
+    protected String name;
 
     /*Constructor.*/
     public Road(final String name, final Direction direction) {
