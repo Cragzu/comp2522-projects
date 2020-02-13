@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.quizzes.quiz02;
 
-import ca.bcit.comp2522.assignments.a2.Guppy;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
