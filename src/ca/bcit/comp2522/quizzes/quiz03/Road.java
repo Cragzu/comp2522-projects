@@ -1,8 +1,6 @@
 package ca.bcit.comp2522.quizzes.quiz03;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * @author Chloe Glave A01166947
@@ -25,5 +23,23 @@ public class Road {
                 + "direction=" + direction
                 + ", name='" + name + '\''
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        Road road = (Road) o;
+        return direction == road.direction
+                && name.equals(road.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(direction, name);
     }
 }
