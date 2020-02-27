@@ -18,11 +18,11 @@ public abstract class AbstractOperation implements Operation {
     }
 
     /**
-     * Gets the operationType.
+     * Gets the char representing the operation type.
      *
      * @return char - the operation to be performed.
      */
-    public final char getOperationType() {
+    public final char getSymbol() {
         return operationType;
     }
 }
