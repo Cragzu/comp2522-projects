@@ -1,6 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
 /**
+ * Parent class for various types of operations.
+ *
  * @author Chloe Glave
  * @version 2020
  */

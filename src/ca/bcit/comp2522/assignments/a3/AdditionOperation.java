@@ -1,6 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
 /**
+ * Addition operation.
+ *
  * @author Chloe Glave
  * @version 2020
  */
