@@ -7,7 +7,8 @@ package ca.bcit.comp2522.assignments.a3;
  * @version 2020
  */
 public class DivisionOperation extends AbstractOperation {
-    private static final char DIVISION_CODE = '/';
+    /**The char code for the division operation.*/
+    static final char DIVISION_CODE = '/';
 
     /**
      * Constructor - passes division code to superclass.

@@ -7,6 +7,7 @@ package ca.bcit.comp2522.assignments.a3;
  * @version 2020
  */
 public class AdditionOperation extends AbstractOperation {
+    /**The char code for the addition operation.*/
     private static final char ADDITION_CODE = '+';
 
     /**

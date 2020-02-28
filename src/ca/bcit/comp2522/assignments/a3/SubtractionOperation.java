@@ -7,6 +7,7 @@ package ca.bcit.comp2522.assignments.a3;
  * @version 2020
  */
 public class SubtractionOperation extends AbstractOperation {
+    /**The char code for the subtraction operation.*/
     private static final char SUBTRACTION_CODE = '-';
 
     /**

@@ -7,6 +7,7 @@ package ca.bcit.comp2522.assignments.a3;
  * @version 2020
  */
 public class MultiplicationOperation extends AbstractOperation {
+    /**The char code for the multiplication operation.*/
     private static final char MULTIPLICATION_CODE = '*';
 
     /**
