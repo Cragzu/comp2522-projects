@@ -78,10 +78,11 @@ public class Stack {
 
         int value = stackValues[this.size() - 1];
         stackValues[this.size() - 1] = 0;
+        count--; // array size is one smaller now
         return value;
     }
 
-    public static void main(String[] args) throws StackOverflowException {
+    public static void main(String[] args) throws StackOverflowException, StackUnderflowException {
         Stack s = new Stack(50);
         System.out.println("Capacity: " + s.capacity());
         System.out.println("Initial size: " + s.size());
