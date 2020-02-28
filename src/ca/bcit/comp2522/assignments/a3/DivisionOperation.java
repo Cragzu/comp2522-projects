@@ -21,4 +21,14 @@ public class DivisionOperation extends AbstractOperation {
     public int perform(int operandA, int operandB) {
         return operandA / operandB;
     }
+
+    /**
+     * Generates a string representation of the object.
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "DivisionOperation{}";
+    }
 }

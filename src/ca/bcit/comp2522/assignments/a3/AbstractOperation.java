@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a3;
 
+import java.util.Objects;
+
 /**
  * Parent class for various types of operations.
  *
@@ -26,5 +28,44 @@ public abstract class AbstractOperation implements Operation {
      */
     public final char getSymbol() {
         return operationType;
+    }
+
+    /**
+     * Generates a string representation of the object.
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "AbstractOperation{"
+                + "operationType=" + operationType
+                + '}';
+    }
+    /**
+     * Determines whether this object is equal to another.
+     *
+     * @param o object - to be compared to this.
+     * @return boolean - true if the objects are equal else false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AbstractOperation)) {
+            return false;
+        }
+        AbstractOperation that = (AbstractOperation) o;
+        return operationType == that.operationType;
+    }
+
+    /**
+     * Generates a unique hashcode for this object.
+     *
+     * @return int - the object's hashcode.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(operationType);
     }
 }
