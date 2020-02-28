@@ -1,5 +1,8 @@
 package ca.bcit.comp2522.assignments.a3;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Stack data structure.
  *
@@ -95,15 +98,49 @@ public class Stack {
         return stackValues[this.size() - 1];
     }
 
-    public static void main(String[] args) throws StackOverflowException, StackUnderflowException {
-        Stack s = new Stack(50);
-        System.out.println("Capacity: " + s.capacity());
-        System.out.println("Initial size: " + s.size());
-        System.out.println("Empty space: " + s.unused());
-        s.push(3);
-        System.out.println("Size after adding element: " + s.size());
-        System.out.println("Top element: " + s.peek());
-        System.out.println("Removed element: " + s.pop());
+    //<editor-fold desc="toString, equals, hashcode">
+    /**
+     * Generates a string representation of the object.
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "Stack{"
+                + "stackValues=" + Arrays.toString(stackValues)
+                + ", count=" + count
+                + '}';
     }
 
+    /**
+     * Determines whether this object is equal to another.
+     *
+     * @param o object - to be compared to this.
+     * @return boolean - true if the objects are equal else false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Stack)) {
+            return false;
+        }
+        Stack stack = (Stack) o;
+        return count == stack.count
+                && Arrays.equals(stackValues, stack.stackValues);
+    }
+
+    /**
+     * Generates a unique hashcode for this object.
+     *
+     * @return int - the object's hashcode.
+     */
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(count);
+        result = 31 * result + Arrays.hashCode(stackValues);
+        return result;
+    }
+    //</editor-fold>
 }

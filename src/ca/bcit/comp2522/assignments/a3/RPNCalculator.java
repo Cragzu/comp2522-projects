@@ -30,6 +30,10 @@ public class RPNCalculator {
         this.stack = new Stack(stackSize);
     }
 
+    public void push(final int operand) {
+
+    }
+
 
     /**
      * Processes formulae using reverse polish notation.
