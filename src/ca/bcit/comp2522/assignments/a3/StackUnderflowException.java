@@ -1,17 +1,17 @@
 package ca.bcit.comp2522.assignments.a3;
 
 /**
- * Exception generated when Stack overflows.
+ * Exception generated when Stack underflows.
  *
  * @author Chloe Glave
  * @version 2020
  */
-public class StackOverflowException extends Exception {
+public class StackUnderflowException extends Exception {
     /**
-     * Constructs a StackOverflowException.
+     * Constructs a StackUnderflowException.
      * @param s a description of the exceptional situation.
      */
-    public StackOverflowException(String s) {
+    public StackUnderflowException(String s) {
         super(s);
     }
 }

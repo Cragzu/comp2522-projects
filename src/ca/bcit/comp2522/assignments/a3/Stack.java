@@ -50,6 +50,12 @@ public class Stack {
         return this.capacity() - this.size();
     }
 
+    /**
+     * Adds a new value to the end of the Stack.
+     *
+     * @param value int - the number to put in the Stack array.
+     * @throws StackOverflowException when Stack is full and cannot accept a new value.
+     */
     public void push(int value) throws StackOverflowException {
         if (this.size() == this.capacity()) {
             throw new StackOverflowException("This stack is full!");
@@ -59,11 +65,32 @@ public class Stack {
         count++; // array size is one larger now
     }
 
-    public static void main(String[] args) {
+    /**
+     * Removes the last value from the end of the Stack.
+     *
+     * @return int - the value that was just removed from the Stack array.
+     * @throws StackUnderflowException when Stack is empty and nothing can be removed from it.
+     */
+    public int pop() throws StackUnderflowException {
+        if (this.size() == 0) {
+            throw new StackUnderflowException("Cannot call Stack.pop() on an empty stack!");
+        }
+
+        int value = stackValues[this.size() - 1];
+        stackValues[this.size() - 1] = 0;
+        return value;
+    }
+
+    public static void main(String[] args) throws StackOverflowException {
         Stack s = new Stack(50);
-        System.out.println(s.capacity());
-        System.out.println(s.size());
-        System.out.println(s.unused());
+        System.out.println("Capacity: " + s.capacity());
+        System.out.println("Initial size: " + s.size());
+        System.out.println("Empty space: " + s.unused());
+        s.push(3);
+        System.out.println("Size after adding element: " + s.size());
+        System.out.println("First element: " + s.stackValues[0]);
+        System.out.println("Removed element: " + s.pop());
+        System.out.println("First element: " + s.stackValues[0]);
     }
 
 }
