@@ -82,6 +82,19 @@ public class Stack {
         return value;
     }
 
+    /**
+     * Finds the last value at the end of the Stack, without removing it.
+     *
+     * @return int - the value on the end of the Stack array.
+     * @throws StackUnderflowException when Stack is empty and nothing can be viewed in it.
+     */
+    public int peek() throws StackUnderflowException {
+        if (this.size() == 0) {
+            throw new StackUnderflowException("Cannot call Stack.peek() on an empty stack!");
+        }
+        return stackValues[this.size() - 1];
+    }
+
     public static void main(String[] args) throws StackOverflowException, StackUnderflowException {
         Stack s = new Stack(50);
         System.out.println("Capacity: " + s.capacity());
@@ -89,9 +102,8 @@ public class Stack {
         System.out.println("Empty space: " + s.unused());
         s.push(3);
         System.out.println("Size after adding element: " + s.size());
-        System.out.println("First element: " + s.stackValues[0]);
+        System.out.println("Top element: " + s.peek());
         System.out.println("Removed element: " + s.pop());
-        System.out.println("First element: " + s.stackValues[0]);
     }
 
 }
