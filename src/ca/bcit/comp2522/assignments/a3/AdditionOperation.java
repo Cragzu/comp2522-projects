@@ -8,7 +8,7 @@ package ca.bcit.comp2522.assignments.a3;
  */
 public class AdditionOperation extends AbstractOperation {
     /**The char code for the addition operation.*/
-    private static final char ADDITION_CODE = '+';
+    static final char ADDITION_CODE = '+';
 
     /**
      * Constructor - passes addition code to superclass.

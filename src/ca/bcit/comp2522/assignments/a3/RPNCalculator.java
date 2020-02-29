@@ -30,8 +30,32 @@ public class RPNCalculator {
         this.stack = new Stack(stackSize);
     }
 
-    public void push(final int operand) {
+    /**
+     * Pushes an int onto the Stack to be processed.
+     *
+     * @param operand int - the number to push.
+     * @throws StackOverflowException if the stack is full and cannot accept a new operand.
+     */
+    public void push(final int operand) throws StackOverflowException {
+        if (stack.unused() == 0) {
+            throw new StackOverflowException("No room left in the stack for this!");
+        }
+        stack.push(operand);
+    }
 
+    private Operation getOperation(final char symbol) {
+        switch (symbol) {
+            case AdditionOperation.ADDITION_CODE:
+                return new AdditionOperation();
+            case SubtractionOperation.SUBTRACTION_CODE:
+                return new SubtractionOperation();
+            case MultiplicationOperation.MULTIPLICATION_CODE:
+                return new MultiplicationOperation();
+            case DivisionOperation.DIVISION_CODE:
+                return new DivisionOperation();
+            default:
+
+        }
     }
 
 

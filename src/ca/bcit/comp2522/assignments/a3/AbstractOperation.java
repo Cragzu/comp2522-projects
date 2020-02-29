@@ -30,6 +30,7 @@ public abstract class AbstractOperation implements Operation {
         return operationType;
     }
 
+    //<editor-fold desc="toString, equals, hashcode">
     /**
      * Generates a string representation of the object.
      *
@@ -41,6 +42,7 @@ public abstract class AbstractOperation implements Operation {
                 + "operationType=" + operationType
                 + '}';
     }
+
     /**
      * Determines whether this object is equal to another.
      *
@@ -68,4 +70,5 @@ public abstract class AbstractOperation implements Operation {
     public int hashCode() {
         return Objects.hash(operationType);
     }
+    //</editor-fold>
 }

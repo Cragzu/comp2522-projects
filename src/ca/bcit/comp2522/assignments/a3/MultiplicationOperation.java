@@ -8,7 +8,7 @@ package ca.bcit.comp2522.assignments.a3;
  */
 public class MultiplicationOperation extends AbstractOperation {
     /**The char code for the multiplication operation.*/
-    private static final char MULTIPLICATION_CODE = '*';
+    static final char MULTIPLICATION_CODE = '*';
 
     /**
      * Constructor - passes multiplication code to superclass.

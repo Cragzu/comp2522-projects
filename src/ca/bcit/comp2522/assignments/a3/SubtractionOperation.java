@@ -8,7 +8,7 @@ package ca.bcit.comp2522.assignments.a3;
  */
 public class SubtractionOperation extends AbstractOperation {
     /**The char code for the subtraction operation.*/
-    private static final char SUBTRACTION_CODE = '-';
+    static final char SUBTRACTION_CODE = '-';
 
     /**
      * Constructor - passes subtraction code to superclass.
