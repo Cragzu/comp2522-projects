@@ -109,14 +109,59 @@ public class RPNCalculator {
         return stack.peek(); // the operation result on top of the stack
     }
 
-    public static void main(String[] args) {
-        String test = "+ - + / * +";
-        Scanner scanner = new Scanner(test);
-
-        while (scanner.hasNext()) {
-            System.out.println(scanner.next().charAt(0));
+    /**
+     * Performs an operation of a given type on the top two operands in the stack.
+     *
+     * @param operation Operation - the object that will perform the type of work required
+     * @throws IllegalArgumentException if the passed operation is null
+     * @throws StackUnderflowException if the stack is empty and there is nothing to operate on
+     * @throws StackOverflowException if the stack is full and there is no room for the result
+     */
+    private void perform(final Operation operation) throws IllegalArgumentException,
+            StackUnderflowException, StackOverflowException {
+        if (operation == null) {
+            throw new IllegalArgumentException("Operation cannot be null!");
         }
 
+        // pop top two operands in reverse order (A B / should be processed as A / B)
+        int operandB = stack.pop();
+        int operandA = stack.pop();
+
+        int result = operation.perform(operandA, operandB);
+
+        stack.push(result);
+    }
+
+    /**
+     * Drives the program by evaluating the RPN calculation provided as
+     * a command line argument.
+     *
+     * Example usage: RPNCalculator 10 "1 2 +"
+     *
+     * Note that the formula MUST be placed inside of double quotes.
+     *
+     * @param argv - the command line arguments are the size of the Stack
+     *             to be created followed by the expression to evaluate.
+     */
+    public static void main(final String[] argv) {
+        // Checks for correct number of command line arguments.
+        if (argv.length != 2) {
+            System.err.println("Usage: Main <stack size> <formula>");
+            System.exit(1);
+        }
+        // Initializes stack and RPNCalculator.
+        final int stackSize = Integer.parseInt(argv[0]);
+        final RPNCalculator calculator = new RPNCalculator(stackSize);
+        try {
+            System.out.println("[" + argv[1] + "] = "
+                    + calculator.processFormula(argv[1]));
+        } catch (final InvalidOperationTypeException ex) {
+            System.err.println("formula can only contain integers, +, -, *, and /");
+        } catch (final StackOverflowException ex) {
+            System.err.println("too many operands in the formula, increase the stack size");
+        } catch (final StackUnderflowException ex) {
+            System.err.println("too few operands in the formula");
+        }
     }
 
 }
