@@ -18,7 +18,7 @@ public class SubtractionOperation extends AbstractOperation {
     }
 
     @Override
-    public int perform(int operandA, int operandB) {
+    public int perform(final int operandA, final int operandB) {
         return operandA - operandB;
     }
 

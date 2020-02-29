@@ -23,7 +23,7 @@ public class RPNCalculator {
      * @param stackSize int - the size of the calculator's stack.
      * @throws IllegalArgumentException when the given stackSize is below the minimum allowable.
      */
-    public RPNCalculator(int stackSize) throws IllegalArgumentException {
+    public RPNCalculator(final int stackSize) throws IllegalArgumentException {
         if (stackSize < MIN_STACK_SIZE) {
             throw new IllegalArgumentException("The given stackSize was too small!"
                     + "\nMinimum size: " + MIN_STACK_SIZE + "\nGiven: " + stackSize);

@@ -18,7 +18,7 @@ public class Stack {
      *
      * @param arraySize the size of the array to create; the maximum number of ints it can hold.
      */
-    public Stack(int arraySize) {
+    public Stack(final int arraySize) {
         if (arraySize < 1) {
             throw new IllegalArgumentException("Array size cannot be less than 1! "
                     + "\nSize given: " + arraySize);
@@ -59,7 +59,7 @@ public class Stack {
      * @param value int - the number to put in the Stack array.
      * @throws StackOverflowException when Stack is full and cannot accept a new value.
      */
-    public void push(int value) throws StackOverflowException {
+    public void push(final int value) throws StackOverflowException {
         if (this.size() == this.capacity()) {
             throw new StackOverflowException("This stack is full!");
         }
@@ -119,7 +119,7 @@ public class Stack {
      * @return boolean - true if the objects are equal else false
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -139,7 +139,7 @@ public class Stack {
     @Override
     public int hashCode() {
         int result = Objects.hash(count);
-        result = 31 * result + Arrays.hashCode(stackValues);
+        result += Arrays.hashCode(stackValues);
         return result;
     }
     //</editor-fold>
