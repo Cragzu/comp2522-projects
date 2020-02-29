@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Reverse Polish Notation calculator.
+ * todo: bonus?
  *
  * @author Chloe Glave
  * @version 2020
@@ -72,9 +73,11 @@ public class RPNCalculator {
      * @return Operation - the type of operation we are using.
      * @throws IllegalArgumentException if formula is an invalid string.
      * @throws StackOverflowException if the stack is full and cannot accept a new operand.
+     * @throws InvalidOperationTypeException if the operation type is not recognized.
+     * @throws StackUnderflowException if the stack is empty and nothing can be retrieved from it.
      */
     public int processFormula(final String formula) throws IllegalArgumentException,
-            StackOverflowException, InvalidOperationTypeException {
+            StackOverflowException, InvalidOperationTypeException, StackUnderflowException {
 
         if (formula == null || formula.length() == 0) {
             throw new IllegalArgumentException("That formula doesn't exist!");
@@ -88,12 +91,10 @@ public class RPNCalculator {
                 this.push(scanner.nextInt());
             } else { // next item is an operator char
                 currentOperation = this.getOperation(scanner.next().charAt(0));
+                perform(currentOperation);
             }
-            //pass to perform, invoke getresult
-
-
         }
-        return 0;
+        return getResult();
     }
 
     /**
