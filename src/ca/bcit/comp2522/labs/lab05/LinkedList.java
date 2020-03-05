@@ -101,6 +101,39 @@ public class LinkedList {
         return numElements;
     }
 
+    /**
+     * Clears the linked list, setting head Node to null.
+     */
+    public void clear() {
+        head = null;
+    }
+
+    /**
+     * Finds the data stored in the Node at the specified index.
+     * @param index the Node to find.
+     * @return the data stored by the node at position index.
+     */
+    public Object get(int index) {
+        if (index < 0 || index > size()) {
+            throw new IndexOutOfBoundsException("That index is invalid!");
+        }
+        if (head == null) {
+            return null;
+        }
+
+        int currentPosition = 0;
+        Node it = head;
+        while (it.getNext() != null) {
+            if (index == currentPosition) {
+                return it.getData();
+            }
+            currentPosition++;
+            it = it.getNext();
+        }
+        return null;
+    }
+
+
 
 
 }
