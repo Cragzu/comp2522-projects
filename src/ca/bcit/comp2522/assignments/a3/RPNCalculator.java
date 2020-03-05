@@ -79,8 +79,10 @@ public class RPNCalculator {
     public int processFormula(final String formula) throws IllegalArgumentException,
             StackOverflowException, InvalidOperationTypeException, StackUnderflowException {
 
-        if (formula == null || formula.length() == 0) {
+        if (formula == null) {
             throw new IllegalArgumentException("That formula doesn't exist!");
+        } else if (formula.length() == 0) {
+            throw new StackUnderflowException("The formula was empty!");
         }
 
         Scanner scanner = new Scanner(formula);
@@ -118,7 +120,7 @@ public class RPNCalculator {
      * @throws StackUnderflowException if the stack is empty and there is nothing to operate on
      * @throws StackOverflowException if the stack is full and there is no room for the result
      */
-    private void perform(final Operation operation) throws IllegalArgumentException,
+    public void perform(final Operation operation) throws IllegalArgumentException,
             StackUnderflowException, StackOverflowException {
         if (operation == null) {
             throw new IllegalArgumentException("Operation cannot be null!");
