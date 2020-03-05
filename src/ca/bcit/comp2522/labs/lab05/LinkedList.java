@@ -62,7 +62,26 @@ public class LinkedList {
      * @param index the position to insert the new Node at.
      */
     public void add(Object data, int index) {
+        if (index < 0 || index > size()) {
+            throw new IndexOutOfBoundsException("That index is invalid!");
+        }
+        Node newNode = new Node(data);
+        if (head == null) { // index given is 0 and the list is empty
+            head = newNode;
+            return;
+        }
 
+        int currentPosition = 0;
+        Node it = head;
+        while (it.getNext() != null) {
+            if (index == currentPosition - 1) {
+                newNode.setNext(it.getNext());
+                it.setNext(newNode);
+                return;
+            }
+            currentPosition++;
+            it = it.getNext();
+        }
     }
 
     /**
