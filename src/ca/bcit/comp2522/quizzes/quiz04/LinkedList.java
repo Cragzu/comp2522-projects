@@ -58,10 +58,8 @@ public class LinkedList {
         list.append(shoulders);
         try {
             System.out.println(list.count(data));
-        } catch (EmptyListException ele, IllegalArgumentException iae) {
+        } catch (EmptyListException | IllegalArgumentException ele) {
             System.out.println("oh no");
         }
-
-
     }
 }
