@@ -20,6 +20,10 @@ public class LinkedList {
     }
 
     public void append(Node newNode) {
+        if (head == null) {
+            head = newNode;
+            return;
+        }
         Node lastNode = findTail(head);
         lastNode.setNext(newNode);
     }
