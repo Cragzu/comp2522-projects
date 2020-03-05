@@ -1,17 +1,26 @@
 package ca.bcit.comp2522.labs.lab05;
 
 /**
- * @author Chloe Glave A01166947
- * @author Clint Fernandes A01182058
+ * A string of Nodes connected through addresses.
+ *
+ * @author Chloe Glave
  * @version 2020
  */
 public class LinkedList {
     private Node head;
 
+    /**
+     * Constructs a LinkedList with a null head.
+     */
     public LinkedList() {
         head = null;
     }
 
+    /**
+     * Finds the last Node of the linked list.
+     * @param current the Node being examined.
+     * @return the last Node in the list; the one pointing to null.
+     */
     public Node findTail(Node current) {
         if (current.getNext() == null) {
             return current;
@@ -19,13 +28,60 @@ public class LinkedList {
         return findTail(current.getNext());
     }
 
-    public void append(Node newNode) {
+    /**
+     * Adds a new Node to the end of the linked list.
+     * @param data the Object that the new Node will store.
+     */
+    public void append(Object data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
         Node lastNode = findTail(head);
         lastNode.setNext(newNode);
     }
 
-    public void prepend(Node newNode) {
+    /**
+     * Adds a new Node to the beginning of the linked list.
+     * @param data the Object that the new Node will store.
+     */
+    public void prepend(Object data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
         newNode.setNext(head);
         head = newNode;
     }
+
+    /**
+     * Inserts a new Node at the specified position in the linked list.
+     * @param data the Object that the new Node will store.
+     * @param index the position to insert the new Node at.
+     */
+    public void add(Object data, int index) {
+
+    }
+
+    /**
+     * Counts the total number of Nodes in the linked list.
+     * @return the size of the linked list.
+     */
+    public int size() {
+        int numElements = 0;
+        if (head == null) {
+            return numElements;
+        }
+        Node it = head;
+        while (it.getNext() != null) {
+            numElements++;
+            it = it.getNext();
+        }
+        return numElements;
+    }
+
+
+
 }
