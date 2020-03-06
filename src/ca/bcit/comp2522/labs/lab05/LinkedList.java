@@ -133,6 +133,32 @@ public class LinkedList {
         return null;
     }
 
+    /**
+     * Removes the Node at the specified index from the linked list and gets its data.
+     * @param index the Node to find.
+     * @return the data from the Node removed.
+     */
+    public Object remove(int index) {
+        if (index < 0 || index > size()) {
+            throw new IndexOutOfBoundsException("That index is invalid!");
+        }
+        if (head == null) {
+            return null;
+        }
+        int currentPosition = 0;
+        Node it = head;
+        while (it.getNext() != null) {
+            if (index == currentPosition - 1) {
+                Object removedData = it.getNext().getData();
+                it.setNext(it.getNext().getNext()); // skip over node to be removed
+                return removedData;
+            }
+            currentPosition++;
+            it = it.getNext();
+        }
+        return null;
+    }
+
 
 
 
