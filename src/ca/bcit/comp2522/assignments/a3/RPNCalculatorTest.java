@@ -142,6 +142,23 @@ public class RPNCalculatorTest {
     }
 
     @Test
+    public void processFormulaModulusZeros() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        thrown.expect(ArithmeticException.class);
+        calculator = new RPNCalculator(2);
+        final int expected = 0;
+        String input = "0 0 %";
+        final int actual = calculator.processFormula(input);
+    }
+
+    @Test
+    public void processFormulaSingleModulus() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(2);
+        final int expected = 2;
+        String input = "8 3 %";
+        final int actual = calculator.processFormula(input);
+    }
+
+    @Test
     public void processFormulaInvalidOperation() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         thrown.expect(InvalidOperationTypeException.class);
         calculator = new RPNCalculator(2);
@@ -223,6 +240,15 @@ public class RPNCalculatorTest {
     }
 
     @Test
+    public void processFormulaMultipleModulus() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 6;
+        String input = "37 31 % 29 % 23 % 19 %";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void processFormulaNegativeIntegers() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         calculator = new RPNCalculator(3);
         final int expected = -17;
@@ -281,6 +307,15 @@ public class RPNCalculatorTest {
         calculator = new RPNCalculator(4);
         final int expected = 2;
         String input = "2 5 * 4 + 3 2 * 1 + /";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaUnholyMessSix() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(4);
+        final int expected = 9;
+        String input = "5 3 + 8 % 12 - 2 / 4 % 9";
         final int actual = calculator.processFormula(input);
         assertEquals(expected, actual);
     }

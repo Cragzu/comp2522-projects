@@ -61,6 +61,8 @@ public class RPNCalculator {
                 return new MultiplicationOperation();
             case DivisionOperation.DIVISION_CODE:
                 return new DivisionOperation();
+            case ModulusOperation.MODULUS_CODE:
+                return new ModulusOperation();
             default:
                 throw new InvalidOperationTypeException("That symbol wasn't recognized!", symbol);
         }
