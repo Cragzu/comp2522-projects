@@ -249,6 +249,60 @@ public class RPNCalculatorTest {
     }
 
     @Test
+    public void primeSumAscendingOrder() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 17;
+        String input = "2 7 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void primeSumDescendingOrder() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 17;
+        String input = "2 7 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void primeSumNoPrimes() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 0;
+        String input = "1 0 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void primeSumOnePrime() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 2;
+        String input = "2 2 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void primeSumOneNegative() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 10;
+        String input = "-5 5 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void primeSumTwoNegatives() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 0;
+        String input = "-10 -15 @";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void processFormulaNegativeIntegers() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         calculator = new RPNCalculator(3);
         final int expected = -17;
@@ -316,6 +370,15 @@ public class RPNCalculatorTest {
         calculator = new RPNCalculator(4);
         final int expected = 9;
         String input = "5 3 + 8 % 12 - 2 / 4 % 9";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaUnholyMessSeven() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(4);
+        final int expected = 1;
+        String input = "7 2 @ 4 + 12 - 6 % 2 * 5 /";
         final int actual = calculator.processFormula(input);
         assertEquals(expected, actual);
     }

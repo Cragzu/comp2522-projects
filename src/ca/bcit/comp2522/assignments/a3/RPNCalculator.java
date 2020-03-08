@@ -63,6 +63,8 @@ public class RPNCalculator {
                 return new DivisionOperation();
             case ModulusOperation.MODULUS_CODE:
                 return new ModulusOperation();
+            case PrimeSumOperation.PRIME_SUM_CODE:
+                return new PrimeSumOperation();
             default:
                 throw new InvalidOperationTypeException("That symbol wasn't recognized!", symbol);
         }
@@ -161,7 +163,7 @@ public class RPNCalculator {
             System.out.println("[" + argv[1] + "] = "
                     + calculator.processFormula(argv[1]));
         } catch (final InvalidOperationTypeException ex) {
-            System.err.println("formula can only contain integers, +, -, *, and /");
+            System.err.println("formula can only contain integers, +, -, *, /, %, and @");
         } catch (final StackOverflowException ex) {
             System.err.println("too many operands in the formula, increase the stack size");
         } catch (final StackUnderflowException ex) {
