@@ -1,5 +1,8 @@
 package ca.bcit.comp2522.labs.lab06;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  * Demonstrates the use of generics.
  *
@@ -38,5 +41,20 @@ public class OrderedPair<K, V> {
         return second;
     }
 
+    public static void main(String[] args) {
+        String firstStr = "Hello World";
+        String secondStr = "Java Chip";
+        OrderedPair<String, String> stringOrderedPair = new OrderedPair<>(firstStr, secondStr);
+
+        Integer i = 50;
+        ArrayList<Integer> ar = new ArrayList<Integer>();
+        OrderedPair<Integer, ArrayList<Integer>> integerArrayListOrderedPair
+                = new OrderedPair<>(i, ar);
+
+        Box<Double> firstBox = new Box<>();
+        Box<Double> secondBox = new Box<>();
+        OrderedPair<Box<Double>, Box<Double>> boxOrderedPair
+                = new OrderedPair<>(firstBox, secondBox);
+    }
 
 }
