@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * Reverse Polish Notation calculator.
- * todo: bonus?
  *
  * @author Chloe Glave
  * @version 2020

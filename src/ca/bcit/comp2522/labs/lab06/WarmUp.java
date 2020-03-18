@@ -1,8 +1,20 @@
 package ca.bcit.comp2522.labs.lab06;
 
+/**
+ * A warm-up for this week's lab activity.
+ *
+ * @author Chloe Glave
+ * @version 2020
+ */
 public class WarmUp {
 
-    public static int getSumOfTwoLargest(int[] arrayOfInts) {
+    /**
+     * Determines the sum of the largest two ints in an array.
+     *
+     * @param arrayOfInts int[] - the given array to calculate from.
+     * @return the sum of the largest two ints in arrayOfInts
+     */
+    public static int getSumOfTwoLargest(final int[] arrayOfInts) {
         int largest = arrayOfInts[0];
         int secondLargest = arrayOfInts[1];
 
@@ -14,7 +26,6 @@ public class WarmUp {
                 secondLargest = arrayOfInts[i];
             }
         }
-        System.out.println("Largest = " + largest + " Second largest = " + secondLargest);
         return largest + secondLargest;
     }
 
