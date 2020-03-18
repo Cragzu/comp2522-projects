@@ -41,6 +41,19 @@ public class OrderedPair<K, V> {
         return second;
     }
 
+    /**
+     * Compares two ordered pairs and checks their equality.
+     *
+     * @param p1 OrderedPair - the first object to compare.
+     * @param p2 OrderedPair - the second object to compare.
+     * @param <K> the first parameter of the OrderedPairs.
+     * @param <V> the second parameter of the OrderedPairs.
+     * @return true if the elements of the OrderedPair parameters are equal, else false.
+     */
+    public static <K, V> boolean same(OrderedPair<K, V> p1, OrderedPair<K, V> p2) {
+        return (p1.first == p2.first) && (p1.second == p2.second);
+    }
+
     public static void main(String[] args) {
         String firstStr = "Hello World";
         String secondStr = "Java Chip";
@@ -55,6 +68,17 @@ public class OrderedPair<K, V> {
         Box<Double> secondBox = new Box<>();
         OrderedPair<Box<Double>, Box<Double>> boxOrderedPair
                 = new OrderedPair<>(firstBox, secondBox);
+
+        Integer a = 3;
+        Integer b = 4;
+        Integer c = 5;
+        OrderedPair<Integer, Integer> firstIntegerOrderedPair = new OrderedPair<>(a, b);
+        OrderedPair<Integer, Integer> secondIntegerOrderedPair = new OrderedPair<>(a, b);
+        OrderedPair<Integer, Integer> thirdIntegerOrderedPair = new OrderedPair<>(a, c);
+
+        System.out.println(same(firstIntegerOrderedPair, secondIntegerOrderedPair));
+        System.out.println(same(firstIntegerOrderedPair, thirdIntegerOrderedPair));
+
     }
 
 }
