@@ -51,7 +51,7 @@ public class OrderedPair<K, V> {
      * @return true if the elements of the OrderedPair parameters are equal, else false.
      */
     public static <K, V> boolean same(OrderedPair<K, V> p1, OrderedPair<K, V> p2) {
-        return (p1.first == p2.first) && (p1.second == p2.second);
+        return (p1.getFirst().equals(p2.getFirst())) && (p1.getSecond().equals(p2.getSecond()));
     }
 
     public static void main(String[] args) {
@@ -80,5 +80,4 @@ public class OrderedPair<K, V> {
         System.out.println(same(firstIntegerOrderedPair, thirdIntegerOrderedPair));
 
     }
-
 }
