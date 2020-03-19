@@ -1,6 +1,5 @@
-package ca.bcit.comp2522.labs.lab06;
+package ca.bcit.comp2522.lectures.week06;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**

@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.labs.lab06;
+package ca.bcit.comp2522.lectures.week06;
 
 /**
  * A warm-up for this week's lab activity.
