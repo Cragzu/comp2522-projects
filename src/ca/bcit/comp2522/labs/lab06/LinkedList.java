@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.labs.lab06;
 
-import ca.bcit.comp2522.quizzes.quiz04.EmptyListException;
-
 /**
  * A string of Nodes connected through addresses.
  *
@@ -9,7 +7,7 @@ import ca.bcit.comp2522.quizzes.quiz04.EmptyListException;
  * @version 2020
  */
 public class LinkedList<T> {
-    private Node head;
+    private Node<T> head;
 
     /**
      * Constructs a LinkedList with a null head.
@@ -23,7 +21,7 @@ public class LinkedList<T> {
      * @param current the Node being examined.
      * @return the last Node in the list; the one pointing to null.
      */
-    public Node findTail(Node current) {
+    public Node<T> findTail(Node<T> current) {
         if (current.getNext() == null) {
             return current;
         }
@@ -32,24 +30,24 @@ public class LinkedList<T> {
 
     /**
      * Adds a new Node to the end of the linked list.
-     * @param data the Object that the new Node will store.
+     * @param data the T that the new Node will store.
      */
-    public void append(Object data) {
-        Node newNode = new Node(data);
+    public void append(T data) {
+        Node<T> newNode = new Node<T>(data);
         if (head == null) {
             head = newNode;
             return;
         }
-        Node lastNode = findTail(head);
+        Node<T> lastNode = findTail(head);
         lastNode.setNext(newNode);
     }
 
     /**
      * Adds a new Node to the beginning of the linked list.
-     * @param data the Object that the new Node will store.
+     * @param data the T that the new Node will store.
      */
-    public void prepend(Object data) {
-        Node newNode = new Node(data);
+    public void prepend(T data) {
+        Node<T> newNode = new Node(data);
         if (head == null) {
             head = newNode;
             return;
@@ -60,21 +58,21 @@ public class LinkedList<T> {
 
     /**
      * Inserts a new Node at the specified position in the linked list.
-     * @param data the Object that the new Node will store.
+     * @param data the T that the new Node will store.
      * @param index the position to insert the new Node at.
      */
-    public void add(Object data, int index) {
+    public void add(T data, int index) {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("That index is invalid!");
         }
-        Node newNode = new Node(data);
+        Node<T> newNode = new Node<T>(data);
         if (head == null) { // index given is 0 and the list is empty
             head = newNode;
             return;
         }
 
         int currentPosition = 0;
-        Node it = head;
+        Node<T> it = head;
         while (it.getNext() != null) {
             if (index == currentPosition - 1) {
                 newNode.setNext(it.getNext());
@@ -95,7 +93,7 @@ public class LinkedList<T> {
         if (head == null) {
             return numElements;
         }
-        Node it = head;
+        Node<T> it = head;
         while (it.getNext() != null) {
             numElements++;
             it = it.getNext();
@@ -115,7 +113,7 @@ public class LinkedList<T> {
      * @param index the Node to find.
      * @return the data stored by the node at position index.
      */
-    public Object get(int index) {
+    public T get(int index) {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("That index is invalid!");
         }
@@ -124,7 +122,7 @@ public class LinkedList<T> {
         }
 
         int currentPosition = 0;
-        Node it = head;
+        Node<T> it = head;
         while (it.getNext() != null) {
             if (index == currentPosition) {
                 return it.getData();
@@ -140,7 +138,7 @@ public class LinkedList<T> {
      * @param index the Node to find.
      * @return the data from the Node removed.
      */
-    public Object remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("That index is invalid!");
         }
@@ -148,10 +146,10 @@ public class LinkedList<T> {
             return null;
         }
         int currentPosition = 0;
-        Node it = head;
+        Node<T> it = head;
         while (it.getNext() != null) {
             if (index == currentPosition - 1) {
-                Object removedData = it.getNext().getData();
+                T removedData = it.getNext().getData();
                 it.setNext(it.getNext().getNext()); // skip over node to be removed
                 return removedData;
             }
@@ -164,11 +162,11 @@ public class LinkedList<T> {
     /**
      * Finds recursively the number of Nodes in the Linked List that contain equal data.
      * @param current Node - the node currently being examined
-     * @param dataToCompare Object - the data to check against
+     * @param dataToCompare T - the data to check against
      * @param count int - the number of nodes containing the specified data. Should start at 0.
      * @return int - the number of nodes containing the specified data.
      */
-    public int findEqualNodes(Node current, Object dataToCompare, int count) {
+    public int findEqualNodes(Node<T> current, T dataToCompare, int count) {
         if (current.getData().equals(dataToCompare)) {
             count++;
         }
@@ -182,14 +180,14 @@ public class LinkedList<T> {
      * Determines the number of Nodes in the Linked List that contain equal data.
      * Wrapper method for findEqualNodes.
      *
-     * @param o Object - the data to check against.
+     * @param o T - the data to check against.
      * @return int - the number of nodes containing the specified data.
-     * @throws IllegalArgumentException if the given object is null
+     * @throws IllegalArgumentException if the given T is null
      * @throws EmptyListException if the list is empty
      */
-    public int count(Object o) throws IllegalArgumentException, EmptyListException {
+    public int count(T o) throws IllegalArgumentException, EmptyListException {
         if (o == null) {
-            throw new IllegalArgumentException("No object found!");
+            throw new IllegalArgumentException("No T found!");
         } else if (head.getNext() == null) { // list is empty
             throw new EmptyListException("The list is empty!");
         }
