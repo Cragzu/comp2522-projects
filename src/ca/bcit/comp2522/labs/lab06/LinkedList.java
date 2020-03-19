@@ -1,12 +1,14 @@
 package ca.bcit.comp2522.labs.lab06;
 
+import ca.bcit.comp2522.quizzes.quiz04.EmptyListException;
+
 /**
  * A string of Nodes connected through addresses.
  *
  * @author Chloe Glave
  * @version 2020
  */
-public class LinkedList {
+public class LinkedList<T> {
     private Node head;
 
     /**
@@ -159,7 +161,40 @@ public class LinkedList {
         return null;
     }
 
+    /**
+     * Finds recursively the number of Nodes in the Linked List that contain equal data.
+     * @param current Node - the node currently being examined
+     * @param dataToCompare Object - the data to check against
+     * @param count int - the number of nodes containing the specified data. Should start at 0.
+     * @return int - the number of nodes containing the specified data.
+     */
+    public int findEqualNodes(Node current, Object dataToCompare, int count) {
+        if (current.getData().equals(dataToCompare)) {
+            count++;
+        }
+        if (current.getNext() == null) { // base case
+            return count;
+        }
+        return findEqualNodes(current.getNext(), dataToCompare, count);
+    }
 
-
+    /**
+     * Determines the number of Nodes in the Linked List that contain equal data.
+     * Wrapper method for findEqualNodes.
+     *
+     * @param o Object - the data to check against.
+     * @return int - the number of nodes containing the specified data.
+     * @throws IllegalArgumentException if the given object is null
+     * @throws EmptyListException if the list is empty
+     */
+    public int count(Object o) throws IllegalArgumentException, EmptyListException {
+        if (o == null) {
+            throw new IllegalArgumentException("No object found!");
+        } else if (head.getNext() == null) { // list is empty
+            throw new EmptyListException("The list is empty!");
+        }
+        int count = 0;
+        return findEqualNodes(head, o, count);
+    }
 
 }
