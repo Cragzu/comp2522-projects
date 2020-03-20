@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
  */
 public class LinkedListTest {
     LinkedList<Integer> testList1 = new LinkedList<>();
-    LinkedList<Integer> testList2 = new LinkedList<Integer>();
-    LinkedList<Integer> testList3 = new LinkedList<Integer>();
+    LinkedList<Integer> testList2 = new LinkedList<>();
+    LinkedList<Integer> testList3 = new LinkedList<>();
     LinkedList<Integer> testList4 = new LinkedList<>();
     LinkedList<Integer> testList5 = new LinkedList<>();
     LinkedList<Integer> testList6 = new LinkedList<>();
-    LinkedList<Integer> testList7 = new LinkedList<Integer>();
+    LinkedList<Integer> testList7 = new LinkedList<>();
 
     @Before
     public void setUp() {
@@ -36,7 +36,7 @@ public class LinkedListTest {
     }
 
     @Test
-    public void testAppend() throws Exception {
+    public void testAppend() {
         LinkedList<Integer> testList = new LinkedList<>();
         testList.append(50);
         System.out.println(testList.toString());
@@ -44,7 +44,7 @@ public class LinkedListTest {
     }
 
     @Test
-    public void testPrepend() throws Exception {
+    public void testPrepend() {
         LinkedList<Integer> testList = new LinkedList<>();
         testList.prepend(2);
         testList.prepend(1);
@@ -121,6 +121,25 @@ public class LinkedListTest {
             testList1.append(i);
         }
         LinkedList<Integer> testList2 = testList1;
-        assertTrue(testList1.equals(testList2));
+        assertEquals(testList1, testList2);
     }
+
+    @Test
+    public void testInteger() {
+        LinkedList<Integer> testList = new LinkedList<>();
+        testList.append(1);
+        testList.append(2);
+        testList.append(3);
+        assertEquals("LinkedList{1 2 3}", testList.toString());
+    }
+
+    @Test
+    public void testString() {
+        LinkedList<String> testList = new LinkedList<>();
+        testList.append("One");
+        testList.append("Two");
+        testList.append("Three");
+        assertEquals("LinkedList{One Two Three}", testList.toString());
+    }
+
 }

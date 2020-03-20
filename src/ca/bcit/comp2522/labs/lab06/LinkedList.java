@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Chloe Glave
  * @version 2020
  */
-public class LinkedList<T> {
+class LinkedList<T> {
 
     static class Node<T> {
         private T data;
@@ -248,8 +248,12 @@ public class LinkedList<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LinkedList)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof LinkedList)) {
+            return false;
+        }
         LinkedList<?> that = (LinkedList<?>) o;
         return Objects.equals(getHead(), that.getHead());
     }
@@ -271,18 +275,5 @@ public class LinkedList<T> {
         str.append("}");
 
         return str.toString();
-    }
-
-    public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<>();
-        list.append(1);
-        list.append(2);
-        list.append(3);
-
-        System.out.println(list.toString());
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-        System.out.println(list.get(2));
-
     }
 }
