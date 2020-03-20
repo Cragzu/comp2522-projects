@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.labs.lab06;
 
+import java.util.Objects;
+
 /**
  * A string of Nodes connected through addresses.
  *
@@ -82,7 +84,7 @@ public class LinkedList<T> {
      * @param data the T that the new Node will store.
      */
     public void prepend(T data) {
-        Node<T> newNode = new Node(data);
+        Node<T> newNode = new Node<T>(data);
         if (head == null) {
             head = newNode;
             return;
@@ -133,7 +135,7 @@ public class LinkedList<T> {
             numElements++;
             it = it.getNext();
         }
-        return numElements;
+        return numElements + 1; // account for starting at 0
     }
 
     /**
@@ -158,7 +160,7 @@ public class LinkedList<T> {
 
         int currentPosition = 0;
         Node<T> it = head;
-        while (it.getNext() != null) {
+        while (it != null) {
             if (index == currentPosition) {
                 return it.getData();
             }
@@ -183,7 +185,7 @@ public class LinkedList<T> {
         int currentPosition = 0;
         Node<T> it = head;
         while (it.getNext() != null) {
-            if (index == currentPosition - 1) {
+            if (index == currentPosition + 1) {
                 T removedData = it.getNext().getData();
                 it.setNext(it.getNext().getNext()); // skip over node to be removed
                 return removedData;
@@ -231,6 +233,19 @@ public class LinkedList<T> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LinkedList)) return false;
+        LinkedList<?> that = (LinkedList<?>) o;
+        return Objects.equals(getHead(), that.getHead());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getHead());
+    }
+
+    @Override
     public String toString() {
         StringBuilder str = new StringBuilder("LinkedList{" + head.data);
 
@@ -251,6 +266,9 @@ public class LinkedList<T> {
         list.append(3);
 
         System.out.println(list.toString());
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
 
     }
 }

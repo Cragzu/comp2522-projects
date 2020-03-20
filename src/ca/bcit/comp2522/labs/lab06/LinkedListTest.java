@@ -20,7 +20,6 @@ public class LinkedListTest {
     LinkedList<Integer> testList6 = new LinkedList<>();
     LinkedList<Integer> testList7 = new LinkedList<Integer>();
 
-
     @Before
     public void setUp() {
         for (int i = 0; i < 10; i++) {
@@ -47,6 +46,7 @@ public class LinkedListTest {
     @Test
     public void testPrepend() throws Exception {
         LinkedList<Integer> testList = new LinkedList<>();
+        testList.prepend(2);
         testList.prepend(1);
         assertEquals(1, (int) testList.get(0));
     }
@@ -66,20 +66,29 @@ public class LinkedListTest {
 
     @Test
     public void getSize() {
+        System.out.println(testList1.toString());
         assertEquals(10, testList1.size());
     }
 
     @Test
     public void remove() {
+        System.out.println(testList2);
         testList2.add(45, 3);
+        System.out.println(testList2);
         testList2.remove(3);
+        System.out.println(testList2);
         assertNotEquals(45, (int) testList2.get(3));
     }
 
     @Test
-    public void get() {
-        testList2.add(45, 3);
-        assertEquals(45, (int) testList2.get(3));
+    public void testGet() {
+        LinkedList<Integer> testList = new LinkedList<>();
+        testList.append(0);
+        testList.append(1);
+        testList.append(2);
+        for (int i = 0; i <= 2; i++) {
+            assertEquals(i, (int) testList.get(i));
+        }
     }
 
     @Test
@@ -98,6 +107,7 @@ public class LinkedListTest {
         LinkedList<Integer> testList8 = new LinkedList<>();
         assertEquals(testList7, testList8);
     }
+
     @Test
     public void testEqualsUnequalSize() {
         testList3.clear();
@@ -106,13 +116,11 @@ public class LinkedListTest {
 
     @Test
     public void testEquals() {
-        assertTrue(testList1.equals(testList7));
+        LinkedList<Integer> testList1 = new LinkedList<>();
+        for (int i = 0; i < 3; i++) {
+            testList1.append(i);
+        }
+        LinkedList<Integer> testList2 = testList1;
+        assertTrue(testList1.equals(testList2));
     }
-
-
-    @Test
-    public void testEqualsSameElementsDifferentOrder() {
-        assertTrue(testList1.equals(testList7));
-    }
-
 }
