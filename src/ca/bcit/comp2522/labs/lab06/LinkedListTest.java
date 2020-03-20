@@ -37,68 +37,71 @@ public class LinkedListTest {
     }
 
     @Test
-    public void append() throws Exception{
-        testList3.append(50);
-        assertEquals(50, testList3.get(testList3.size() - 1));
+    public void testAppend() throws Exception {
+        LinkedList<Integer> testList = new LinkedList<>();
+        testList.append(50);
+        System.out.println(testList.toString());
+        assertEquals(50, (int) testList.findTail(testList.getHead()).getData());
     }
 
     @Test
-    public void prepend() throws Exception{
-        testList2.prepend(1);
-        assertEquals(1, testList2.get(0));
+    public void testPrepend() throws Exception {
+        LinkedList<Integer> testList = new LinkedList<>();
+        testList.prepend(1);
+        assertEquals(1, (int) testList.get(0));
     }
 
     @Test
-    public void add() throws Exception{
+    public void add() throws Exception {
         testList2.add(44, 3);
-        assertEquals(44, testList2.get(3));
+        assertEquals(44, (int) testList2.get(3));
     }
 
     @Test
     public void clear() {
         testList3.clear();
-        assertEquals(0, testList3.getSize());
+        assertEquals(0, testList3.size());
     }
 
 
     @Test
     public void getSize() {
-        assertEquals(10, testList1.getSize());
+        assertEquals(10, testList1.size());
     }
 
     @Test
-    public void remove() throws ItemOutOfBoundsException {
+    public void remove() {
         testList2.add(45, 3);
         testList2.remove(3);
-        assertNotEquals(45, testList2.get(3));
+        assertNotEquals(45, (int) testList2.get(3));
     }
 
     @Test
-    public void get() throws ItemOutOfBoundsException {
+    public void get() {
         testList2.add(45, 3);
-        assertEquals(45, testList2.get(3));
+        assertEquals(45, (int) testList2.get(3));
     }
 
     @Test
     public void testEqualsNot() {
-        assertFalse(testList1.equals(testList2));
+        assertNotEquals(testList1, testList2);
     }
 
     @Test
     public void testEqualsPartialAnagram() {
-        assertFalse(testList5.equals(testList6));
+        assertNotEquals(testList5, testList6);
     }
     
     @Test
     public void testEqualsEmpty() {
-        LinkedList testList7 = new LinkedList();
-        LinkedList testList8 = new LinkedList();
-        assertTrue(testList7.equals(testList8));
+        LinkedList<Integer> testList7 = new LinkedList<>();
+        LinkedList<Integer> testList8 = new LinkedList<>();
+        assertEquals(testList7, testList8);
     }
     @Test
     public void testEqualsUnequalSize() {
         testList3.clear();
-        assertFalse(testList1.equals(testList3));
+        assertNotEquals(testList1, testList3);
     }
 
     @Test

@@ -44,6 +44,14 @@ public class LinkedList<T> {
     }
 
     /**
+     * Finds the first Node of the linked list.
+     * @return the head of the list.
+     */
+    public Node<T> getHead() {
+        return head;
+    }
+
+    /**
      * Finds the last Node of the linked list.
      * @param current the Node being examined.
      * @return the last Node in the list; the one pointing to null.
@@ -101,7 +109,7 @@ public class LinkedList<T> {
         int currentPosition = 0;
         Node<T> it = head;
         while (it.getNext() != null) {
-            if (index == currentPosition - 1) {
+            if (index == currentPosition + 1) {
                 newNode.setNext(it.getNext());
                 it.setNext(newNode);
                 return;
@@ -222,4 +230,27 @@ public class LinkedList<T> {
         return findEqualNodes(head, o, count);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder("LinkedList{" + head.data);
+
+        Node<T> it = head;
+        while (it.getNext() != null) {
+            it = it.getNext();
+            str.append(" ").append(it.data);
+        }
+        str.append("}");
+
+        return str.toString();
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+
+        System.out.println(list.toString());
+
+    }
 }
