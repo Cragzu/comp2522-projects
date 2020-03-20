@@ -146,15 +146,30 @@ public class LinkedList<T> {
     }
 
     /**
-     * Finds the data stored in the Node at the specified index.
-     * @param index the Node to find.
-     * @return the data stored by the node at position index.
+     * Determines whether a given index is out of the range of the Linked List.
+     *
+     * @param index the index to check.
+     * @return true if the index is invalid else false.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-    public T get(int index) {
+    private boolean isGivenIndexInvalid(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("That index is invalid!");
         }
         if (head == null) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Finds the data stored in the Node at the specified index.
+     * @param index the Node to find.
+     * @return the data stored by the node at position index.
+     * @throws IndexOutOfBoundsException if thrown by helper method
+     */
+    public T get(int index) throws IndexOutOfBoundsException {
+        if (isGivenIndexInvalid(index)) {
             return null;
         }
 
@@ -174,14 +189,13 @@ public class LinkedList<T> {
      * Removes the Node at the specified index from the linked list and gets its data.
      * @param index the Node to find.
      * @return the data from the Node removed.
+     * @throws IndexOutOfBoundsException if thrown by helper method
      */
-    public T remove(int index) {
-        if (index < 0 || index > size()) {
-            throw new IndexOutOfBoundsException("That index is invalid!");
-        }
-        if (head == null) {
+    public T remove(int index) throws IndexOutOfBoundsException {
+        if (isGivenIndexInvalid(index)) {
             return null;
         }
+
         int currentPosition = 0;
         Node<T> it = head;
         while (it.getNext() != null) {
