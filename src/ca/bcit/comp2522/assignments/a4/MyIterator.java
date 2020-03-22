@@ -20,7 +20,7 @@ public interface MyIterator<E> {
      * Returns the next element in the collection the iterator walks over.
      * @pre hasNext() == true
      * @post MyIterator points to the next element in the collection
-     * @return The element in the collection the iterator was pointing to when the method was called.
+     * @return The element in the collection the iterator was pointing to when method was called.
      */
     E next();
 }

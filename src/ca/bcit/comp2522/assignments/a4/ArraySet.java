@@ -44,8 +44,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @pre true
      * @post size() = 0.
      */
-    public ArraySetStub() {
-        // Your code goes here
+    public ArraySet() {
+        this.capacity = INITIAL_CAPACITY;
     }
 
     /**
@@ -59,7 +59,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-        // Your code goes here
+        // todo: Your code goes here
         return false;
     }
 
@@ -73,7 +73,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        // Your code goes here
+        // todo: Your code goes here
         return false;
     }
 
@@ -85,7 +85,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post size() = 0
      */
     public void clear() {
-        // Your code goes here
+        // todo: Your code goes here
     }
 
     /**
@@ -97,7 +97,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
-        // Your code goes here
+        // todo: Your code goes here
         return false;
     }
 
@@ -109,7 +109,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return The number of elements in the ArraySet.
      */
     public int size() {
-        // Your code goes here
+        // todo: Your code goes here
         return -1;
     }
 
@@ -120,7 +120,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post the capacity of the ArraySet is doubled.
      */
     private void resize() {
-        // Your code goes here
+        // todo: Your code goes here
     }
 
     /**
@@ -131,7 +131,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return an unordered array containing the elements of the ArraySet.
      */
     public Object[] toArray() {
-        // Your code goes here
+        // todo: Your code goes here
         return null;
     }
 
@@ -145,7 +145,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element in the ArraySet.
      */
     public SetIterator<E> iterator() {
-        // Your code goes here
+        // todo: Your code goes here
         return null;
     }
 
@@ -163,7 +163,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            // Your code goes here
+            // todo: Your code goes here
             return false;
         }
 
@@ -177,7 +177,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          *         called.
          */
         public E next() {
-            // Your code goes here
+            // todo: Your code goes here
             return null;
         }
     }
