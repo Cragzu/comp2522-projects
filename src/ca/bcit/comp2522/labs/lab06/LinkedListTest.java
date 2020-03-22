@@ -40,7 +40,7 @@ public class LinkedListTest {
         LinkedList<Integer> testList = new LinkedList<>();
         testList.append(50);
         System.out.println(testList.toString());
-        assertEquals(50, (int) testList.findTail(testList.getHead()).getData());
+        assertEquals(50, (int) testList.get(0));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class LinkedListTest {
     }
 
     @Test
-    public void add() throws Exception {
+    public void add() {
         testList2.add(44, 3);
         assertEquals(44, (int) testList2.get(3));
     }
@@ -141,5 +141,4 @@ public class LinkedListTest {
         testList.append("Three");
         assertEquals("LinkedList{One Two Three}", testList.toString());
     }
-
 }
