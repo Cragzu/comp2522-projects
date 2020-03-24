@@ -49,7 +49,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     public ArraySet() {
         this.capacity = INITIAL_CAPACITY;
         this.elementCount = 0;
-        this.collection = (E[]) new Object[this.capacity];
+        this.collection = (E[]) new Object[capacity];
     }
 
     /**
@@ -66,6 +66,12 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
         if (elementCount == capacity) {
             E[] newCollection = (E[]) new Object[capacity*2];
+            SetIterator<E> it = this.iterator();
+//            while (it.hasNext()) {
+//
+//            }
+
+
 
         }
 
@@ -167,26 +173,26 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
         /**
          * Returns true if the iteration has more elements.
-         * 
+         *
          * @pre true
          * @post true
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            return collection[currentPosition] != null && currentPosition != size();
+            return collection[currentPosition] != null && currentPosition < size();
         }
 
         /**
          * Returns the next element in the iteration and advances to point to
          * the next.
-         * 
+         *
          * @pre @pre.hasNext()
          * @post SetIterator points to the next element in the ArraySet.
          * @return the element pointed to by the SetIterator when the method is called.
          */
         public E next() {
             currentPosition++;
-            return (E) collection[currentPosition];
+            return (E) collection[currentPosition - 1];
         }
     }
 
@@ -196,6 +202,12 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         ar.add(2);
         ar.add(3);
         System.out.println(Arrays.toString(ar.collection));
+
+        MyIterator<Integer> it = ar.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+
     }
 
 }
