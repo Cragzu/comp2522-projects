@@ -119,7 +119,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post size() = 0
      */
     public void clear() {
-        // todo: Your code goes here
+        MyIterator<E> it = new SetIterator<>();
+        int position = 0;
+        while (it.hasNext()) {
+            collection[position] = null;
+        }
     }
 
     /**
@@ -173,7 +177,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         int position = 0;
 
         MyIterator<Integer> it = new SetIterator<>();
-        while (it.hasNext()) {
+        while (it.hasNext() && position < size()) {
             newArray[position] = it.next();
             position++;
         }
@@ -233,7 +237,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         System.out.println(Arrays.toString(ar.toArray()));
 
         System.out.println(ar.contains(4));
-        // ar.remove(1);
+       // ar.remove(3);
+        ar.clear();
 
         System.out.println(Arrays.toString(ar.toArray()));
 
