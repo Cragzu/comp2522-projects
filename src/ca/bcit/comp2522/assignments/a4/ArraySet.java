@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a4;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -114,7 +115,12 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
-        // todo: Your code goes here
+        MyIterator<E> it = new SetIterator<>();
+        while (it.hasNext()) {
+            if (it.next() == element) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -207,6 +213,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         while (it.hasNext()) {
             System.out.println(it.next());
         }
+
+        System.out.println(ar.contains(4));
 
     }
 
