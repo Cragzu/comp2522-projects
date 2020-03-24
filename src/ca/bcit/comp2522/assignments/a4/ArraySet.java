@@ -68,7 +68,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         resize();
 
 
-
+        System.out.println("Added element " + element);
         collection[elementCount] = element;
         elementCount++;
         return false;
@@ -153,21 +153,18 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post the capacity of the ArraySet is doubled.
      */
     private void resize() {
-        System.out.println("size = " + size());
-        System.out.println("capacity = " + capacity);
-       // if (size() == capacity - 1) {
-            System.out.println("resizing...");
+        if (size() == capacity) { // array is full
             int position = 0;
-        System.out.println(collection[position]);
-            E[] newCollection = (E[]) new Object[capacity*2];
-            MyIterator<E> it = new SetIterator<>();
-            while (it.hasNext()) {
-                newCollection[position] = collection[position];
-                position++;
+            E[] newCollection = (E[]) new Object[capacity * 2];
+
+            while (position < capacity) {
+            newCollection[position] = collection[position];
+            position++;
             }
-            collection = newCollection;
+
             capacity *= 2;
-    //    }
+            collection = newCollection;
+        }
     }
 
     /**
@@ -245,13 +242,18 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         ar.add(6);
         ar.add(7);
         ar.add(8);
-        System.out.println(Arrays.toString(ar.collection));
-
         ar.add(9);
         System.out.println(Arrays.toString(ar.collection));
+        System.out.println("size " + ar.size());
+        System.out.println("capacity " + ar.capacity);
+
+        ar.add(10);
+        System.out.println(Arrays.toString(ar.collection));
+        System.out.println("size " + ar.size());
+        System.out.println("capacity " + ar.capacity);
 
 
-        System.out.println(Arrays.toString(ar.toArray()));
+      //  System.out.println(Arrays.toString(ar.toArray()));
 
     }
 
