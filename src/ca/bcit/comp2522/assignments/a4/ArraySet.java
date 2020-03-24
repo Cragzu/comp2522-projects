@@ -3,6 +3,9 @@ package ca.bcit.comp2522.assignments.a4;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 /**
  * ArraySet is a resizeable-array implementation of the Set interface. It
  * contains a set of elements in no particular order that excludes duplicates or
@@ -120,10 +123,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return the position of E in collection or -1 if not found
      */
     public int containsAtPosition(final E element) {
-        MyIterator<E> it = new SetIterator<>();
         int position = 0;
-        while (it.hasNext()) {
-            if (it.next() == element) {
+        while (position <= size() - 1) {
+            if (collection[position].equals(element)) {
                 return position;
             }
             position++;
@@ -162,7 +164,6 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      */
     private void resize() {
         if (size() == capacity - 1) { // array is full
-            System.out.println("resized");
             int position = 0;
             E[] newCollection = (E[]) new Object[capacity * 2];
 
@@ -243,29 +244,31 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     public static void main(String[] args) {
         ArraySet<Integer> ar = new ArraySet<>();
-        ar.add(0);
-        ar.add(1);
-        ar.add(2);
-        ar.add(3);
-        ar.add(4);
-        ar.add(5);
-        ar.add(6);
-        ar.add(7);
-        ar.add(8);
-        ar.add(9);
-        System.out.println(Arrays.toString(ar.collection));
-        System.out.println("size " + ar.size());
-        System.out.println("capacity " + ar.capacity);
+        int trueCount = 0;
+        int falseCount = 0;
 
-        ar.add(10);
-        ar.add(11);
-        System.out.println(Arrays.toString(ar.collection));
-        System.out.println("size " + ar.size());
-        System.out.println("capacity " + ar.capacity);
+        for (int i = 0; i < 1000; ++i) {
+            ar.add(i);
+        }
 
-        System.out.println(Arrays.toString(ar.toArray()));
+        System.out.println("does ar contain 0? " + ar.contains(0));
+        System.out.println("does ar contain 999? " + ar.contains(999));
+        System.out.println("ar size " +  ar.size());
 
-        System.out.println("Found at position " + ar.contains(10));
+
+        for (int i = 0; i < 1000; ++i) {
+            if (ar.add(i)) {
+                trueCount++;
+                System.out.println("this was added erroneously " + i);
+            } else {
+                falseCount++;
+            }
+        }
+
+        System.out.println("false = " + falseCount + " true = " + trueCount);
+        System.out.println("does ar contain 999? " + ar.contains(999));
+        System.out.println("ar size " +  ar.size());
+        assertEquals(1000, ar.size());
 
     }
 
