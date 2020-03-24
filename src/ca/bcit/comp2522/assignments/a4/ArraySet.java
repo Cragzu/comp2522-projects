@@ -120,8 +120,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return The number of elements in the ArraySet.
      */
     public int size() {
-        // todo: Your code goes here
-        return -1;
+        return elementCount;
     }
 
     /**
@@ -155,16 +154,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return an iterator for the ArraySet of elements that points to the first
      *         element in the ArraySet.
      */
-    public SetIterator/*todo: <E>*/ iterator() {
-        // todo: Your code goes here
-        return null;
+    public SetIterator<E> iterator() {
+        return new SetIterator();
     }
 
     /**
-     * SetIterator provides a means for iterating over the elements of an
-     * ArraySet.
+     * SetIterator provides a means for iterating over the elements of an ArraySet.
      */
-    public class SetIterator/*todo: <E>*/ implements MyIterator<E> {
+    public class SetIterator<E> implements MyIterator<E> {
 
         private int currentPosition;
 
@@ -176,7 +173,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            return collection[currentPosition] != null && currentPosition != elementCount;
+            return collection[currentPosition] != null && currentPosition != size();
         }
 
         /**
@@ -185,12 +182,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * 
          * @pre @pre.hasNext()
          * @post SetIterator points to the next element in the ArraySet.
-         * @return the element pointed to by the SetIterator when the method is
-         *         called.
+         * @return the element pointed to by the SetIterator when the method is called.
          */
         public E next() {
             currentPosition++;
-            return collection[currentPosition];
+            return (E) collection[currentPosition];
         }
     }
 
