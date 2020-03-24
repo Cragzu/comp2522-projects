@@ -91,21 +91,24 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        // check whether element is contained in arrayset
-        // find element, save index, set to null
-        // go to the end, save data, set to null, set empty index to the data
         if (contains(element)) {
             MyIterator<E> it = new SetIterator<>();
             int positionOfRemoved = 0;
+            boolean foundElement = false;
+
             while (it.hasNext()) {
                 if (it.next() == element) {
                     System.out.println("found element at position " + positionOfRemoved);
                     collection[positionOfRemoved] = null;
-                } else {
-                    positionOfRemoved++;
+                    foundElement = true;
                 }
-
+                if (!foundElement) {
+                    positionOfRemoved++;
+                    System.out.println("pos removed = " + positionOfRemoved);
+                }
             }
+            collection[positionOfRemoved] = collection[size() - 1];
+            collection[size() - 1] = null;
             return true;
         }
         return false;
@@ -127,7 +130,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
-     * Returns true if this ArraySet contains the specified element.
+     * Returns true if this ArraySet contains the specified element. todo: return index of contained element?
      * 
      * @param element The element to be checked for containment.
      * @pre true
@@ -236,12 +239,13 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         ar.add(3);
         System.out.println(Arrays.toString(ar.toArray()));
 
-        System.out.println(ar.contains(4));
-       // ar.remove(3);
-        ar.clear();
+        System.out.println(ar.contains(2));
+        ar.remove(3);
+        System.out.println(ar.contains(2));
 
         System.out.println(Arrays.toString(ar.toArray()));
 
+        System.out.println(Arrays.toString(ar.collection));
 
     }
 
