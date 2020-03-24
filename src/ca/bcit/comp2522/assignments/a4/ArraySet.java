@@ -64,11 +64,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-        // todo: finish method
+        // todo: finish method - check whether element is contained already
         resize();
 
 
-        System.out.println("Added element " + element);
         collection[elementCount] = element;
         elementCount++;
         return false;
@@ -118,21 +117,35 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
-     * Returns true if this ArraySet contains the specified element. todo: change return type to int; index of contained element?
+     * Finds the position of an element in the set.
+     *
+     * @pre true
+     * @post true
+     * @param element the E to search for
+     * @return the position of E in collection or -1 if not found
+     */
+    public int containsAtPosition(final E element) {
+        MyIterator<E> it = new SetIterator<>();
+        int position = 0;
+        while (it.hasNext()) {
+            if (it.next() == element) {
+                return position;
+            }
+            position++;
+        }
+        return -1;
+    }
+
+    /**
+     * Returns true if this ArraySet contains the specified element.
      * 
      * @param element The element to be checked for containment.
      * @pre true
      * @post true
      * @return true if element is in the ArraySet, and false otherwise.
      */
-    public boolean contains(final E element) { // todo: make this a wrapper for a new method that gives the position of the element or -1 if it doesn't exist
-        MyIterator<E> it = new SetIterator<>();
-        while (it.hasNext()) {
-            if (it.next() == element) {
-                return true;
-            }
-        }
-        return false;
+    public boolean contains(final E element) {
+        return containsAtPosition(element) != -1;
     }
 
     /**
@@ -252,8 +265,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         System.out.println("size " + ar.size());
         System.out.println("capacity " + ar.capacity);
 
+        System.out.println(Arrays.toString(ar.toArray()));
 
-      //  System.out.println(Arrays.toString(ar.toArray()));
+        System.out.println("Found at position " + ar.contains(10));
 
     }
 
