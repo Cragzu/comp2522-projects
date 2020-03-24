@@ -64,13 +64,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-        // todo: finish method - check whether element is contained already
+        if (contains(element) || element == null) {
+            return false;
+        }
+
         resize();
-
-
         collection[elementCount] = element;
         elementCount++;
-        return false;
+        return true;
     }
 
     /**
@@ -83,17 +84,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        if (contains(element)) { // todo: added complexity. if contains returned an int I could just use that value
-            MyIterator<E> it = new SetIterator<>();
-            int positionOfRemoved = 0;
+        int positionOfElementToRemove = containsAtPosition(element);
 
-            while (it.hasNext()) {
-                if (it.next() == element) {
-                    break;
-                }
-                positionOfRemoved++;
-            }
-            collection[positionOfRemoved] = collection[size() - 1]; // fill gap with last element
+        if (positionOfElementToRemove != -1 && element != null) {
+            collection[positionOfElementToRemove] = collection[size() - 1]; // fill gap with last element
             collection[size() - 1] = null;
             elementCount--;
             return true;
@@ -114,6 +108,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         while (it.hasNext()) {
             collection[position] = null;
         }
+        elementCount = 0;
     }
 
     /**
