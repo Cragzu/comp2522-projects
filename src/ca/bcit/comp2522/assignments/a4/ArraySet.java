@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.assignments.a4;
 
+import java.util.Arrays;
+
 /**
  * ArraySet is a resizeable-array implementation of the Set interface. It
  * contains a set of elements in no particular order that excludes duplicates or
@@ -46,6 +48,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      */
     public ArraySet() {
         this.capacity = INITIAL_CAPACITY;
+        this.elementCount = 0;
+        this.collection = (E[]) new Object[this.capacity];
     }
 
     /**
@@ -59,7 +63,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-        // todo: Your code goes here
+
+        if (elementCount == capacity) {
+            E[] newCollection = (E[]) new Object[capacity*2];
+
+        }
+
+        collection[elementCount] = element;
+        elementCount++;
         return false;
     }
 
@@ -144,7 +155,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return an iterator for the ArraySet of elements that points to the first
      *         element in the ArraySet.
      */
-    public SetIterator<E> iterator() {
+    public SetIterator/*todo: <E>*/ iterator() {
         // todo: Your code goes here
         return null;
     }
@@ -153,7 +164,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * SetIterator provides a means for iterating over the elements of an
      * ArraySet.
      */
-    public class SetIterator<E> implements MyIterator<E> {
+    public class SetIterator/*todo: <E>*/ implements MyIterator<E> {
+
+        private int currentPosition;
 
         /**
          * Returns true if the iteration has more elements.
@@ -163,8 +176,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
-            // todo: Your code goes here
-            return false;
+            return collection[currentPosition] != null && currentPosition != elementCount;
         }
 
         /**
@@ -177,8 +189,17 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          *         called.
          */
         public E next() {
-            // todo: Your code goes here
-            return null;
+            currentPosition++;
+            return collection[currentPosition];
         }
     }
+
+    public static void main(String[] args) {
+        ArraySet<Integer> ar = new ArraySet<>();
+        ar.add(1);
+        ar.add(2);
+        ar.add(3);
+        System.out.println(Arrays.toString(ar.collection));
+    }
+
 }
