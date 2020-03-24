@@ -94,21 +94,17 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         if (contains(element)) {
             MyIterator<E> it = new SetIterator<>();
             int positionOfRemoved = 0;
-            boolean foundElement = false;
 
             while (it.hasNext()) {
                 if (it.next() == element) {
-                    System.out.println("found element at position " + positionOfRemoved);
                     collection[positionOfRemoved] = null;
-                    foundElement = true;
+                    break;
                 }
-                if (!foundElement) {
-                    positionOfRemoved++;
-                    System.out.println("pos removed = " + positionOfRemoved);
-                }
+                positionOfRemoved++;
             }
-            collection[positionOfRemoved] = collection[size() - 1];
+            collection[positionOfRemoved] = collection[size() - 1]; // fill gap with last element
             collection[size() - 1] = null;
+            elementCount--;
             return true;
         }
         return false;
@@ -239,13 +235,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         ar.add(3);
         System.out.println(Arrays.toString(ar.toArray()));
 
+        System.out.println("size = " + ar.size());
         System.out.println(ar.contains(2));
-        ar.remove(3);
+        ar.remove(2);
         System.out.println(ar.contains(2));
+        System.out.println("size = " + ar.size());
 
         System.out.println(Arrays.toString(ar.toArray()));
 
-        System.out.println(Arrays.toString(ar.collection));
 
     }
 
