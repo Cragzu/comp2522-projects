@@ -91,7 +91,23 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        // todo: Your code goes here
+        // check whether element is contained in arrayset
+        // find element, save index, set to null
+        // go to the end, save data, set to null, set empty index to the data
+        if (contains(element)) {
+            MyIterator<E> it = new SetIterator<>();
+            int positionOfRemoved = 0;
+            while (it.hasNext()) {
+                if (it.next() == element) {
+                    System.out.println("found element at position " + positionOfRemoved);
+                    collection[positionOfRemoved] = null;
+                } else {
+                    positionOfRemoved++;
+                }
+
+            }
+            return true;
+        }
         return false;
     }
 
@@ -153,8 +169,15 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return an unordered array containing the elements of the ArraySet.
      */
     public Object[] toArray() {
-        // todo: Your code goes here
-        return null;
+        Object[] newArray = new Object[size()];
+        int position = 0;
+
+        MyIterator<Integer> it = new SetIterator<>();
+        while (it.hasNext()) {
+            newArray[position] = it.next();
+            position++;
+        }
+        return newArray;
     }
 
     /**
@@ -207,14 +230,13 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         ar.add(1);
         ar.add(2);
         ar.add(3);
-        System.out.println(Arrays.toString(ar.collection));
-
-        MyIterator<Integer> it = ar.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }
+        System.out.println(Arrays.toString(ar.toArray()));
 
         System.out.println(ar.contains(4));
+        // ar.remove(1);
+
+        System.out.println(Arrays.toString(ar.toArray()));
+
 
     }
 
