@@ -64,17 +64,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      *         element, else false.
      */
     public boolean add(final E element) {
-
-        if (elementCount == capacity) {
-            E[] newCollection = (E[]) new Object[capacity*2];
-            SetIterator<E> it = this.iterator();
-//            while (it.hasNext()) {
-//
-//            }
+        // todo: finish method
+        resize();
 
 
-
-        }
 
         collection[elementCount] = element;
         elementCount++;
@@ -91,13 +84,12 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element was removed from the ArraySet, else false.
      */
     public boolean remove(final E element) {
-        if (contains(element)) {
+        if (contains(element)) { // todo: added complexity. if contains returned an int I could just use that value
             MyIterator<E> it = new SetIterator<>();
             int positionOfRemoved = 0;
 
             while (it.hasNext()) {
                 if (it.next() == element) {
-                    collection[positionOfRemoved] = null;
                     break;
                 }
                 positionOfRemoved++;
@@ -126,14 +118,14 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
-     * Returns true if this ArraySet contains the specified element. todo: return index of contained element?
+     * Returns true if this ArraySet contains the specified element. todo: change return type to int; index of contained element?
      * 
      * @param element The element to be checked for containment.
      * @pre true
      * @post true
      * @return true if element is in the ArraySet, and false otherwise.
      */
-    public boolean contains(final E element) {
+    public boolean contains(final E element) { // todo: make this a wrapper for a new method that gives the position of the element or -1 if it doesn't exist
         MyIterator<E> it = new SetIterator<>();
         while (it.hasNext()) {
             if (it.next() == element) {
@@ -161,7 +153,21 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post the capacity of the ArraySet is doubled.
      */
     private void resize() {
-        // todo: Your code goes here
+        System.out.println("size = " + size());
+        System.out.println("capacity = " + capacity);
+       // if (size() == capacity - 1) {
+            System.out.println("resizing...");
+            int position = 0;
+        System.out.println(collection[position]);
+            E[] newCollection = (E[]) new Object[capacity*2];
+            MyIterator<E> it = new SetIterator<>();
+            while (it.hasNext()) {
+                newCollection[position] = collection[position];
+                position++;
+            }
+            collection = newCollection;
+            capacity *= 2;
+    //    }
     }
 
     /**
@@ -230,19 +236,22 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     public static void main(String[] args) {
         ArraySet<Integer> ar = new ArraySet<>();
+        ar.add(0);
         ar.add(1);
         ar.add(2);
         ar.add(3);
+        ar.add(4);
+        ar.add(5);
+        ar.add(6);
+        ar.add(7);
+        ar.add(8);
+        System.out.println(Arrays.toString(ar.collection));
+
+        ar.add(9);
+        System.out.println(Arrays.toString(ar.collection));
+
+
         System.out.println(Arrays.toString(ar.toArray()));
-
-        System.out.println("size = " + ar.size());
-        System.out.println(ar.contains(2));
-        ar.remove(2);
-        System.out.println(ar.contains(2));
-        System.out.println("size = " + ar.size());
-
-        System.out.println(Arrays.toString(ar.toArray()));
-
 
     }
 
