@@ -10,13 +10,13 @@ import static org.junit.Assert.assertFalse;
  * ArraySet is a resizeable-array implementation of the Set interface. It
  * contains a set of elements in no particular order that excludes duplicates or
  * nulls.
- * 
+ * <p>
  * Elements may be added to, removed from, and searched for in the ArraySet. As
  * elements are added to the ArraySet its capacity is resized automatically.
- * 
+ * <p>
  * ArraySet contains a SetIterator that permits access to the elements in the
  * ArraySet one at a time.
- * 
+ *
  * @author Chloe Glave
  * @version 2020
  * @invariant The ArraySet never contains duplicate elements.
@@ -46,7 +46,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Constructs a new empty ArraySet of default initial capacity 10.
-     * 
+     *
      * @pre true
      * @post size() = 0.
      */
@@ -58,13 +58,13 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Adds the specified element to the ArraySet if it is not already present.
-     * 
+     *
      * @param element The element to be added to the set.
+     * @return true if the ArraySet did not already contain the specified
+     * element, else false.
      * @pre true
      * @post IF ( element != null AND NOT @pre.contains(element) ) THEN
-     *       contains(element) ELSE the ArraySet is not changed
-     * @return true if the ArraySet did not already contain the specified
-     *         element, else false.
+     * contains(element) ELSE the ArraySet is not changed
      */
     public boolean add(final E element) {
         if (contains(element) || element == null) {
@@ -79,18 +79,18 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Removes the specified element from the ArraySet if it exists.
-     * 
+     *
      * @param element The element to be removed, if present.
+     * @return true if element was removed from the ArraySet, else false.
      * @pre true
      * @post IF @pre.contains(element) THEN NOT contains(element) ELSE the
-     *       ArraySet is not changed
-     * @return true if element was removed from the ArraySet, else false.
+     * ArraySet is not changed
      */
     public boolean remove(final E element) {
         int positionOfElementToRemove = containsAtPosition(element);
 
-        if (positionOfElementToRemove != -1 && element != null) {
-            collection[positionOfElementToRemove] = collection[size() - 1]; // fill gap with last element
+        if (positionOfElementToRemove != -1 && element != null) { // replace with last element
+            collection[positionOfElementToRemove] = collection[size() - 1];
             collection[size() - 1] = null;
             elementCount--;
             return true;
@@ -101,7 +101,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     /**
      * Removes all elements from the ArraySet. The ArraySet will be empty after
      * this call returns.
-     * 
+     *
      * @pre true
      * @post size() = 0
      */
@@ -117,10 +117,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     /**
      * Finds the position of an element in the set.
      *
-     * @pre true
-     * @post true
      * @param element the E to search for
      * @return the position of E in collection or -1 if not found
+     * @pre true
+     * @post true
      */
     public int containsAtPosition(final E element) {
         int position = 0;
@@ -135,11 +135,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Returns true if this ArraySet contains the specified element.
-     * 
+     *
      * @param element The element to be checked for containment.
+     * @return true if element is in the ArraySet, and false otherwise.
      * @pre true
      * @post true
-     * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
         return containsAtPosition(element) != -1;
@@ -147,10 +147,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Returns the number of elements in the ArraySet (its cardinality).
-     * 
+     *
+     * @return The number of elements in the ArraySet.
      * @pre true
      * @post true
-     * @return The number of elements in the ArraySet.
      */
     public int size() {
         return elementCount;
@@ -158,7 +158,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Doubles the size of the ArraySet.
-     * 
+     *
      * @pre true
      * @post the capacity of the ArraySet is doubled.
      */
@@ -180,10 +180,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
     /**
      * Creates and returns an array containing the elements of the ArraySet.
-     * 
+     *
+     * @return an unordered array containing the elements of the ArraySet.
      * @pre true
      * @post true
-     * @return an unordered array containing the elements of the ArraySet.
      */
     public Object[] toArray() {
         Object[] newArray = new Object[size()];
@@ -200,11 +200,11 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     /**
      * Returns an iterator over the elements in this ArraySet. The elements are
      * returned in no particular order.
-     * 
+     *
+     * @return an iterator for the ArraySet of elements that points to the first
+     * element in the ArraySet.
      * @pre true
      * @post true
-     * @return an iterator for the ArraySet of elements that points to the first
-     *         element in the ArraySet.
      */
     public SetIterator<E> iterator() {
         return new SetIterator();
@@ -220,9 +220,9 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         /**
          * Returns true if the iteration has more elements.
          *
+         * @return true if the iteration has more elements, false otherwise.
          * @pre true
          * @post true
-         * @return true if the iteration has more elements, false otherwise.
          */
         public boolean hasNext() {
             return collection[currentPosition] != null && currentPosition < size();
@@ -232,44 +232,13 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * Returns the next element in the iteration and advances to point to
          * the next.
          *
+         * @return the element pointed to by the SetIterator when the method is called.
          * @pre @pre.hasNext()
          * @post SetIterator points to the next element in the ArraySet.
-         * @return the element pointed to by the SetIterator when the method is called.
          */
         public E next() {
             currentPosition++;
             return (E) collection[currentPosition - 1];
         }
     }
-
-    public static void main(String[] args) {
-        ArraySet<Integer> ar = new ArraySet<>();
-        int trueCount = 0;
-        int falseCount = 0;
-
-        for (int i = 0; i < 1000; ++i) {
-            ar.add(i);
-        }
-
-        System.out.println("does ar contain 0? " + ar.contains(0));
-        System.out.println("does ar contain 999? " + ar.contains(999));
-        System.out.println("ar size " +  ar.size());
-
-
-        for (int i = 0; i < 1000; ++i) {
-            if (ar.add(i)) {
-                trueCount++;
-                System.out.println("this was added erroneously " + i);
-            } else {
-                falseCount++;
-            }
-        }
-
-        System.out.println("false = " + falseCount + " true = " + trueCount);
-        System.out.println("does ar contain 999? " + ar.contains(999));
-        System.out.println("ar size " +  ar.size());
-        assertEquals(1000, ar.size());
-
-    }
-
 }
