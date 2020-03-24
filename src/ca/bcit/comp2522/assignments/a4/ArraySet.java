@@ -161,13 +161,15 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @post the capacity of the ArraySet is doubled.
      */
     private void resize() {
-        if (size() == capacity) { // array is full
+        if (size() == capacity - 1) { // array is full
+            System.out.println("resized");
             int position = 0;
             E[] newCollection = (E[]) new Object[capacity * 2];
 
             while (position < capacity) {
-            newCollection[position] = collection[position];
-            position++;
+                newCollection[position] = collection[position];
+
+                position++;
             }
 
             capacity *= 2;
@@ -256,6 +258,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         System.out.println("capacity " + ar.capacity);
 
         ar.add(10);
+        ar.add(11);
         System.out.println(Arrays.toString(ar.collection));
         System.out.println("size " + ar.size());
         System.out.println("capacity " + ar.capacity);
