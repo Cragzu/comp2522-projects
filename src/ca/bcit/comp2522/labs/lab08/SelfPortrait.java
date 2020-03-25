@@ -2,6 +2,7 @@ package ca.bcit.comp2522.labs.lab08;
 
 import javafx.application.Application;
 import javafx.scene.shape.*;
+import javafx.scene.transform.Shear;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,7 +35,16 @@ public class SelfPortrait extends Application {
         Circle backHairTop = new Circle(250, 225, 175);
         backHairTop.setFill(Color.GOLD);
 
-        Group backHair = new Group(backHairLeft, backHairRight, backHairTop);
+        Shear spikyShear = new Shear();
+        spikyShear.setPivotX(50);
+        spikyShear.setX(0.5);
+
+        Rectangle backHairSpiky = new Rectangle(175, 30, 100, 100);
+        backHairSpiky.setFill(Color.GOLD);
+        backHairSpiky.getTransforms().addAll(spikyShear);
+        backHairSpiky.setRotate(25);
+
+        Group backHair = new Group(backHairLeft, backHairRight, backHairTop, backHairSpiky);
         //</editor-fold>
 
         //<editor-fold desc="headBase">
@@ -51,6 +61,27 @@ public class SelfPortrait extends Application {
 
         Group headBase = new Group(head, frontHairLeft, frontHairRight);
         //</editor-fold>
+
+        Ellipse leftPupil = new Ellipse(250, 250, 10, 20);
+        leftPupil.setFill(Color.LIGHTBLUE);
+
+        Group leftEye = new Group(leftPupil);
+        leftEye.setTranslateX(-50);
+
+
+
+        Ellipse rightPupil = new Ellipse(250, 250, 10, 20);
+        rightPupil.setFill(Color.LIGHTBLUE);
+
+        Group rightEye = new Group(rightPupil);
+        rightEye.setTranslateX(50);
+
+
+        Group eyes = new Group(leftEye, rightEye);
+
+
+        Group face = new Group(eyes);
+
 
 //        Ellipse middle = new Ellipse(80, 130, 50, 40);
 //        middle.setFill(Color.WHITE);
@@ -91,8 +122,8 @@ public class SelfPortrait extends Application {
 //        Rectangle ground = new Rectangle(0, 250, 500, 100);
 //        ground.setFill(Color.STEELBLUE);
 //
-        Group root = new Group(backHair, headBase);
-        Scene scene = new Scene(root, 500, 500, Color.LIGHTBLUE);
+        Group root = new Group(backHair, headBase, face);
+        Scene scene = new Scene(root, 500, 500, Color.LAVENDER);
 
         primaryStage.setTitle("Chloe's Self-Portrait");
         primaryStage.setScene(scene);
