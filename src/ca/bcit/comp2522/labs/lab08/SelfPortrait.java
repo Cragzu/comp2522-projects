@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.labs.lab08;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.*;
 import javafx.scene.transform.Shear;
 import javafx.stage.Stage;
@@ -22,6 +25,7 @@ public class SelfPortrait extends Application {
      * @param primaryStage contains the scene
      */
     public void start(Stage primaryStage) {
+        //<editor-fold desc="body">
         Rectangle shirt = new Rectangle(190, 300, 120, 200);
         shirt.setFill(Color.MEDIUMPURPLE);
 
@@ -29,6 +33,7 @@ public class SelfPortrait extends Application {
         neck.setFill(Color.WHEAT);
 
         Group body = new Group(shirt, neck);
+        //</editor-fold>
 
         //<editor-fold desc="backHair">
         Rectangle backHairLeft = new Rectangle(200, 200, 200, 200);
@@ -138,46 +143,24 @@ public class SelfPortrait extends Application {
         Group face = new Group(mouth, nose, eyes);
 
 
-//        Ellipse middle = new Ellipse(80, 130, 50, 40);
-//        middle.setFill(Color.WHITE);
-//
-//        Circle head = new Circle(80, 70, 30);
-//        head.setFill(Color.WHITE);
-//
-//        Circle rightEye = new Circle(70, 60, 5);
-//        Circle leftEye = new Circle(90, 60, 5);
-//        Line mouth = new Line(70, 80, 90, 80);
-//
-//        Circle topButton = new Circle(80, 120, 6);
-//        topButton.setFill(Color.RED);
-//
-//        Circle bottomButton = new Circle(80, 140, 6);
-//        bottomButton.setFill(Color.RED);
-//
-//        Line leftArm = new Line(110, 130, 160, 130);
-//        leftArm.setStrokeWidth(3);
-//
-//        Line rightArm = new Line(50, 130, 0, 100);
-//        rightArm.setStrokeWidth(3);
-//
-//        Rectangle stovepipe = new Rectangle(60, 0, 40, 50);
-//        Rectangle brim = new Rectangle(50, 45, 60, 5);
-//        Group hat = new Group(stovepipe, brim);
-//        hat.setTranslateX(10);
-//        hat.setRotate(15);
-//
-//        Group snowman = new Group(base, middle, head, leftEye, rightEye, mouth,
-//                topButton, bottomButton, leftArm, rightArm, hat);
-//        snowman.setTranslateX(170);
-//        snowman.setTranslateY(50);
-//
-//        Circle sun = new Circle(50, 50, 30);
-//        sun.setFill(Color.GOLD);
-//
-//        Rectangle ground = new Rectangle(0, 250, 500, 100);
-//        ground.setFill(Color.STEELBLUE);
-//
-        Group root = new Group(backHair, body, headBase, face);
+
+        //<editor-fold desc="image">
+        Image bcit = new Image("bcit.png");
+
+        ImageView imageView = new ImageView(bcit);
+
+        final int viewX = 0;
+        final int viewY = 0;
+        final int viewWidth = 2000;
+        final int viewHeight = 2000;
+
+        imageView.setFitHeight(200);
+        imageView.setFitWidth(200);
+
+        imageView.setViewport(new Rectangle2D(viewX, viewY, viewWidth, viewHeight));
+        //</editor-fold>
+
+        Group root = new Group(imageView, backHair, body, headBase, face);
         Scene scene = new Scene(root, 500, 500, Color.LAVENDER);
 
         primaryStage.setTitle("Chloe's Self-Portrait");
