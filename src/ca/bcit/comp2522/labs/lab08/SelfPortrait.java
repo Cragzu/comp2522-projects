@@ -62,25 +62,58 @@ public class SelfPortrait extends Application {
         Group headBase = new Group(head, frontHairLeft, frontHairRight);
         //</editor-fold>
 
+        //<editor-fold desc="eyes">
+        Shear leftLashShear = new Shear();
+        leftLashShear.setPivotX(50);
+        leftLashShear.setX(0.5);
+
+        Rectangle leftLash = new Rectangle(145, 195, 10, 10);
+        leftLash.setFill(Color.SADDLEBROWN);
+        leftLash.getTransforms().addAll(leftLashShear);
+
+        leftLash.setRotate(25);
+
         Ellipse leftPupil = new Ellipse(250, 250, 10, 20);
         leftPupil.setFill(Color.LIGHTBLUE);
 
-        Group leftEye = new Group(leftPupil);
+        Group leftEye = new Group(leftLash, leftPupil);
         leftEye.setTranslateX(-50);
 
+        Shear rightLashShear = new Shear();
+        rightLashShear.setPivotX(50);
+        rightLashShear.setX(-0.5);
 
+        Rectangle rightLash = new Rectangle(345, 195, 10, 10);
+        rightLash.setFill(Color.SADDLEBROWN);
+        rightLash.getTransforms().addAll(rightLashShear);
+
+        rightLash.setRotate(-25);
 
         Ellipse rightPupil = new Ellipse(250, 250, 10, 20);
         rightPupil.setFill(Color.LIGHTBLUE);
 
-        Group rightEye = new Group(rightPupil);
+        Group rightEye = new Group(rightLash, rightPupil);
         rightEye.setTranslateX(50);
 
-
         Group eyes = new Group(leftEye, rightEye);
+        //</editor-fold>
+
+        //<editor-fold desc="nose">
+        Shear noseShear = new Shear();
+        noseShear.setPivotX(40);
+        noseShear.setX(0.5);
+
+        Rectangle nose = new Rectangle(140, 225, 20, 20);
+        nose.setFill(Color.BURLYWOOD);
+        nose.getTransforms().addAll(noseShear);
+
+        nose.setRotate(25);
+        //</editor-fold>
 
 
-        Group face = new Group(eyes);
+
+
+        Group face = new Group(eyes, nose);
 
 
 //        Ellipse middle = new Ellipse(80, 130, 50, 40);
