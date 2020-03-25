@@ -142,8 +142,6 @@ public class SelfPortrait extends Application {
 
         Group face = new Group(mouth, nose, eyes);
 
-
-
         //<editor-fold desc="image">
         Image bcit = new Image("bcit.png");
 
