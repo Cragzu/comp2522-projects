@@ -21,13 +21,7 @@ public class SelfPortrait extends Application {
      * @param primaryStage contains the scene
      */
     public void start(Stage primaryStage) {
-        Circle hair = new Circle(250, 250, 200);
-        hair.setFill(Color.GOLD);
-
-        Ellipse head = new Ellipse(250, 250, 140, 150);
-        head.setFill(Color.WHEAT);
-
-
+        //<editor-fold desc="backHair">
         Rectangle backHairLeft = new Rectangle(200, 200, 200, 200);
         backHairLeft.setFill(Color.GOLD);
         backHairLeft.setRotate(15);
@@ -41,9 +35,22 @@ public class SelfPortrait extends Application {
         backHairTop.setFill(Color.GOLD);
 
         Group backHair = new Group(backHairLeft, backHairRight, backHairTop);
+        //</editor-fold>
 
+        //<editor-fold desc="headBase">
+        Ellipse head = new Ellipse(250, 250, 140, 150);
+        head.setFill(Color.WHEAT);
 
-        Group headBase = new Group(head);
+        Ellipse frontHairLeft = new Ellipse(175, 160, 60, 110);
+        frontHairLeft.setFill(Color.GOLD);
+        frontHairLeft.setRotate(50);
+
+        Ellipse frontHairRight = new Ellipse(325, 160, 60, 110);
+        frontHairRight.setFill(Color.GOLD);
+        frontHairRight.setRotate(-50);
+
+        Group headBase = new Group(head, frontHairLeft, frontHairRight);
+        //</editor-fold>
 
 //        Ellipse middle = new Ellipse(80, 130, 50, 40);
 //        middle.setFill(Color.WHITE);
