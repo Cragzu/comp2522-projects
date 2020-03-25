@@ -22,6 +22,14 @@ public class SelfPortrait extends Application {
      * @param primaryStage contains the scene
      */
     public void start(Stage primaryStage) {
+        Rectangle shirt = new Rectangle(190, 300, 120, 200);
+        shirt.setFill(Color.MEDIUMPURPLE);
+
+        Ellipse neck = new Ellipse(250, 390, 25, 20);
+        neck.setFill(Color.WHEAT);
+
+        Group body = new Group(shirt, neck);
+
         //<editor-fold desc="backHair">
         Rectangle backHairLeft = new Rectangle(200, 200, 200, 200);
         backHairLeft.setFill(Color.GOLD);
@@ -50,6 +58,7 @@ public class SelfPortrait extends Application {
         //<editor-fold desc="headBase">
         Ellipse head = new Ellipse(250, 250, 140, 150);
         head.setFill(Color.WHEAT);
+        head.setStroke(Color.BURLYWOOD);
 
         Ellipse frontHairLeft = new Ellipse(175, 160, 60, 110);
         frontHairLeft.setFill(Color.GOLD);
@@ -168,7 +177,7 @@ public class SelfPortrait extends Application {
 //        Rectangle ground = new Rectangle(0, 250, 500, 100);
 //        ground.setFill(Color.STEELBLUE);
 //
-        Group root = new Group(backHair, headBase, face);
+        Group root = new Group(backHair, body, headBase, face);
         Scene scene = new Scene(root, 500, 500, Color.LAVENDER);
 
         primaryStage.setTitle("Chloe's Self-Portrait");
