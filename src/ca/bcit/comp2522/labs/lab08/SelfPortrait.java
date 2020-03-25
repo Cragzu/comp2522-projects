@@ -110,10 +110,23 @@ public class SelfPortrait extends Application {
         nose.setRotate(25);
         //</editor-fold>
 
+        //<editor-fold desc="mouth">
+        Ellipse mouthBase = new Ellipse(240, 350, 20, 30);
+        mouthBase.setFill(Color.PALEVIOLETRED);
 
+        Ellipse tongue = new Ellipse(240, 370, 13, 10);
+        tongue.setFill(Color.MEDIUMVIOLETRED);
 
+        Ellipse topMouthCover = new Ellipse(240, 300, 40, 40);
+        topMouthCover.setFill(Color.WHEAT);
 
-        Group face = new Group(eyes, nose);
+        Group mouth = new Group(mouthBase, tongue, topMouthCover);
+
+        mouth.setRotate(15);
+        mouth.setTranslateY(-10);
+        //</editor-fold>
+
+        Group face = new Group(mouth, nose, eyes);
 
 
 //        Ellipse middle = new Ellipse(80, 130, 50, 40);
