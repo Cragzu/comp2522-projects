@@ -1,33 +1,50 @@
 package ca.bcit.comp2522.labs.lab08;
 
 import javafx.application.Application;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Rectangle;
 
 /**
- * An introduction to translating JavaFX shapes and groups.
+ * A beautiful self-portrait created to learn the basics of JavaFX.
  *
- * @author Lewis & Loftus 9e
- * @author BCIT
+ * @author Chloe Glave
  * @version 2020
  */
 public class SelfPortrait extends Application {
 
     /**
-     * Creates and displays a *yuck* snowy *yuck* scene.
+     * Creates and displays a picture of Chloe.
      *
      * @param primaryStage contains the scene
      */
     public void start(Stage primaryStage) {
-        Ellipse head = new Ellipse(80, 210, 80, 60);
-        head.setFill(Color.PURPLE);
-//
+        Circle hair = new Circle(250, 250, 200);
+        hair.setFill(Color.GOLD);
+
+        Ellipse head = new Ellipse(250, 250, 140, 150);
+        head.setFill(Color.WHEAT);
+
+
+        Rectangle backHairLeft = new Rectangle(200, 200, 200, 200);
+        backHairLeft.setFill(Color.GOLD);
+        backHairLeft.setRotate(15);
+
+        Rectangle backHairRight = new Rectangle(200, 200, 200, 200);
+        backHairRight.setFill(Color.GOLD);
+        backHairRight.setRotate(-15);
+        backHairRight.setTranslateX(-100);
+
+        Circle backHairTop = new Circle(250, 225, 175);
+        backHairTop.setFill(Color.GOLD);
+
+        Group backHair = new Group(backHairLeft, backHairRight, backHairTop);
+
+
+        Group headBase = new Group(head);
+
 //        Ellipse middle = new Ellipse(80, 130, 50, 40);
 //        middle.setFill(Color.WHITE);
 //
@@ -67,8 +84,8 @@ public class SelfPortrait extends Application {
 //        Rectangle ground = new Rectangle(0, 250, 500, 100);
 //        ground.setFill(Color.STEELBLUE);
 //
-        Group root = new Group(head);
-        Scene scene = new Scene(root, 500, 350, Color.LIGHTBLUE);
+        Group root = new Group(backHair, headBase);
+        Scene scene = new Scene(root, 500, 500, Color.LIGHTBLUE);
 
         primaryStage.setTitle("Chloe's Self-Portrait");
         primaryStage.setScene(scene);
