@@ -15,10 +15,13 @@ public class SortTester {
      * Reference: https://www.geeksforgeeks.org/selection-sort/
      *
      * @param array the array of ints to sort.
+     * @return the time in nanoseconds it took to complete the sort.
      * @pre array contains ints or is empty.
      * @post array will be sorted in ascending order.
      */
-    void QuadraticSort(int[] array) {
+    long quadraticSort(int[] array) {
+        long timeAtStart = System.nanoTime();
+
         int length = array.length;
 
         for (int i = 0; i < length - 1; i++) { // iterate through array
@@ -32,6 +35,7 @@ public class SortTester {
             array[minimumIndex] = array[i];
             array[i] = temp;
         }
+        return System.nanoTime() - timeAtStart;
     }
 
     /**
@@ -72,12 +76,23 @@ public class SortTester {
      * @pre array contains ints or is empty.
      * @post array will be sorted in ascending order.
      */
-    void logarithmicSort(int[] array, int low, int high) {
+    void quickSort(int[] array, int low, int high) {
         if (low < high) {
             int partitionIndex = partition(array, low, high); // find dividing index
-            logarithmicSort(array, low, (partitionIndex - 1)); // sort elements before partition
-            logarithmicSort(array, (partitionIndex + 1), high); // sort elements after partition
+            quickSort(array, low, (partitionIndex - 1)); // sort elements before partition
+            quickSort(array, (partitionIndex + 1), high); // sort elements after partition
         }
+    }
+
+    /**
+     * Drives the quickSort algorithm.
+     * @param array the array of ints to sort.
+     * @return the time in nanoseconds it took to complete the sort.
+     */
+    long logarithmicSort(int[] array) {
+        long timeAtStart = System.nanoTime();
+        quickSort(array, 0, array.length - 1);
+        return System.nanoTime() - timeAtStart;
     }
 
 
@@ -87,7 +102,7 @@ public class SortTester {
         int[] arr = {3, 1, 4, 5, 2};
         System.out.println(Arrays.toString(arr));
 
-        st.logarithmicSort(arr, 0, arr.length - 1);
+        System.out.println(st.logarithmicSort(arr) + " nanoseconds to complete");
         System.out.println(Arrays.toString(arr));
 
     }
