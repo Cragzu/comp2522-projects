@@ -95,17 +95,4 @@ public class SortTester {
         return System.nanoTime() - timeAtStart;
     }
 
-
-    public static void main(String[] args) {
-        SortTester st = new SortTester();
-
-        int[] arr = {3, 1, 4, 5, 2};
-        System.out.println(Arrays.toString(arr));
-
-        System.out.println(st.logarithmicSort(arr) + " nanoseconds to complete");
-        System.out.println(Arrays.toString(arr));
-
-    }
-
-
 }
