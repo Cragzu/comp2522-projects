@@ -67,13 +67,17 @@ public class SortTester {
      * Reference: https://www.geeksforgeeks.org/quick-sort/
      *
      * @param array the array of ints to sort.
+     * @param low the starting index.
+     * @param high the ending index.
      * @pre array contains ints or is empty.
      * @post array will be sorted in ascending order.
      */
-    void logarithmicSort(int[] array) {
-
-
-
+    void logarithmicSort(int[] array, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(array, low, high); // find dividing index
+            logarithmicSort(array, low, (partitionIndex - 1)); // sort elements before partition
+            logarithmicSort(array, (partitionIndex + 1), high); // sort elements after partition
+        }
     }
 
 
@@ -83,7 +87,7 @@ public class SortTester {
         int[] arr = {3, 1, 4, 5, 2};
         System.out.println(Arrays.toString(arr));
 
-        st.QuadraticSort(arr);
+        st.logarithmicSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
 
     }
