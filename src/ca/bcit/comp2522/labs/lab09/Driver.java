@@ -72,16 +72,19 @@ public class Driver {
         System.out.println(d.averageTimeForQuadratic(SIZE3));
         System.out.println(d.averageTimeForQuadratic(SIZE4));
         System.out.println(d.averageTimeForQuadratic(SIZE5));
-        System.out.println(d.averageTimeForQuadratic(SIZE6));
-        System.out.println(d.averageTimeForQuadratic(SIZE7));
 
-//        System.out.println(d.averageTimeForLogarithmic(SIZE1));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE2));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE3));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE4));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE5));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE6));
-//        System.out.println(d.averageTimeForLogarithmic(SIZE7));
+
+//      1 million and 10 million took too long, not practical to measure
+//      System.out.println(d.averageTimeForQuadratic(SIZE6));
+//      System.out.println(d.averageTimeForQuadratic(SIZE7));
+
+        System.out.println(d.averageTimeForLogarithmic(SIZE1));
+        System.out.println(d.averageTimeForLogarithmic(SIZE2));
+        System.out.println(d.averageTimeForLogarithmic(SIZE3));
+        System.out.println(d.averageTimeForLogarithmic(SIZE4));
+        System.out.println(d.averageTimeForLogarithmic(SIZE5));
+        System.out.println(d.averageTimeForLogarithmic(SIZE6));
+        System.out.println(d.averageTimeForLogarithmic(SIZE7));
 
     }
 }
