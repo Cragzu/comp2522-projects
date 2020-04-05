@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a5;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
  * @version 2020
  */
 public class Streaming {
-    /**
+    /*
      * QUESTION 1
      *
      * The following stream pipeline will produce a sum of all odd Integers in the list.
@@ -21,7 +22,7 @@ public class Streaming {
      * list.stream().filter(value -> value % 2 != 0).sum();
      */
 
-    /**
+    /*
      * QUESTION 2
      *
      * The following stream pipeline will run 1 million coin flips.
@@ -33,7 +34,18 @@ public class Streaming {
      * .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
      */
 
-    public static void main(String[] args) {
+   static List<Character> words() {
+
+       List<Character> listToPopulate = new ArrayList<>();
+
+       for (int j = 0; j < 30; ++j) {
+           listToPopulate.add((char) (97 + new Random().nextInt(26)));
+       }
+
+       return listToPopulate;
+   }
+
+    public static void main(String[] args) { // todo: clean up main
         ArrayList<Integer> al = new ArrayList<>();
         al.add(1);
         al.add(2);
@@ -48,9 +60,9 @@ public class Streaming {
 
    //     al.stream().filter(value -> value % 2 != 0).forEach(value -> System.out.println(value));
 
-        new Random().ints(1_000_000, 1, 3).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
+//        new Random().ints(1_000_000, 1, 3).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
 
-
+        words();
 
     }
 }
