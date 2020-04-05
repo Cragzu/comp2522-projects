@@ -34,6 +34,11 @@ public class Streaming {
      * .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
      */
 
+    /**
+     * Creates a List containing 30 random characters.
+     *
+     * @return the created List.
+     */
    static List<Character> words() {
 
        List<Character> listToPopulate = new ArrayList<>();
@@ -43,6 +48,16 @@ public class Streaming {
        }
 
        return listToPopulate;
+   }
+
+    /**
+     * Sorts a List of characters in ascending order.
+     *
+     * @param listToSort the List of characters to sort.
+     * @return the newly sorted List.
+     */
+   static List<Character> ascendingSort(List<Character> listToSort) {
+       return listToSort.stream().sorted().collect(Collectors.toList());
    }
 
     public static void main(String[] args) { // todo: clean up main
@@ -62,7 +77,11 @@ public class Streaming {
 
 //        new Random().ints(1_000_000, 1, 3).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
 
-        words();
+        List<Character> letters = words();
+        System.out.println("Generated letters array: " + letters);
+
+        List<Character> ascendingSortedLetters = ascendingSort(letters);
+        System.out.println("Ascending sorted array: " + ascendingSortedLetters);
 
     }
 }
