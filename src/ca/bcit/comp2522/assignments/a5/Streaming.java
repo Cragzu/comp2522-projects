@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.assignments.a5;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -51,7 +52,7 @@ public class Streaming {
    }
 
     /**
-     * Sorts a List of characters in ascending order.
+     * Sorts a List of characters in ascending order (a-z).
      *
      * @param listToSort the List of characters to sort.
      * @return the newly sorted List.
@@ -59,6 +60,16 @@ public class Streaming {
    static List<Character> ascendingSort(List<Character> listToSort) {
        return listToSort.stream().sorted().collect(Collectors.toList());
    }
+
+    /**
+     * Sorts a List of characters in descending order (z-a).
+     *
+     * @param listToSort the List of characters to sort.
+     * @return the newly sorted List.
+     */
+    static List<Character> descendingSort(List<Character> listToSort) {
+        return listToSort.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+    }
 
     public static void main(String[] args) { // todo: clean up main
         ArrayList<Integer> al = new ArrayList<>();
@@ -82,6 +93,9 @@ public class Streaming {
 
         List<Character> ascendingSortedLetters = ascendingSort(letters);
         System.out.println("Ascending sorted array: " + ascendingSortedLetters);
+
+        List<Character> descendingSortedLetters = descendingSort(letters);
+        System.out.println("Descending sorted array: " + descendingSortedLetters);
 
     }
 }
