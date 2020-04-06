@@ -1,9 +1,6 @@
 package ca.bcit.comp2522.assignments.a5;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,6 +30,23 @@ public class Streaming {
      * random.ints(1_000_000, 1, 3).boxed()
      * .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
      * .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
+     */
+
+    /*
+     * QUESTION 9
+     *
+     * int[] values = {1, 4, 9, 16};
+     * Stream.of(values)
+     *
+     * This is a stream reference pipeline head. Printing it returns:
+     * java.util.stream.ReferencePipeline$Head@300ffa5d
+     *
+     * We can get a stream of int instead by using:
+     * Arrays.stream(values);
+     *
+     * This is a stream int pipeline head. Printing it returns:
+     * java.util.stream.IntPipeline$Head@1f17ae12
+     *
      */
 
     /**
