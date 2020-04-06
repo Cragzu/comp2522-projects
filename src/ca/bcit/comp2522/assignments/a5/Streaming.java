@@ -81,20 +81,25 @@ public class Streaming {
      */
     static List<Character> descendingSortNoDuplicates(List<Character> listToSort) {
         return listToSort.stream()
-                .distinct()
+                .distinct() // removes duplicates
                 .sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
-    public static void main(String[] args) { // todo: clean up main
-        ArrayList<Integer> al = new ArrayList<>();
-        al.add(1);
-        al.add(2);
-        al.add(3);
-        al.add(4);
-        al.add(5);
-        al.add(6);
+    /**
+     * Demonstrates "lazy filtering" in Streams.
+     * Prints out every word in a List with more than 10 letters.
+     *
+     * @param words the List to print from.
+     */
+    static void lazyStream(List<String> words) {
+        words.stream()
+                .filter(e -> e.length() > 10)
+                // filtering only happens when the result is needed
+                .peek(event -> System.out.println("Something was filtered!"))
+                .forEach(e -> System.out.println(e));
+    }
 
- //       System.out.println(al);
+    public static void main(String[] args) { // todo: clean up main
 
 //        al.stream().forEach(e -> System.out.println(e));
 
@@ -114,6 +119,14 @@ public class Streaming {
         List<Character> descendingSortedUniqueLetters = descendingSortNoDuplicates(letters);
         System.out.println("Descending sorted array with no duplicates: "
                             + descendingSortedUniqueLetters);
+
+        ArrayList<String> words = new ArrayList<>(List.of(
+                        "fine", "periodical", "plain", "colour", "unknown", "wealthy", "spade",
+                        "sturdy", "representative", "float", "lumber", "concatenation",
+                        "wanting", "support", "wilderness", "brake", "delicious", "industrious"));
+
+        lazyStream(words);
+
 
     }
 }
