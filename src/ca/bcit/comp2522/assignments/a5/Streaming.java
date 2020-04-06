@@ -1,7 +1,9 @@
 package ca.bcit.comp2522.assignments.a5;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -113,13 +115,23 @@ public class Streaming {
                 .forEach(e -> System.out.println(e));
     }
 
-    public static void main(String[] args) { // todo: clean up main
+    /**
+     * Creates a stream out of the characters in a String.
+     *
+     * @param input the String to create the stream from.
+     * @return the pipeline head of the created stream.
+     */
+    public static Stream<Character> characterStream(String input) {
+        // Refactor of this "clunky" code:
+/*        List<Character> result = new ArrayList<>();
+        for (char c : input.toCharArray())
+            result.add(c);
+        return result.stream();*/
 
-//        al.stream().forEach(e -> System.out.println(e));
+        return input.chars().mapToObj(c -> (char) c);
+    }
 
-   //     al.stream().filter(value -> value % 2 != 0).forEach(value -> System.out.println(value));
-
-//        new Random().ints(1_000_000, 1, 3).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) .forEach((side, frequency) -> System.out.printf("%-6d%d%n", side, frequency));
+    public static void main(String[] args) {
 
         List<Character> letters = words();
         System.out.println("Generated letters array: " + letters);
@@ -141,6 +153,6 @@ public class Streaming {
 
         lazyStream(words);
 
-
+        characterStream("industrious").forEach(e -> System.out.println(e));
     }
 }
