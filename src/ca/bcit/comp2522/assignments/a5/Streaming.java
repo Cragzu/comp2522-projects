@@ -58,7 +58,8 @@ public class Streaming {
      * @return the newly sorted List.
      */
    static List<Character> ascendingSort(List<Character> listToSort) {
-       return listToSort.stream().sorted().collect(Collectors.toList());
+       return listToSort.stream()
+               .sorted().collect(Collectors.toList());
    }
 
     /**
@@ -68,7 +69,20 @@ public class Streaming {
      * @return the newly sorted List.
      */
     static List<Character> descendingSort(List<Character> listToSort) {
-        return listToSort.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        return listToSort.stream()
+                .sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+    }
+
+    /**
+     * Sorts a List of characters in descending order (z-a), removing any duplicate letters.
+     *
+     * @param listToSort the List of characters to sort.
+     * @return the newly sorted List.
+     */
+    static List<Character> descendingSortNoDuplicates(List<Character> listToSort) {
+        return listToSort.stream()
+                .distinct()
+                .sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
     public static void main(String[] args) { // todo: clean up main
@@ -96,6 +110,10 @@ public class Streaming {
 
         List<Character> descendingSortedLetters = descendingSort(letters);
         System.out.println("Descending sorted array: " + descendingSortedLetters);
+
+        List<Character> descendingSortedUniqueLetters = descendingSortNoDuplicates(letters);
+        System.out.println("Descending sorted array with no duplicates: "
+                            + descendingSortedUniqueLetters);
 
     }
 }
