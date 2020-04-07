@@ -109,6 +109,7 @@ public class Streaming {
      */
     static void lazyStream(List<String> words) {
         words.stream()
+                .peek(event -> System.out.println("Something passed the peek!"))
                 .filter(e -> e.length() > 10)
                 // filtering only happens when the result is needed
                 .peek(event -> System.out.println("Something was filtered!"))
