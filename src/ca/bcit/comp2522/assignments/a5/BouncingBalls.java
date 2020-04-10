@@ -7,11 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.Scanner;
+
 /**
  * BouncingBalls, an introduction to threading and JavaFX.
  *
  * @author BCIT
- * @author YOUR NAME GOES HERE
+ * @author Chloe Glave
  * @version 2020
  */
 public class BouncingBalls extends Application {
@@ -23,17 +25,26 @@ public class BouncingBalls extends Application {
     public void start(Stage primaryStage) {
         Pane canvas = new Pane();
         Scene scene = new Scene(canvas, 500, 500);
-        Ball ball = new Ball(250, 250);
 
-        canvas.getChildren().add(ball);
+        final Scanner titleScanner = new Scanner(System.in);
+        System.out.print("How many balls do you want?: ");
+
+        final double numOfBalls = titleScanner.nextInt();
+
+        for (int i = 0; i < numOfBalls; i++) {
+            Ball ball = new Ball(250, 250);
+
+            canvas.getChildren().add(ball);
+
+            Thread bouncer = new Thread(ball);
+            bouncer.setDaemon(true);
+            bouncer.start();
+        }
 
         primaryStage.setTitle("Threads and Balls");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Thread bouncer = new Thread(ball);
-        bouncer.setDaemon(true);
-        bouncer.start();
     }
 
     /**
