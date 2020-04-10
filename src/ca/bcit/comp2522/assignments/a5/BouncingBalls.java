@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,8 @@ import java.util.Scanner;
  * @version 2020
  */
 public class BouncingBalls extends Application {
+
+    static final ArrayList<Ball> BALLS = new ArrayList<>();
 
     /**
      * Gets user input for the number of Balls to create.
@@ -30,20 +33,18 @@ public class BouncingBalls extends Application {
     }
 
     /**
-     * Creates an ArrayList of the specified number of Ball objects.
-     *
-     * @return the created ArrayList.
+     * Populates the ArrayList with the specified number of Ball objects.
      */
-    private ArrayList<Ball> generateListOfBallsFromInput() {
-        ArrayList<Ball> balls = new ArrayList<>();
+    private void generateListOfBallsFromInput() {
         int numOfBalls = getNumberOfBallsFromInput();
-
         for (int i = 0; i < numOfBalls; i++) {
-            Ball ball = new Ball(250, 250);
+            int ballXPosition = new Random().nextInt(500);
+            int ballYPosition = new Random().nextInt(500);
 
-            balls.add(ball);
+            Ball ball = new Ball(ballXPosition, ballYPosition);
+
+            BALLS.add(ball);
         }
-        return balls;
     }
 
     /**
@@ -54,9 +55,9 @@ public class BouncingBalls extends Application {
         Pane canvas = new Pane();
         Scene scene = new Scene(canvas, 500, 500);
 
-        ArrayList<Ball> balls = generateListOfBallsFromInput();
+        generateListOfBallsFromInput();
 
-        balls.forEach(ball -> {
+        BALLS.forEach(ball -> {
             canvas.getChildren().add(ball);
             Thread bouncer = new Thread(ball);
             bouncer.setDaemon(true);

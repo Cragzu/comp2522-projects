@@ -37,12 +37,42 @@ public class Ball extends Circle implements Runnable {
     }
 
     /**
+     * Bounces the Ball off the edges of the window.
+     */
+    public void checkCollisionWithWalls() {
+        // if bounce off top or bottom of Panel
+        if (this.getCenterY() <= 0 || this.getCenterY() >= MAX_Y)
+            dy *= -1; // reverses velocity in y direction
+
+        // if bounce off left or right of Panel
+        if (this.getCenterX() <= 0 || this.getCenterX() >= MAX_X)
+            dx *= -1; // reverses velocity in x direction
+
+        this.setCenterX(this.getCenterX() + dx); // determines new x-position
+        this.setCenterY(this.getCenterY() + dy); // determines new y-position
+    }
+
+    public void checkCollisionWithOthers() {
+        for (int i = 0; i < BouncingBalls.BALLS.size(); i++) {
+            if (this.intersects(
+                    (BouncingBalls.BALLS.get(i)).getBoundsInLocal())
+            ) {
+                System.out.println("Collision!");
+                dy *= -1; // reverses velocity in y direction
+                dx *= -1; // reverses velocity in x direction
+            }
+
+        }
+    }
+
+    /**
      * Bounces the Ball perpetually.
      */
     public void run() {
         while (true) {
             try {
                 Thread.sleep(20); // sleep for 20 milliseconds
+
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
@@ -58,16 +88,10 @@ public class Ball extends Circle implements Runnable {
                JavaFX application thread.
              */
             Platform.runLater( () -> {
-                // if bounce off top or bottom of Panel
-                if (this.getCenterY() <= 0 || this.getCenterY() >= MAX_Y)
-                    dy *= -1; // reverses velocity in y direction
+                checkCollisionWithWalls();
+                checkCollisionWithOthers();
+//                System.out.println(BouncingBalls.BALLS.get(0).getCenterX());
 
-                // if bounce off left or right of Panel
-                if (this.getCenterX() <= 0 || this.getCenterX() >= MAX_X)
-                    dx *= -1; // reverses velocity in x direction
-
-                this.setCenterX(this.getCenterX() + dx); // determines new x-position
-                this.setCenterY(this.getCenterY() + dy); // determines new y-position
             });
         }
     }
