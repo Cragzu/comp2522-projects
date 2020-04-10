@@ -54,14 +54,13 @@ public class Ball extends Circle implements Runnable {
 
     public void checkCollisionWithOthers() {
         for (int i = 0; i < BouncingBalls.BALLS.size(); i++) {
-            if (this.intersects(
-                    (BouncingBalls.BALLS.get(i)).getBoundsInLocal())
+            if (
+                    !this.equals(BouncingBalls.BALLS.get(i)) // prevent collision with itself
+                    && this.intersects((BouncingBalls.BALLS.get(i)).getBoundsInLocal())
             ) {
-                System.out.println("Collision!");
                 dy *= -1; // reverses velocity in y direction
                 dx *= -1; // reverses velocity in x direction
             }
-
         }
     }
 
@@ -72,7 +71,6 @@ public class Ball extends Circle implements Runnable {
         while (true) {
             try {
                 Thread.sleep(20); // sleep for 20 milliseconds
-
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
@@ -90,8 +88,6 @@ public class Ball extends Circle implements Runnable {
             Platform.runLater( () -> {
                 checkCollisionWithWalls();
                 checkCollisionWithOthers();
-//                System.out.println(BouncingBalls.BALLS.get(0).getCenterX());
-
             });
         }
     }
