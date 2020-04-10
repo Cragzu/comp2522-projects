@@ -3,6 +3,7 @@ package ca.bcit.comp2522.assignments.a5;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.Scanner;
 public class BouncingBalls extends Application {
 
     static final ArrayList<Ball> BALLS = new ArrayList<>();
+    static final Color[] COLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK};
 
     /**
      * Gets user input for the number of Balls to create.
@@ -41,7 +43,9 @@ public class BouncingBalls extends Application {
             int ballXPosition = new Random().nextInt(500);
             int ballYPosition = new Random().nextInt(500);
 
-            Ball ball = new Ball(ballXPosition, ballYPosition);
+            Color color = COLORS[new Random().nextInt(COLORS.length)];
+
+            Ball ball = new Ball(ballXPosition, ballYPosition, color);
 
             BALLS.add(ball);
         }
@@ -53,7 +57,7 @@ public class BouncingBalls extends Application {
      */
     public void start(Stage primaryStage) {
         Pane canvas = new Pane();
-        Scene scene = new Scene(canvas, 500, 500);
+        Scene scene = new Scene(canvas, Ball.MAX_X, Ball.MAX_Y);
 
         generateListOfBallsFromInput();
 

@@ -16,8 +16,8 @@ public class Ball extends Circle implements Runnable {
 
     private static final Random generator = new Random();
 
-    private final int MAX_X = 500; // horizontal edge of enclosing Panel
-    private final int MAX_Y = 500; // vertical edge of enclosing Panel
+    static final int MAX_X = 500; // horizontal edge of enclosing Panel
+    static final int MAX_Y = 500; // vertical edge of enclosing Panel
 
     private int dx; // change in horizontal position of ball
     private int dy; // change in vertical position of ball
@@ -28,8 +28,8 @@ public class Ball extends Circle implements Runnable {
      * @param xPosition an int
      * @param yPosition an int
      */
-    public Ball(int xPosition, int yPosition) {
-        super(10, Color.RED);
+    public Ball(int xPosition, int yPosition, Color color) {
+        super(10, color);
         this.setCenterX(xPosition);
         this.setCenterY(yPosition);
         dx = generator.nextInt(5); // change in x (0 - 4 pixels)
@@ -52,16 +52,18 @@ public class Ball extends Circle implements Runnable {
         this.setCenterY(this.getCenterY() + dy); // determines new y-position
     }
 
+    /**
+     * Bounces the Ball off other balls.
+     */
     public void checkCollisionWithOthers() {
-        for (int i = 0; i < BouncingBalls.BALLS.size(); i++) {
-            if (
-                    !this.equals(BouncingBalls.BALLS.get(i)) // prevent collision with itself
-                    && this.intersects((BouncingBalls.BALLS.get(i)).getBoundsInLocal())
-            ) {
+        BouncingBalls.BALLS.forEach(listBall -> {
+            if (!this.equals(listBall) // prevent collision with itself
+                 && this.intersects(listBall.getBoundsInLocal())) {
+
                 dy *= -1; // reverses velocity in y direction
                 dx *= -1; // reverses velocity in x direction
             }
-        }
+        });
     }
 
     /**
